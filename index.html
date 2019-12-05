@@ -133,6 +133,53 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-05T08:12:21.000Z">2019-12-05</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 364 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/05/用Flask框架写一个简单的预约系统/">利用Flask框架写一个简单的预约系统</a>
+            
+        </h1>
+        <div class="content">
+            <p>主要功能就是用户登录、管理员登录、利用邮箱注册、增加或取消个人或团体预约记录。系统不难做，但有时候有些点会卡着你一个多小时。</p>
+<p>登录是通过查询数据库的结果为1来验证。注册邮箱时碰到一个问题卡了我很久，因为我发送验证码和注册两个都是提交到同一个页面，当注册submit时，由于前面发送验证码已经submit，所以此时填写的email等信息会为空，所以我利用了session机制，如果页面接收到的email等信息不为空，则将其加入session，等到为空时，直接利用session的值来提交到数据库。</p>
+<p>同样的用户登录后，回退页面也要用session机制，将用户名和密码存储在其中，过期时间为10分钟。</p>
+<p>在注册时发送的验证码应存储在redis数据库中，设置一个过期时间为60s，此时不建议用mysql之类的关系数据库，没必要。</p>
+<p>这个预约系统是在档案馆值班的时间做的，挺有收获的，做完了回头看确实很简单，算是对web开发有了初步接触了。</p>
+<p>具体代码见<a href="https://github.com/agentzxy/reservation-system.git" target="_blank" rel="noopener">https://github.com/agentzxy/reservation-system.git</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-11-13T16:46:00.000Z">2019-11-14</time>
                 
                 
@@ -1591,7 +1638,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            6
+                            7
                         </p>
                     </a>
                 </div>
@@ -1743,6 +1790,25 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         
         <article class="media">
             
+            <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="利用Flask框架写一个简单的预约系统">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T08:12:21.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用Flask框架写一个简单的预约系统</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/11/14/crapy框架爬取豆瓣电影top250/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="scrapy框架爬取豆瓣电影top250">
@@ -1817,25 +1883,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/银行排队问题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="银行排队问题">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T08:51:00.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/银行排队问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">银行排队问题</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1846,6 +1893,17 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/11/">
@@ -1942,6 +2000,25 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         
         <article class="media">
             
+            <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="利用Flask框架写一个简单的预约系统">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T08:12:21.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用Flask框架写一个简单的预约系统</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/11/14/crapy框架爬取豆瓣电影top250/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="scrapy框架爬取豆瓣电影top250">
@@ -2016,25 +2093,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/银行排队问题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="银行排队问题">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T08:51:00.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/银行排队问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">银行排队问题</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2045,6 +2103,17 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/11/">
