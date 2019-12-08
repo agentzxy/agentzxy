@@ -133,6 +133,57 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-08T13:38:00.000Z">2019-12-08</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 514 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/08/制简单操作系统（2）/">自制简单操作系统（2）</a>
+            
+        </h1>
+        <div class="content">
+            <p>今天主要是学习中断处理程序的制作，以键盘和鼠标为例，键盘输入后，CPU进行中断处理。</p>
+<p>GDT是记录段号的，一共64KB，每个段分配8个字节，用20位记录段大小。32位记录段起始地址，12位记录段的管理信息。然后进行初始化。</p>
+<p>PIC是可编程中断控制器，一般来说CPU只能单独的处理一个中断，PIC将8个中断信号集合成一个，PIC分为主PIC和从PIC，从PIC连接到主PIC的一个端口。首先要将PIC初始化，将主从PIC全部禁止、ICW的初始化，其中可以利用ICW2来使PIC设定中断号，例如主PIC的0-7端口由INT20-INT27来接收。</p>
+<p>IDT是记录0-255的中断号码与调用函数的关系。同理将IDT初始化，IDT中记录了把一个中断后执行的程序注册到IDT的多少号、中断执行、管理信息。</p>
+<p>写一个函数将鼠标和键盘中断的GDT和IDT初始化，将每段的信息利用for循环存入GDT中，再将键盘和鼠标注册到IDT的第21和2c号。如果发生中断，CPU就自动调用利用汇编编写的相应的中断处理函数。</p>
+<p>在主函数中，允许键盘中断和鼠标终端，具体就是将值送到PIC的主从端口，设定中断号，这样一旦有键按下，就会触发中断执行，然后由于键盘在IDT中注册了中断号，所以就会触发程序执行。</p>
+<p>成果图如下：</p>
+<p><img src="//agentzxy.github.io/2019/12/08/制简单操作系统（2）/%5Cimages%5Cpasted-4.png" alt="upload successful"></p>
+<p>但鼠标不知道为什么不能执行中断。</p>
+<p>上面讲的肯定有很多不对的地方，也有一些地方是模糊的，继续往后做，我觉得肯定能越来越明白的。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-12-07T13:57:00.000Z">2019-12-07</time>
                 
                 
@@ -1910,7 +1961,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            9
+                            10
                         </p>
                     </a>
                 </div>
@@ -1934,7 +1985,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            5
                         </p>
                     </a>
                 </div>
@@ -2063,7 +2114,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a>
+        <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a>
     </div>
 </div>
     
@@ -2075,6 +2126,25 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/12/08/制简单操作系统（2）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（2）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T13:38:00.000Z">2019-12-08</time></div>
+                    <a href="/2019/12/08/制简单操作系统（2）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（2）</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -2152,25 +2222,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/02/hello-world/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T05:38:40.371Z">2019-11-02</time></div>
-                    <a href="/2019/11/02/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -2188,7 +2239,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -2274,6 +2325,13 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                 <div class="control">
                     <a class="tags has-addons" href="/tags/recursion/">
                         <span class="tag">recursion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/操作系统/">
+                        <span class="tag">操作系统</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2302,6 +2360,25 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         
         <article class="media">
             
+            <a href="/2019/12/08/制简单操作系统（2）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（2）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T13:38:00.000Z">2019-12-08</time></div>
+                    <a href="/2019/12/08/制简单操作系统（2）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（2）</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/07/制简单操作系统（1）-1/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（1）">
@@ -2376,25 +2453,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/02/hello-world/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-02T05:38:40.371Z">2019-11-02</time></div>
-                    <a href="/2019/11/02/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2412,7 +2470,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -2498,6 +2556,13 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                 <div class="control">
                     <a class="tags has-addons" href="/tags/recursion/">
                         <span class="tag">recursion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/操作系统/">
+                        <span class="tag">操作系统</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
