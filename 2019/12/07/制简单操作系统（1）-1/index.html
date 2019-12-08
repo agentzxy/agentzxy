@@ -7,17 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>归档: 2019/12</title>
+<title>自制简单操作系统（1）</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://agentzxy.github.io/archives/2019/12/index.html">
+    <meta name="description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自制简单操作系统（1）">
+<meta property="og:url" content="http://agentzxy.github.io/2019/12/07/制简单操作系统（1）-1/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2019-12-08T05:49:02.313Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="自制简单操作系统（1）">
+<meta name="twitter:description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -76,7 +80,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="" height="28">
+                <img src="/images/logo.svg" alt="自制简单操作系统（1）" height="28">
             
             </a>
         </div>
@@ -126,60 +130,97 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        十二月 2019
-        </h3>
-        <div class="timeline">
+<div class="card">
+    
+    <div class="card-content article ">
         
-            <article class="media">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-07T13:57:00.000Z">2019-12-07</time>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-12-07T13:57:00.000Z">2019-12-07</time>
-                        <a href="/2019/12/07/制简单操作系统（1）-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（1）</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-12-06T10:57:00.000Z">2019-12-06</time>
-                        <a href="/2019/12/06/ava小作业-简单计算器/" class="title has-link-black-ter is-size-6 has-text-weight-normal">java小作业-简单计算器</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 519 个字)
+                </span>
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-12-05T08:12:00.000Z">2019-12-05</time>
-                        <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用Flask框架写一个简单的预约系统</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
+                
+            </div>
         </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                自制简单操作系统（1）
+            
+        </h1>
+        <div class="content">
+            <p>我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。</p>
+<p>主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。</p>
+<p>首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出error。</p>
+<p>接着开始写程序。使用C语言编写，里面有整个操作系统颜色定义，现在只定义了16种颜色，但足够了，将颜色读入显卡的内存地址，BIOS里面定义VRAM（显卡内存）是0xa0000-0xaffff的64KB，依次读入就可以了。里面有的中断设置和使CPU休眠的HLT指令要利用汇编完成。</p>
+<p>C语言编写后将其转成nas文件（作者自己命名的，相当于汇编语言文件），然后再将nas文件转为机器语言即可。</p>
+<p>为了不会出现很多批处理文件，使用了Makefile，在makefile文件里面执行命令，将nas文件转成bin文件，将C的源文件转成gas，把gas再转为nas文件，nas转obj目标文件，接着就可以转二进制映像了。</p>
+<p>nas文件用nask编译后可输出sys文件，将sys文件与做成的映像文件作比较可以发现，一般向一个空软盘保存文件时，文件名会写在0x002600以后的地方，文件内容会写在0x004200以后的地方（我觉得的也就是程序的意思）.</p>
+<p>成果：</p>
+<p><img src="//agentzxy.github.io/2019/12/07/制简单操作系统（1）-1/%5Cimages%5Cpasted-2.png" alt="upload successful"></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/06/ava小作业-简单计算器/">
+                <span class="level-item">java小作业-简单计算器</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
     </div>
 </div>
 
@@ -838,7 +879,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="" height="28">
+                    <img src="/images/logo.svg" alt="自制简单操作系统（1）" height="28">
                 
                 </a>
                 <p class="is-size-7">
