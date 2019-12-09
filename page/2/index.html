@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 操作系统</title>
+<title></title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title">
-<meta property="og:url" content="http://agentzxy.github.io/tags/操作系统/index.html">
+<meta property="og:url" content="http://agentzxy.github.io/page/2/index.html">
 <meta property="og:site_name">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
@@ -125,116 +125,126 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">操作系统</a></li>
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-02T12:02:00.000Z">2019-06-02</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 477 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/06/02/递归问题/">递归问题</a>
+            
+        </h1>
+        <div class="content">
+            <p>最近数据结构刚刚学了递归问题，感觉理解的不太到位，刚好leetcode刷题刷到了两个递归问题，对递归算是更进一步理解了吧。</p>
+<p>leetcode—22.括号生成</p>
+<p>给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。</p>
+<p>例如，给出 n = 3，生成结果为：</p>
+<p>[<br>  “((()))”,<br>  “(()())”,<br>  “(())()”,<br>  “()(())”,<br>  “()()()”<br>]</p>
+<p>当加入一个左括号时，剩余的可看作新的组合，但右括号的个数必须大于左括号的个数时，才表明可以加入右括号，C++代码如下：</p>
+<pre><code>vector&lt;string&gt; res;
+void back(string s,int i,int j){
+        int n;
+        if(i==0&amp;&amp;j==0)
+        {
+            res.push_back(s);
+            return;
+        }
+        if(i&gt;0)
+            back(s+&apos;(&apos;,i-1,j);
+        if(j&gt;i)
+            back(s+&apos;)&apos;,i,j-1);
+    }
+vector&lt;string&gt; generateParenthesis(int n) {
+    back(&quot;&quot;,n,n);
+    return res;
+}</code></pre><p>leetcode—39.组合总数</p>
+<p>给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
+<p>candidates 中的数字可以无限制重复被选取。</p>
+<p>说明：</p>
+<p>所有数字（包括 target）都是正整数。<br>解集不能包含重复的组合。 </p>
+<p>示例 1:</p>
+<p>输入: candidates = [2,3,6,7], target = 7,<br>所求解集为:<br>[<br>  [7],<br>  [2,2,3]<br>]</p>
+<p>示例 2:</p>
+<p>输入: candidates = [2,3,5], target = 8,<br>所求解集为:<br>[<br>  [2,2,2,2],<br>  [2,3,3],<br>  [3,5]<br>]</p>
+<p>利用递归求解，将数组中的第一个数提取出来，则可以看作是求candidates中所有可以使数字和为（target-第一个数字）的组合，以此类推，但必须注意不能有重复的组合，所以应该在后面的数被提取时，不能与前面的数相匹配。C++代码如下：</p>
+<pre><code>vector&lt;vector&lt;int&gt;&gt; res;
+vector&lt;int&gt; tmp;
+vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) {
+    com(0,candidates,target);
+    return res;
+}
+void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
+{
+    int t;
+    t=target;
+    for(int i=cur;i&lt;candidates.size();i++)
+    {
+        if(target==0)
+        {
+            res.push_back(tmp);
+            return;
+        }
+        if(target&gt;0)
+        {
+            tmp.push_back(candidates[i]);
+            com(i,candidates,target-candidates[i]);
+            tmp.pop_back();
+        }
+        else continue;
+        target=t;
+
+    }
+}</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/">上一页</a>
+        </div>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/page/3/">下一页</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
+            
+            <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
+            
         </ul>
-        </nav>
-    </div>
+    </nav>
 </div>
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 394 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/09/制简单操作系统（3）/">自制简单操作系统（3）</a>
-            
-        </h1>
-        <div class="content">
-            <p>今天主要是实现鼠标的移动，昨天写的是中断后直接跳转到中断处理程序，处理过程也在那个函数里面。今天改良了，使用缓冲区来实现（其实就是栈）,比如键盘按下一个键后，将发送的字节送入缓冲区，然后在主函数里面，读出存储的字节，这样就可以实现不停的按下键，并且读入字节。利用结构体实现一个缓冲区。</p>
-<p>鼠标移动就会发送出三个字节，第一个字节是点击和移动鼠标的，第二个字节是x值，第三个是y值（位置），也可以将鼠标发送的字节存储在缓冲区内，然后读出。利用读出的xy值将鼠标隐藏，然后重新绘制鼠标。</p>
-<p>当鼠标一移动，就会发出中断，因为先前设置了鼠标的中断号码和响应函数，即可响应中断，但其实我不太明白GDT为什么要初始化。</p>
-<p>里面还涉及到鼠标和键盘的控制电路的初始化，激活鼠标，因为键盘控制电路中含有鼠标控制电路，所以获取鼠标发送的字节和键盘一样。</p>
-<p>关于控制电路初始化那块不太明白，感觉鼠标移动还是很好理解的。</p>
-<p>成果图：</p>
-<p><img src="//agentzxy.github.io/2019/12/09/制简单操作系统（3）/%5Cimages%5Cpasted-5.png" alt="upload successful"></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-08T13:38:00.000Z">2019-12-08</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 514 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/08/制简单操作系统（2）/">自制简单操作系统（2）</a>
-            
-        </h1>
-        <div class="content">
-            <p>今天主要是学习中断处理程序的制作，以键盘和鼠标为例，键盘输入后，CPU进行中断处理。</p>
-<p>GDT是记录段号的，一共64KB，每个段分配8个字节，用20位记录段大小。32位记录段起始地址，12位记录段的管理信息。然后进行初始化。</p>
-<p>PIC是可编程中断控制器，一般来说CPU只能单独的处理一个中断，PIC将8个中断信号集合成一个，PIC分为主PIC和从PIC，从PIC连接到主PIC的一个端口。首先要将PIC初始化，将主从PIC全部禁止、ICW的初始化，其中可以利用ICW2来使PIC设定中断号，例如主PIC的0-7端口由INT20-INT27来接收。</p>
-<p>IDT是记录0-255的中断号码与调用函数的关系。同理将IDT初始化，IDT中记录了把一个中断后执行的程序注册到IDT的多少号、中断执行、管理信息。</p>
-<p>写一个函数将鼠标和键盘中断的GDT和IDT初始化，将每段的信息利用for循环存入GDT中，再将键盘和鼠标注册到IDT的第21和2c号。如果发生中断，CPU就自动调用利用汇编编写的相应的中断处理函数。</p>
-<p>在主函数中，允许键盘中断和鼠标终端，具体就是将值送到PIC的主从端口，设定中断号，这样一旦有键按下，就会触发中断执行，然后由于键盘在IDT中注册了中断号，所以就会触发程序执行。</p>
-<p>成果图如下：</p>
-<p><img src="//agentzxy.github.io/2019/12/08/制简单操作系统（2）/%5Cimages%5Cpasted-4.png" alt="upload successful"></p>
-<p>但鼠标不知道为什么不能执行中断。</p>
-<p>上面讲的肯定有很多不对的地方，也有一些地方是模糊的，继续往后做，我觉得肯定能越来越明白的。</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 </div>
                 
 

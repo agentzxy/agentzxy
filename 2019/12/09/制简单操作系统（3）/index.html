@@ -7,17 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 操作系统</title>
+<title>自制简单操作系统（3）</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://agentzxy.github.io/tags/操作系统/index.html">
+    <meta name="description" content="今天主要是实现鼠标的移动，昨天写的是中断后直接跳转到中断处理程序，处理过程也在那个函数里面。今天改良了，使用缓冲区来实现（其实就是栈）,比如键盘按下一个键后，将发送的字节送入缓冲区，然后在主函数里面，读出存储的字节，这样就可以实现不停的按下键，并且读入字节。利用结构体实现一个缓冲区。 鼠标移动就会发送出三个字节，第一个字节是点击和移动鼠标的，第二个字节是x值，第三个是y值（位置），也可以将鼠标发送">
+<meta name="keywords" content="操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自制简单操作系统（3）">
+<meta property="og:url" content="http://agentzxy.github.io/2019/12/09/制简单操作系统（3）/index.html">
 <meta property="og:site_name">
+<meta property="og:description" content="今天主要是实现鼠标的移动，昨天写的是中断后直接跳转到中断处理程序，处理过程也在那个函数里面。今天改良了，使用缓冲区来实现（其实就是栈）,比如键盘按下一个键后，将发送的字节送入缓冲区，然后在主函数里面，读出存储的字节，这样就可以实现不停的按下键，并且读入字节。利用结构体实现一个缓冲区。 鼠标移动就会发送出三个字节，第一个字节是点击和移动鼠标的，第二个字节是x值，第三个是y值（位置），也可以将鼠标发送">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
+<meta property="og:updated_time" content="2019-12-09T12:19:16.438Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="自制简单操作系统（3）">
+<meta name="twitter:description" content="今天主要是实现鼠标的移动，昨天写的是中断后直接跳转到中断处理程序，处理过程也在那个函数里面。今天改良了，使用缓冲区来实现（其实就是栈）,比如键盘按下一个键后，将发送的字节送入缓冲区，然后在主函数里面，读出存储的字节，这样就可以实现不停的按下键，并且读入字节。利用结构体实现一个缓冲区。 鼠标移动就会发送出三个字节，第一个字节是点击和移动鼠标的，第二个字节是x值，第三个是y值（位置），也可以将鼠标发送">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -76,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="" height="28">
+                <img src="/images/logo.svg" alt="自制简单操作系统（3）" height="28">
             
             </a>
         </div>
@@ -125,18 +130,7 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">操作系统</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
     <div class="card-content article ">
@@ -158,7 +152,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/12/09/制简单操作系统（3）/">自制简单操作系统（3）</a>
+                自制简单操作系统（3）
             
         </h1>
         <div class="content">
@@ -172,57 +166,15 @@
 
         </div>
         
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-08T13:38:00.000Z">2019-12-08</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 514 个字)
-                </span>
-                
-                
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/操作系统/">操作系统</a>
+                </div>
             </div>
         </div>
         
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/08/制简单操作系统（2）/">自制简单操作系统（2）</a>
-            
-        </h1>
-        <div class="content">
-            <p>今天主要是学习中断处理程序的制作，以键盘和鼠标为例，键盘输入后，CPU进行中断处理。</p>
-<p>GDT是记录段号的，一共64KB，每个段分配8个字节，用20位记录段大小。32位记录段起始地址，12位记录段的管理信息。然后进行初始化。</p>
-<p>PIC是可编程中断控制器，一般来说CPU只能单独的处理一个中断，PIC将8个中断信号集合成一个，PIC分为主PIC和从PIC，从PIC连接到主PIC的一个端口。首先要将PIC初始化，将主从PIC全部禁止、ICW的初始化，其中可以利用ICW2来使PIC设定中断号，例如主PIC的0-7端口由INT20-INT27来接收。</p>
-<p>IDT是记录0-255的中断号码与调用函数的关系。同理将IDT初始化，IDT中记录了把一个中断后执行的程序注册到IDT的多少号、中断执行、管理信息。</p>
-<p>写一个函数将鼠标和键盘中断的GDT和IDT初始化，将每段的信息利用for循环存入GDT中，再将键盘和鼠标注册到IDT的第21和2c号。如果发生中断，CPU就自动调用利用汇编编写的相应的中断处理函数。</p>
-<p>在主函数中，允许键盘中断和鼠标终端，具体就是将值送到PIC的主从端口，设定中断号，这样一旦有键按下，就会触发中断执行，然后由于键盘在IDT中注册了中断号，所以就会触发程序执行。</p>
-<p>成果图如下：</p>
-<p><img src="//agentzxy.github.io/2019/12/08/制简单操作系统（2）/%5Cimages%5Cpasted-4.png" alt="upload successful"></p>
-<p>但鼠标不知道为什么不能执行中断。</p>
-<p>上面讲的肯定有很多不对的地方，也有一些地方是模糊的，继续往后做，我觉得肯定能越来越明白的。</p>
-
-        </div>
-        
         
         
     </div>
@@ -230,9 +182,55 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/08/制简单操作系统（2）/">
+                <span class="level-item">自制简单操作系统（2）</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -903,7 +901,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="" height="28">
+                    <img src="/images/logo.svg" alt="自制简单操作系统（3）" height="28">
                 
                 </a>
                 <p class="is-size-7">
