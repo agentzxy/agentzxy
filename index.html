@@ -133,6 +133,51 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-11T14:27:01.000Z">2019-12-11</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 192 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/11/制简单操作系统（4）/">自制简单操作系统（4）</a>
+            
+        </h1>
+        <div class="content">
+            <p>今天学习的是内存管理。首先是内存检查，把值写入内存再反转，观察值是否改变，若没变就代表内存没问题，利用for循环将每个内存地址都写入值。</p>
+<p>然后是内存管理，本系统采用的是将每个空闲内存的起始地址和空闲大小记录下来，可以利用结构体来完成。再用一个结构体记录所有空闲内存的情况，然后进行初始化、内存分配和释放内存。采用这种方式记录内存使用情况只用消耗32KB的内存，所以是不错的。</p>
+<p>成果图如下：</p>
+<p><img src="//agentzxy.github.io/2019/12/11/制简单操作系统（4）/%5Cimages%5Cpasted-6.png" alt="upload successful"></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time>
                 
                 
@@ -1666,204 +1711,6 @@ return 0;}</code></pre>
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-28T08:51:00.000Z">2019-08-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/c/">c++</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 789 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/28/银行排队问题/">银行排队问题</a>
-            
-        </h1>
-        <div class="content">
-            <p>要解决的问题——银行一天之内的：</p>
-<p>  1.总客户数</p>
-<p>   2.客户总逗留时间</p>
-<p>   3.客户平均逗留时间</p>
-<p>   银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。</p>
-<p>   bank头文件：</p>
-<pre><code>#include &lt;queue&gt;
-#include &lt;list&gt;
-
-//事件链表
-struct Event
-{
-int _occur_time;//事件发生时间
-int _type;//事件类型，0表示到达事件，1~4表示4个窗口离开事件
-};
-
-//银行链表的队伍结点
-struct QueueNode
-{
-int _arrival_time;//客户到达时间
-int _duration_time;//客户在银行待的时间
-};
-
-//银行链表
-class Bank
-{
-public:
-//防止隐式转化
-explicit Bank(int window = 4, int close_time = 8 * 3600);
-~Bank();
-void Simulation();
-private:
-int _queue_number; //队列个数
-int _close_time; //关门时间
-int _total_time;//所有客人待的总时间
-int _customer_number;//客户数目
-std::list&lt;Event&gt; _event_list;//事件链表
-std::queue&lt;QueueNode&gt; *_work_queue;//工作队伍队列
-void OpenForDay();
-void CustomerArrival(Event *event);//客户到达事件
-void CustomerDeparture(Event *event);//客户离开事件
-int FindShortestQueue();
-void SortEventList();
-};</code></pre><p>   bank.cpp:</p>
-<pre><code>#include &quot;pch.h&quot;
-#include &lt;iostream&gt;
-#include &quot;bank.h&quot;
-#include &lt;clocale&gt;
-#include &lt;chrono&gt;
-#include &lt;cstdlib&gt;
-
-Bank::Bank(int window, int close_time) :_queue_number(window), _close_time(close_time), _total_time(0), _customer_number(0)
-{
-_work_queue = new std::queue&lt;QueueNode&gt;[window];//产生一个新的工作队列
-srand(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));//产生伪随机序列
-}
-Bank::~Bank()
-{
-delete[] _work_queue;
-}
-void Bank::OpenForDay()
-{
-//第一个客户到达,将第一个客户到达事件压入栈
-_event_list.push_back({ 0,0 });
-}
-void Bank::CustomerArrival(Event *event)
-{
-++_customer_number;//客户数加一
-int duration_time, inter_time;//inter_time:下一个客户隔多长时间来
-duration_time = rand() % 1800 + 1;//一个客户最多30分钟
-inter_time = rand() % 600 + 1;//最多10分钟来一个客户
-
-//下一个客户到达时间
-int t = event-&gt;_occur_time + inter_time;
-
-//假设银行未关门
-if (t &lt; _close_time)
-{
-    _event_list.push_back({ t,0 });//将下一个客户到达事件压栈
-    SortEventList();//整理、排序事件
-}
-int i;
-i = FindShortestQueue();//i为最短队列
-//将新客户压入最短队列
-_work_queue[i].push({ event-&gt;_occur_time,duration_time });
-//生成i队列最后一个人的离开事件
-if (_work_queue[i].size() == 1)
-{
-    _event_list.push_back({ event-&gt;_occur_time + duration_time,i + 1 });
-    SortEventList();
-}
-}
-
-void Bank::CustomerDeparture(Event *event)
-{
-int i = event-&gt;_type - 1;//i表示1~4哪个队伍离开
-QueueNode customer;
-//客户离开，从队伍中弹出
-customer = _work_queue[i].front();
-_work_queue[i].pop();
-//客户总耗时=之前的耗时+此刻的耗时
-_total_time += event-&gt;_occur_time - customer._arrival_time;
-if (!_work_queue[i].empty()) {
-    customer = _work_queue[i].front();
-    _event_list.push_back(
-        { customer._duration_time + event-&gt;_occur_time, i + 1 });
-    SortEventList();
-}
-}
-
-int Bank::FindShortestQueue()
-{
-int result = 0;
-for (int i = 0; i &lt; _queue_number; ++i) {
-    if (_work_queue[result].size() &gt; _work_queue[i].size())
-        result = i;
-}
-return result;
-}
-void Bank::SortEventList()
-{
-// Lambda表达式
-_event_list.sort([](const Event &amp;e1, const Event &amp;e2) -&gt; bool {return e1._occur_time &lt; e2._occur_time; });
-}
-
-//模拟仿真排队
-void Bank::Simulation()
-{
-OpenForDay();
-Event event;
-while (!_event_list.empty()) {
-    event = _event_list.front();
-    _event_list.pop_front();
-    if (event._type == 0) // 到达事件
-        CustomerArrival(&amp;event);
-    else
-        CustomerDeparture(&amp;event);
-}
-// 计算并输出平均逗留时间
-std::wcout &lt;&lt; L&quot;客户数：&quot; &lt;&lt; _customer_number &lt;&lt; std::endl
-    &lt;&lt; L&quot;总逗留时间（小时）：&quot; &lt;&lt; (double)_total_time / 3600.0
-    &lt;&lt; std::endl
-    &lt;&lt; L&quot;平均逗留时间（分钟）：&quot;
-    &lt;&lt; (double)_total_time / (double)(_customer_number * 60)
-    &lt;&lt; std::endl;
-}
-int wmain(int argc, wchar_t *argv[], wchar_t *env[])
-{
-_wsetlocale(LC_ALL, L&quot;&quot;);
-
-Bank bank;
-bank.Simulation();
-return 0;
-}</code></pre>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1928,7 +1775,7 @@ return 0;
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            11
+                            12
                         </p>
                     </a>
                 </div>
@@ -2096,6 +1943,25 @@ return 0;
         
         <article class="media">
             
+            <a href="/2019/12/11/制简单操作系统（4）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（4）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T14:27:01.000Z">2019-12-11</time></div>
+                    <a href="/2019/12/11/制简单操作系统（4）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（4）</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
@@ -2170,25 +2036,6 @@ return 0;
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="利用Flask框架写一个简单的预约系统">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T08:12:00.000Z">2019-12-05</time></div>
-                    <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用Flask框架写一个简单的预约系统</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -2206,7 +2053,7 @@ return 0;
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2327,6 +2174,25 @@ return 0;
         
         <article class="media">
             
+            <a href="/2019/12/11/制简单操作系统（4）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（4）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T14:27:01.000Z">2019-12-11</time></div>
+                    <a href="/2019/12/11/制简单操作系统（4）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（4）</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
@@ -2401,25 +2267,6 @@ return 0;
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="利用Flask框架写一个简单的预约系统">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T08:12:00.000Z">2019-12-05</time></div>
-                    <a href="/2019/12/05/用Flask框架写一个简单的预约系统/" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用Flask框架写一个简单的预约系统</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2437,7 +2284,7 @@ return 0;
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
