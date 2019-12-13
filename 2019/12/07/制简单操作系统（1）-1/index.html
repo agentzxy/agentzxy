@@ -11,6 +11,7 @@
 
 
     <meta name="description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
+<meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自制简单操作系统（1）">
 <meta property="og:url" content="http://agentzxy.github.io/2019/12/07/制简单操作系统（1）-1/index.html">
@@ -18,7 +19,7 @@
 <meta property="og:description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-08T05:49:02.313Z">
+<meta property="og:updated_time" content="2019-12-13T14:10:38.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自制简单操作系统（1）">
 <meta name="twitter:description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
@@ -167,6 +168,15 @@
 
         </div>
         
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/操作系统/">操作系统</a>
+                </div>
+            </div>
+        </div>
+        
         
         
     </div>
@@ -277,7 +287,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            12
+                            13
                         </p>
                     </a>
                 </div>
@@ -289,7 +299,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            2
+                            3
                         </p>
                     </a>
                 </div>
@@ -419,6 +429,14 @@
             <span class="level-end">
                 <span class="level-item tag">1</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/操作系统/">
+            <span class="level-start">
+                <span class="level-item">操作系统</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -445,6 +463,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time></div>
+                    <a href="/2019/12/13/制简单操作系统（5）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（5）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/11/制简单操作系统（4）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（4）">
@@ -453,10 +490,10 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T14:27:01.000Z">2019-12-11</time></div>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T14:27:00.000Z">2019-12-11</time></div>
                     <a href="/2019/12/11/制简单操作系统（4）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（4）</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
                     </p>
                 </div>
             </div>
@@ -519,25 +556,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/06/ava小作业-简单计算器/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="java小作业-简单计算器">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-06T10:57:00.000Z">2019-12-06</time></div>
-                    <a href="/2019/12/06/ava小作业-简单计算器/" class="title has-link-black-ter is-size-6 has-text-weight-normal">java小作业-简单计算器</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -555,7 +573,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -648,7 +666,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -676,6 +694,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time></div>
+                    <a href="/2019/12/13/制简单操作系统（5）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（5）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/11/制简单操作系统（4）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（4）">
@@ -684,10 +721,10 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T14:27:01.000Z">2019-12-11</time></div>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T14:27:00.000Z">2019-12-11</time></div>
                     <a href="/2019/12/11/制简单操作系统（4）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（4）</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
                     </p>
                 </div>
             </div>
@@ -750,25 +787,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/06/ava小作业-简单计算器/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="java小作业-简单计算器">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-06T10:57:00.000Z">2019-12-06</time></div>
-                    <a href="/2019/12/06/ava小作业-简单计算器/" class="title has-link-black-ter is-size-6 has-text-weight-normal">java小作业-简单计算器</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -786,7 +804,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -879,7 +897,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 

@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>飞机射击小游戏</title>
+<title>自制简单操作系统（5）</title>
 
 
-    <meta name="description" content="fsObject.h: #pragma once #include &amp;lt;iostream&amp;gt; #include &amp;lt;chrono&amp;gt; #ifndef FSOBJECTS_H #define FSOBJECTS_H  using namespace std;  namespace flightShooting { #define FSOBJECTS_H #define FS_DEF">
+    <meta name="description" content="这次增加了图层的应用，用来进行画面的叠加处理。同样也是利用结构体完成，SHEET结构体记录每个图层的信息，SHTCTL结构体记录了所有图层的信息。然后首先给每个图层分配相应的内存空间。将图层的显示顺序从次到主依次排序，显示越底层的，内存分配的起始地址越小。接着将每个图层绘制处理，每个图层都有自己的显示buf，将其在整个显示屏上绘制出来。鼠标一移动，就要刷新图层，重新绘制所有图层。也正因为这样，让鼠">
+<meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="飞机射击小游戏">
-<meta property="og:url" content="http://agentzxy.github.io/2019/08/31/飞机射击小游戏-1/index.html">
+<meta property="og:title" content="自制简单操作系统（5）">
+<meta property="og:url" content="http://agentzxy.github.io/2019/12/13/制简单操作系统（5）/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="fsObject.h: #pragma once #include &amp;lt;iostream&amp;gt; #include &amp;lt;chrono&amp;gt; #ifndef FSOBJECTS_H #define FSOBJECTS_H  using namespace std;  namespace flightShooting { #define FSOBJECTS_H #define FS_DEF">
+<meta property="og:description" content="这次增加了图层的应用，用来进行画面的叠加处理。同样也是利用结构体完成，SHEET结构体记录每个图层的信息，SHTCTL结构体记录了所有图层的信息。然后首先给每个图层分配相应的内存空间。将图层的显示顺序从次到主依次排序，显示越底层的，内存分配的起始地址越小。接着将每个图层绘制处理，每个图层都有自己的显示buf，将其在整个显示屏上绘制出来。鼠标一移动，就要刷新图层，重新绘制所有图层。也正因为这样，让鼠">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-31T06:47:00.000Z">
+<meta property="og:updated_time" content="2019-12-13T14:09:45.562Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="飞机射击小游戏">
-<meta name="twitter:description" content="fsObject.h: #pragma once #include &amp;lt;iostream&amp;gt; #include &amp;lt;chrono&amp;gt; #ifndef FSOBJECTS_H #define FSOBJECTS_H  using namespace std;  namespace flightShooting { #define FSOBJECTS_H #define FS_DEF">
+<meta name="twitter:title" content="自制简单操作系统（5）">
+<meta name="twitter:description" content="这次增加了图层的应用，用来进行画面的叠加处理。同样也是利用结构体完成，SHEET结构体记录每个图层的信息，SHTCTL结构体记录了所有图层的信息。然后首先给每个图层分配相应的内存空间。将图层的显示顺序从次到主依次排序，显示越底层的，内存分配的起始地址越小。接着将每个图层绘制处理，每个图层都有自己的显示buf，将其在整个显示屏上绘制出来。鼠标一移动，就要刷新图层，重新绘制所有图层。也正因为这样，让鼠">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -80,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="飞机射击小游戏" height="28">
+                <img src="/images/logo.svg" alt="自制简单操作系统（5）" height="28">
             
             </a>
         </div>
@@ -136,13 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-31T06:09:00.000Z">2019-08-31</time>
+                <time class="level-item has-text-grey" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    21 分钟 读完 (大约 3111 个字)
+                    2 分钟 读完 (大约 249 个字)
                 </span>
                 
                 
@@ -151,584 +156,24 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                飞机射击小游戏
+                自制简单操作系统（5）
             
         </h1>
         <div class="content">
-            <p><img src="//agentzxy.github.io/2019/08/31/飞机射击小游戏-1/source_posts%5C%E9%A3%9E%E6%9C%BA%E5%B0%84%E5%87%BB%E5%B0%8F%E6%B8%B8%E6%88%8F%5C1.png" alt></p>
-<p>fsObject.h:</p>
-<pre><code>#pragma once
-#include &lt;iostream&gt;
-#include &lt;chrono&gt;
-#ifndef FSOBJECTS_H
-#define FSOBJECTS_H
+            <p>这次增加了图层的应用，用来进行画面的叠加处理。同样也是利用结构体完成，SHEET结构体记录每个图层的信息，SHTCTL结构体记录了所有图层的信息。然后首先给每个图层分配相应的内存空间。将图层的显示顺序从次到主依次排序，显示越底层的，内存分配的起始地址越小。接着将每个图层绘制处理，每个图层都有自己的显示buf，将其在整个显示屏上绘制出来。鼠标一移动，就要刷新图层，重新绘制所有图层。也正因为这样，让鼠标动得有点一闪一闪的，所以还得优化一下，明天做优化内容。</p>
+<p>成果图如下：</p>
+<p>由于图层分配了内存，所以可用内存又减少了。</p>
+<p><img src="//agentzxy.github.io/2019/12/13/制简单操作系统（5）/%5Cimages%5Cpasted-7.png" alt="upload successful"></p>
 
-using namespace std;
-
-namespace flightShooting
-{
-#define FSOBJECTS_H
-#define FS_DEFAULT_FIRE_INTERVAL std::chrono::milliseconds(500)  // 默认的开火间隔
-#define FS_DEFAULT_FRAME_INTERVAL 10 // 默认的刷新频率，即每隔多少毫秒刷新一次
-#define FS_DEFAULT_MOVE_STEP 0.01   // 在moveleft()方法和moveright()方法中默认的每次移动距离
-#define FS_MOVE_LEFT_KEY &apos;a&apos;  // 控制玩家飞机向左移动一个单位所对应的按键
-#define FS_MOVE_RIGHT_KEY &apos;d&apos; // 控制玩家飞机向右移动一个单位所对应的按键
-#define FS_ESCAPE_KEY &apos; &apos;  // 退出游戏所使用的按键
-#define FS_DEFAULT_BULLET_FLY_SPEED 3.0  // 默认子弹飞行速度，3代表每秒飞行三个屏幕
-#define FS_DEFAULT_AIRCRAFT_FLY_SPEED 0.1  // 默认的飞机飞行速度
-#define FS_DEFAULT_BULLET_COLOR fsColor(255,0,0,0)  // 默认子弹颜色
-#define FS_DEFAULT_BULLET_SIZE 0.1 //默认的子弹正方形边长
-#define FS_DEFAULT_BULLET_SIZE_X 0.05 //默认的子弹长方形在x轴方向的长度
-#define FS_DEFAULT_BULLET_SIZE_Y 0.1 //默认的子弹长方形在y轴方向的长度
-#define FS_DEFAULT_PLAYER_SYMBOL &apos;*&apos;  // 默认的玩家的飞机的符号
-#define FS_DEFAULT_ENEMY_SYMBOL &apos;+&apos; // 默认的敌人的飞机的符号
-#define FS_DEFAULT_BULLET_SYMBOL &apos;o&apos; // 默认的子弹的符号
-#define FS_DEFAULT_SCOREBOARD_COLOR fsColor(0,255,0,0)  // 默认的计分版颜色
-// 默认的边界位置，这些位置主要在move*方法中限制物体不要超出屏幕边界
-#define FS_DEFAULT_COORD_LOWER_LIMIT 0.05
-#define FS_DEFAULT_COORD_UPPER_LIMIT 0.95
-#define FS_DEFAULT_COORD_LOWER_LIMIT_X 0.05
-#define FS_DEFAULT_COORD_UPPER_LIMIT_X 0.95
-#define FS_DEFAULT_COORD_LOWER_LIMIT_Y 0.05
-#define FS_DEFAULT_COORD_UPPER_LIMIT_Y 0.95
-// 飞机子弹来源
-template&lt;typename T&gt;
-class fsPoint
-{
-public:
-    T x, y;
-    fsPoint() {};
-    fsPoint(T xval, T yval) :x(xval), y(yval) {};
-    fsPoint&lt;T&gt; &amp; operator = (const fsPoint&lt;T&gt; &amp; rval) {
-        this-&gt;x = rval.x;
-        this-&gt;y = rval.y;
-        return *this;
-    }
-};
-//飞机子弹的来源
-enum bulletSource
-{
-    player = 1, enemy = 2, playerFriend = 3//分别来自玩家、敌方、玩家朋友
-};
-//子弹射击方向
-enum direction
-{
-    up = 1, down = 2, right = 3, left = 4
-};
-/*enum symbol
-{
-    play = FS_DEFAULT_PLAYER_SYMBOL,en= FS_DEFAULT_ENEMY_SYMBOL,bullet=FS_DEFAULT_BULLET_SYMBOL
-
-};
-*/
-class fsInvalidInitializePointValException : public std::logic_error {
-public:
-    fsInvalidInitializePointValException() :std::logic_error(&quot;Invalid initialze fsPoints!&quot;) {};
-};
-
-class fsOutRangeMoveToPointException : public std::logic_error {
-public:
-    fsOutRangeMoveToPointException() : std::logic_error(&quot;the move to point is out of the range of 0 to 1 for either x or y&quot;) {};
-};
-
-class fsInvalidFireTimeException :public std::logic_error {
-public:
-    fsInvalidFireTimeException() :std::logic_error(&quot;Not right time to fire!&quot;) {};
-};
-
-class fsInvalidBulletSpeedInException : public std::logic_error {
-public:
-    fsInvalidBulletSpeedInException() : std::logic_error(&quot;bullet speed in must be a positive number!&quot;) {};
-};
-class fsColor {
-public:
-    unsigned char r, g, b, a;  //全部为0~255  0 表示完全不透明
-    fsColor() {};
-    fsColor(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) :
-        r(red), g(green), b(blue), a(alpha) {};
-};
-//游戏中所用物体的基类
-class fsObject {
-private:
-    fsPoint&lt;double&gt; upperLeftCorner;  // the position 
-    fsPoint&lt;double&gt; lowerRightCorner;
-    fsColor            foregroundColor;
-    char            symbol;
-    int                visible;  // 物体是否可见，如果为0则不可见
-public:
-    fsObject() {};
-    //物体的位置、颜色、符号
-    fsObject(const fsPoint&lt;double&gt; &amp;upperleft, const fsPoint&lt;double&gt; &amp;lowerright, const fsColor &amp;fgc, char sym = 0)
-    {
-        if (upperleft.x &gt; lowerright.x || upperleft.y &gt; lowerright.y)
-            throw fsInvalidInitializePointValException();
-        this-&gt;upperLeftCorner = upperleft;
-        this-&gt;lowerRightCorner = lowerright;
-        this-&gt;foregroundColor = fgc;
-        this-&gt;symbol = sym;
-        this-&gt;visible = 1;
-    }
-    //获得左上角位置
-    fsPoint&lt;double&gt; getUpperLeftCorner() const { return this-&gt;upperLeftCorner; }
-    //获得右下角位置
-    fsPoint&lt;double&gt; getLowerRightCorner() const { return this-&gt;lowerRightCorner; }
-    //获得符号
-    char getSymbol() const { return this-&gt;symbol; }
-    //设置符号
-    void setSymbol(char c) { this-&gt;symbol = c; }
-    //设置为可见
-    int getVisible() const { return this-&gt;visible; }
-    //获得是否可见
-    void setVisible(int newVisible) { this-&gt;visible = newVisible; return; }
-    // 移动位置，向左移动一个单位（步长为FS_DEFAULT_MOVE_STEP） 移动成功则返回1 移动失败返回0
-    int moveleft() {
-        if (this-&gt;upperLeftCorner.x - FS_DEFAULT_MOVE_STEP &lt; 0)
-            return 0;
-        this-&gt;upperLeftCorner.x = this-&gt;upperLeftCorner.x - FS_DEFAULT_MOVE_STEP;
-        this-&gt;lowerRightCorner.x = this-&gt;lowerRightCorner.x - FS_DEFAULT_MOVE_STEP;
-        return 1;
-    }
-    // 移动位置，向右移动一个单位（步长为FS_DEFAULT_MOVE_STEP） 移动成功则返回1 移动失败返回0
-    int moveright() {
-        if (this-&gt;lowerRightCorner.x + FS_DEFAULT_MOVE_STEP &gt; 1)
-            return 0;
-        this-&gt;upperLeftCorner.x = this-&gt;upperLeftCorner.x + FS_DEFAULT_MOVE_STEP;
-        this-&gt;lowerRightCorner.x = this-&gt;lowerRightCorner.x + FS_DEFAULT_MOVE_STEP;
-        return 1;
-    }
-    //检测竖直方向上移位是否正确
-    int moveVertically(double delta) {
-        if (this-&gt;upperLeftCorner.y + delta &gt; FS_DEFAULT_COORD_UPPER_LIMIT_Y) {
-            this-&gt;upperLeftCorner.y = FS_DEFAULT_COORD_UPPER_LIMIT_Y;
-            return 0;
-        }
-        if (this-&gt;upperLeftCorner.y + delta &lt; FS_DEFAULT_COORD_LOWER_LIMIT_Y) {
-            this-&gt;upperLeftCorner.y = FS_DEFAULT_COORD_LOWER_LIMIT_Y;
-            return 0;
-        }
-        this-&gt;upperLeftCorner.y = this-&gt;upperLeftCorner.y + delta;
-        this-&gt;lowerRightCorner.y = this-&gt;lowerRightCorner.y + delta;
-        return 1;
-    }
-    //在水平方向上移动位置，如果输入的delta导致物体的左上角超出屏幕，就将其置为最近的FS_DEFAULT_COORD_UPPER_LIMIT_X或FS_DEFAULT_COORD_UPPER_LIMIT_X
-    int moveHorizontally(double delta) {
-        if (this-&gt;upperLeftCorner.x + delta &gt; FS_DEFAULT_COORD_UPPER_LIMIT_X) {
-            this-&gt;upperLeftCorner.x = FS_DEFAULT_COORD_UPPER_LIMIT_X;
-            return 0;
-        }
-        if (this-&gt;upperLeftCorner.x + delta &lt; FS_DEFAULT_COORD_LOWER_LIMIT_X) {
-            this-&gt;upperLeftCorner.x = FS_DEFAULT_COORD_LOWER_LIMIT_X;
-            return 0;
-        }
-        this-&gt;upperLeftCorner.x = this-&gt;upperLeftCorner.x + delta;
-        this-&gt;lowerRightCorner.x = this-&gt;lowerRightCorner.x + delta;
-        return 1;
-    }
-    //将物体的右下角移动到一点
-    int movePoint(const fsPoint&lt;double&gt; &amp;dest)
-    {
-        if (dest.x &gt; 1 || dest.x &lt; 0 || dest.y &gt;1 || dest.y &lt; 0) {
-            throw fsOutRangeMoveToPointException();
-        }
-        this-&gt;lowerRightCorner.x = this-&gt;lowerRightCorner.x + dest.x - this-&gt;upperLeftCorner.x;
-        this-&gt;lowerRightCorner.y = this-&gt;lowerRightCorner.x + dest.y - this-&gt;upperLeftCorner.y;
-        this-&gt;upperLeftCorner = dest;
-    }
-    void printpos() const
-    { cout &lt;&lt; &quot;ULC:&quot; &lt;&lt; (this-&gt;getLowerRightCorner()).x &lt;&lt; &quot;  &quot; &lt;&lt; (this-&gt;getLowerRightCorner()).y &lt;&lt; endl;
-    return;
-    }
-};
-//子弹类
-class fsBullet :public fsObject {
-private:
-    fsObject bullet;
-    bulletSource source;
-    direction bulletDirection;  // 飞行方向
-    double vec; // 飞行速度，目前暂时不允许子弹斜着飞 并且不允许是负数
-    int bulletDamage;
-    std::chrono::high_resolution_clock::time_point lastPositionUpdateTime;
-public:
-    fsBullet() {};
-    fsBullet(bulletSource sourceOfBullet, direction directionOfBullet, int damageOfBullet, fsPoint&lt;double&gt; sourceulc,
-        double bulletVec = FS_DEFAULT_BULLET_FLY_SPEED) :
-        fsObject(sourceulc, fsPoint&lt;double&gt;(sourceulc.x + FS_DEFAULT_BULLET_SIZE_X, sourceulc.y + FS_DEFAULT_BULLET_SIZE_Y), FS_DEFAULT_BULLET_COLOR),
-        source(sourceOfBullet),
-        bulletDirection(directionOfBullet), bulletDamage(damageOfBullet),
-        lastPositionUpdateTime(std::chrono::high_resolution_clock::now()) {
-        if (bulletVec &lt; 0)
-            throw fsInvalidBulletSpeedInException();
-        this-&gt;vec = bulletVec;
-        if (this-&gt;bulletDirection == up)
-            vec = vec * -1;
-        bullet.setSymbol(FS_DEFAULT_BULLET_SYMBOL);
-    }
-    //更新子弹位置
-    int updataPosition() {
-        std::chrono::microseconds timeelapsed = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(std::chrono::high_resolution_clock::now() - this-&gt;lastPositionUpdateTime);
-        double delta = 1.0 * timeelapsed.count() / 1000000 * vec;
-        //cout &lt;&lt; &quot;delta&quot; &lt;&lt; delta &lt;&lt; endl;
-        this-&gt;lastPositionUpdateTime = std::chrono::high_resolution_clock::now();
-        if (bullet.moveVertically(delta) == 0)
-            return 0;
-        return 1;
-    }
-};
-//所有飞机的基类
-class fsAircraft :public fsObject {
-private:
-    chrono::milliseconds fireInterval; // 两发炮弹之间的间隔，单位为ms
-    chrono::steady_clock::time_point lastFireTime;
-    int lifeLeft = 1;  // 剩余的生命值
-    int bulletDamage = 1;  // 默认的机体伤害值
-    bulletSource source;
-    direction bullteDirection;
-public:
-    fsAircraft() {};
-    fsAircraft(fsPoint&lt;double&gt; upperleft,  // 飞机左上角的位置
-        fsPoint&lt;double&gt; lowerright,   // 飞机右下角的位置
-        fsColor fgc,  // 飞机的显示颜色，在控制台中此参数无效
-        std::chrono::milliseconds fireinterval = FS_DEFAULT_FIRE_INTERVAL  // 飞机的子弹发射间隔，在经过此段时间后飞机才能发射子弹
-    ) :
-        fsObject(upperleft, lowerright, fgc),
-        fireInterval(fireinterval) {
-        this-&gt;lastFireTime = chrono::high_resolution_clock::now();
-    };
-    inline int fireReady() {
-        if (chrono::high_resolution_clock::now() - this-&gt;lastFireTime &gt; fireInterval)
-        {
-            return 1;
-        }
-        return 0;
-    }
-    // 强制发射子弹，返回fsBullet的对象，即该飞机所发射的子弹
-    fsBullet fire() {
-        //if (fireReady()) {
-        this-&gt;lastFireTime = chrono::high_resolution_clock::now();
-        return fsBullet(this-&gt;source, this-&gt;bullteDirection, this-&gt;bulletDamage, this-&gt;getUpperLeftCorner());
-        //}
-        //throw fsInvalidFireTimeException();
-    }
-    int setBullteDamage(int newBulletDamage) {
-        this-&gt;bulletDamage = newBulletDamage;
-        return 0;
-    }
-    // 设置飞机是玩家的飞机还是敌人的飞机
-    void setSource(bulletSource newSource) { this-&gt;source = newSource; }
-    // 设置新的子弹飞行方向
-    void setFireDirection(direction newDirection) { this-&gt;bullteDirection = newDirection; }
-
-    //返回剩余生命值，当返回0或者负数时说明死亡（本程序中没有使用）
-    int getLifeLeft() const {
-        return this-&gt;lifeLeft;
-    }
-    int gotHit(int bulletDamage = 1) {
-        if (this-&gt;lifeLeft - bulletDamage &lt;= 0) {
-            this-&gt;lifeLeft = this-&gt;lifeLeft - bulletDamage;
-            return 0;
-        }
-        this-&gt;lifeLeft = this-&gt;lifeLeft - bulletDamage;
-    }
-};
-//玩家的飞机
-class fsMyAircraft :public fsAircraft {
-public:
-    fsMyAircraft(fsPoint&lt;double&gt; upperleft,  // 飞机左上角的位置
-        fsPoint&lt;double&gt; lowerright,   // 飞机右下角的位置
-        fsColor fgc,   // 飞机的显示颜色，在控制台中此参数无效
-        std::chrono::milliseconds  fireinterval = FS_DEFAULT_FIRE_INTERVAL  // 飞机的子弹发射间隔，发射子弹后，再经过此段时间后才能再次发射子弹
-    ) :
-        fsAircraft(upperleft, lowerright, fgc, fireinterval) {
-        this-&gt;setSource(player);
-        this-&gt;setFireDirection(up);
-        this-&gt;setSymbol(FS_DEFAULT_PLAYER_SYMBOL);
-    };
-};
-//敌方的飞机
-class fsEnemyAircraft : public fsAircraft {
-private:
-    std::chrono::high_resolution_clock::time_point lastPositionUpdateTime;  // 最后一次更新物体位置的时间
-    std::chrono::high_resolution_clock::time_point lastDirectionUpdateTime;  // 最后一次更新运动方向的时间
-    double vec; // 飞行速度，指在水平方向上的飞行速度
-    std::chrono::milliseconds directionUpdateInterval;  // 两次速度方向更新之间的时间间隔，最好能用随机数产生
-public:
-    fsEnemyAircraft(fsPoint&lt;double&gt; upperleft, // 飞机左上角的位置
-        fsPoint&lt;double&gt; lowerright,  // 飞机右下角的位置
-        fsColor fgc,  // 飞机的显示颜色，在控制台中此参数无效
-        std::chrono::milliseconds  fireinterval = FS_DEFAULT_FIRE_INTERVAL  // 飞机的子弹发射间隔，在经过此段时间后飞机才能发射子弹
-    ) :
-        fsAircraft(upperleft, lowerright, fgc, fireinterval) {
-        this-&gt;setSource(enemy);
-        this-&gt;setFireDirection(down);
-        this-&gt;setSymbol(FS_DEFAULT_ENEMY_SYMBOL);
-        this-&gt;lastPositionUpdateTime = std::chrono::high_resolution_clock::now();
-        this-&gt;lastDirectionUpdateTime = std::chrono::high_resolution_clock::now();
-        this-&gt;directionUpdateInterval = std::chrono::milliseconds(1000);
-        this-&gt;vec = FS_DEFAULT_AIRCRAFT_FLY_SPEED;
-    }
-
-    // 更新敌机的位置，敌机随机移动，每隔一段时间更换一个方向，移动会在一个矩形框中进行
-    int updatePosition() {
-        // 是否要更换方向
-        if (std::chrono::high_resolution_clock::now() - lastDirectionUpdateTime &gt; directionUpdateInterval) {
-            //产生一个新的方向
-            lastDirectionUpdateTime = std::chrono::high_resolution_clock::now();
-            this-&gt;vec = this-&gt;vec * (-1);
-            srand((unsigned)time(NULL));
-            directionUpdateInterval = std::chrono::milliseconds(rand() / 5 + 1000);  // 随机数的范围在1s到7s之间
-        }
-        std::chrono::milliseconds elapsedtime = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(std::chrono::high_resolution_clock::now() - lastPositionUpdateTime);
-        lastPositionUpdateTime = std::chrono::high_resolution_clock::now();
-        this-&gt;moveHorizontally(1.0 * elapsedtime.count() / 1000 * vec);
-        return 0;
-    }
-};
-// 计分版 用于记录玩家的分数
-class fsScoreBoard : public fsObject {
-private:
-    int score = 0;  // 每次击中算一分
-
-public:
-    fsScoreBoard() {};
-    fsScoreBoard(const fsPoint&lt;double&gt; &amp; upperleft, // 计分版左上角的位置 推荐将左上角的横坐标设置为大于1的数，避免分数的显示与游戏画面重叠
-        const fsPoint&lt;double&gt; &amp; lowerright,  // 计分版右下角的位置
-        const fsColor &amp; fgc = FS_DEFAULT_SCOREBOARD_COLOR  // 计分版颜色，在控制台情况下无效
-    ) :fsObject(upperleft, lowerright, fgc) {
-        ;
-    }
-
-    // 获取计分版分数
-    int getCurScore() const {
-        return this-&gt;score;
-    }
-    // 增加得分
-    void addScore(int delta = 1) {
-        this-&gt;score = this-&gt;score + 1;
-    }
-};
-
-// 判断两个物体是否重叠 如果重叠将返回1 否则返回0，主要用来判定子弹是否击中了飞机
-int fsOverlap(const fsObject &amp; obj1, const fsObject &amp; obj2) ;
-// 判断一个点是否在一个矩形中，包括在矩形边上的情况
-template &lt;typename T&gt;
-bool fsPointInRect(fsPoint&lt;T&gt; point, fsPoint&lt;T&gt; RectUpperLeft, fsPoint&lt;T&gt; RectLowerRight);
-
-int fsInitialize();
-//int fsGameLoop();
-}
-#endif</code></pre><p>fsDraw.h：</p>
-<pre><code>#pragma once
-#include &quot;fsObject.h&quot;
-#include &lt;Windows.h&gt;
-#include &lt;conio.h&gt;
-#ifndef FSDRAW_H
-#define FSDRAW_H
-
-using namespace flightShooting;
-using namespace std;
-namespace flightShooting {
-#define FS_DEFAULT_CONSOLE_BUFFER_SCALE 50
-//光标位置
-void gotoxy(int x, int y)
-{
-    COORD pos;
-    pos.X = x;
-    pos.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-}
-void gotoxy(int x, int y, HANDLE consoleBuf) {
-    COORD pos;
-    pos.X = x;
-    pos.Y = y;
-    SetConsoleCursorPosition(consoleBuf, pos);
-}
-//设置颜色
-void setcolor(WORD color)
-{
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-}
-void setcolor(WORD color, HANDLE consoleBuf) {
-    SetConsoleTextAttribute(consoleBuf, color);
-}
-//画出对象
-int fsDraw(const fsObject &amp; fso) {
-    if (fso.getVisible() == 0) return 0;
-    gotoxy((fso.getUpperLeftCorner()).x * FS_DEFAULT_CONSOLE_BUFFER_SCALE,
-        (fso.getUpperLeftCorner()).y * FS_DEFAULT_CONSOLE_BUFFER_SCALE);
-    setcolor(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-    cout &lt;&lt; fso.getSymbol();
-    return 0;
-}
-int fsDraw(const fsObject &amp; fso, HANDLE consoleBuf) {
-    if (fso.getVisible() == 0) return 0;
-    gotoxy((fso.getUpperLeftCorner()).x * FS_DEFAULT_CONSOLE_BUFFER_SCALE,
-        (fso.getUpperLeftCorner()).y * FS_DEFAULT_CONSOLE_BUFFER_SCALE, consoleBuf);
-    setcolor(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED, consoleBuf);
-    cout &lt;&lt; fso.getSymbol();
-    return 0;
-}
-
-//画出计分板
-int fsDrawScoreBoard(const fsScoreBoard &amp;fsb)
-{
-    if (fsb.getVisible() == 0) return 0;
-    gotoxy((fsb.getUpperLeftCorner()).x * FS_DEFAULT_CONSOLE_BUFFER_SCALE,
-        (fsb.getUpperLeftCorner()).y * FS_DEFAULT_CONSOLE_BUFFER_SCALE);
-    setcolor(FOREGROUND_GREEN);
-    cout &lt;&lt; &quot;SCORE: &quot; &lt;&lt; fsb.getCurScore();
-    return 0;
-}
-int fsDrawScoreBoard(const fsScoreBoard &amp; fsb, HANDLE consoleBuf) {
-    if (fsb.getVisible() == 0) return 0;
-    gotoxy((fsb.getUpperLeftCorner()).x * FS_DEFAULT_CONSOLE_BUFFER_SCALE,
-        (fsb.getUpperLeftCorner()).y * FS_DEFAULT_CONSOLE_BUFFER_SCALE, consoleBuf);
-    setcolor(FOREGROUND_GREEN, consoleBuf);
-    cout &lt;&lt; &quot;SCORE: &quot; &lt;&lt; fsb.getCurScore();
-    return 0;
-}
-// 用空格填充控制台的缓存
-int fsFillWithBlank() {
-    gotoxy(0, 0);
-    for (int i = 0; i &lt; 1000 * 1000; ++i) {
-        cout &lt;&lt; &quot; &quot;;
-    }
-    return 0;
-}</code></pre><p>   }</p>
-<pre><code>#endif</code></pre><p>test.h:</p>
-<pre><code>int gameTestOneBuf() {
-// 初始化玩家飞机
-fsMyAircraft playerAircraft = fsMyAircraft(fsPoint&lt;double&gt;(0.5, 0.99),
-    fsPoint&lt;double&gt;(0.51, 1.00),
-    fsColor(255, 255, 255, 0));
-// 初始化敌方飞机
-fsEnemyAircraft enemy1 = fsEnemyAircraft(fsPoint&lt;double&gt;(0.5, 0.10),
-    fsPoint&lt;double&gt;(0.51, 0.11),
-    fsColor(255, 0, 0, 0));
-// 初始化计分板
-fsScoreBoard scoreBoard = fsScoreBoard(fsPoint&lt;double&gt;(1.1, 0.3), fsPoint&lt;double&gt;(1.11, 0.31));
-// 等待1s以便能够通过fire函数成功初始化子弹
-Sleep(1000);
-fsBullet mybullet;
-if (playerAircraft.fireReady()) {
-    mybullet = playerAircraft.fire();
-}
-fsBullet enemybullet;
-if (enemy1.fireReady()) {
-    enemybullet = enemy1.fire();
-}
-// 初始化键盘按键存储变量
-char ch = &apos;/0&apos;;
-
-// 游戏循环
-while (1) {
-    // 获取按键
-    if (_kbhit())
-    {
-        ch =_getche();
-
-    }
-    // 依据不同的按键做出对应的反应
-    switch (ch)
-    {
-    case FS_MOVE_LEFT_KEY:
-        playerAircraft.moveleft();
-        break;
-    case FS_MOVE_RIGHT_KEY:
-        playerAircraft.moveright();
-        break;
-    case FS_ESCAPE_KEY:
-        cout &lt;&lt; &quot;You ended this game!&quot;;
-        return 0;
-    default:
-        break;
-    }
-    ch = 0;
-    // 更新各对象的状态
-    if (playerAircraft.fireReady()) {
-        mybullet = playerAircraft.fire();
-    }
-    if (enemy1.fireReady()) {
-        enemybullet = enemy1.fire();
-    }
-    mybullet.updataPosition();
-    enemybullet.updataPosition();
-    enemy1.updatePosition();
-
-    // 呈现图像
-    system(&quot;cls&quot;);
-    fsDraw(playerAircraft);
-    fsDraw(mybullet);
-    fsDraw(enemy1);
-    fsDraw(enemybullet);
-    fsDrawScoreBoard(scoreBoard);
-    // 子弹击中的判定，如果子弹击中，则将原来的子弹设为不可见
-    if (fsOverlap(mybullet, enemy1)) {
-        scoreBoard.addScore();
-        mybullet.setVisible(0);
-    }
-    if (fsOverlap(enemybullet, playerAircraft)) {
-        cout &lt;&lt; &quot;you are hit!&quot;;
-        enemybullet.setVisible(0);
-        Sleep(500);
-    }
-    Sleep(FS_DEFAULT_FRAME_INTERVAL);
-}
-return 0;
-}</code></pre><p>fsObject.cpp:</p>
-<pre><code>#include &quot;pch.h&quot;
-#include &lt;iostream&gt;
-#include &lt;iostream&gt;
-#include &lt;Windows.h&gt;
-#include &lt;chrono&gt;
-#include &lt;vector&gt;
-#include &lt;conio.h&gt;
-#include &quot;fsObject.h&quot;
-using namespace std;
-using namespace flightShooting;
-
-
-int flightShooting::fsOverlap(const fsObject &amp; obj1, const fsObject &amp; obj2)
-{
-if (obj1.getVisible() == 0 || obj2.getVisible() == 0) return 0;
-// 重叠判定要稍微费点脑筋
-// 判断矩形是否重叠，只需要对每个矩形，分别判断其四个顶点是否在另外一个矩形内
-const fsPoint&lt;double&gt; obj1ulc = obj1.getUpperLeftCorner();
-const fsPoint&lt;double&gt; obj1lrc = obj1.getLowerRightCorner();
-const fsPoint&lt;double&gt; obj1urc = fsPoint&lt;double&gt;(obj1lrc.x, obj1ulc.y);
-const fsPoint&lt;double&gt; obj1llc = fsPoint&lt;double&gt;(obj1ulc.x, obj1lrc.y);
-
-const fsPoint&lt;double&gt; obj2ulc = obj2.getUpperLeftCorner();
-const fsPoint&lt;double&gt; obj2lrc = obj2.getLowerRightCorner();
-const fsPoint&lt;double&gt; obj2urc = fsPoint&lt;double&gt;(obj2lrc.x, obj2ulc.y);
-const fsPoint&lt;double&gt; obj2llc = fsPoint&lt;double&gt;(obj2ulc.x, obj2lrc.y);
-
-//    bool test = fsPointInRect(obj1lrc, obj2ulc, obj2lrc);
-bool obj1InObj2 = fsPointInRect(obj1ulc, obj2ulc, obj2lrc) ||
-    fsPointInRect(obj1urc, obj2ulc, obj2lrc) ||
-    fsPointInRect(obj1llc, obj2ulc, obj2lrc) ||
-    fsPointInRect(obj1lrc, obj2ulc, obj2lrc);
-bool obj2InObj1 = fsPointInRect(obj2ulc, obj1ulc, obj1lrc) ||
-    fsPointInRect(obj2urc, obj1ulc, obj1lrc) ||
-    fsPointInRect(obj2llc, obj1ulc, obj1lrc) ||
-    fsPointInRect(obj2lrc, obj1ulc, obj1lrc);
-return obj1InObj2 || obj2InObj1;
-}
-
-template&lt;typename T&gt;
-bool flightShooting::fsPointInRect(fsPoint&lt;T&gt; point, fsPoint&lt;T&gt; RectUpperLeft, fsPoint&lt;T&gt; RectLowerRight)
-{
-return (point.x &gt;= RectUpperLeft.x &amp;&amp; point.x &lt;= RectLowerRight.x) &amp;&amp; (point.y &gt;= RectUpperLeft.y &amp;&amp; point.y &lt;= RectLowerRight.y);
-}</code></pre><p>fsTest.cpp:</p>
-<pre><code>#include &lt;iostream&gt;
-#include &quot;pch.h&quot;
-#include &quot;fsObject.h&quot;
-#include &quot;fsTest.h&quot;
-using namespace std;
-using namespace flightShooting;
-
-int main() {
-gameTestOneBuf();
-return 0;}</code></pre>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/操作系统/">操作系统</a>
+                </div>
+            </div>
         </div>
         
         
@@ -777,17 +222,10 @@ return 0;}</code></pre>
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/03/控制台实现贪吃蛇/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">控制台实现贪吃蛇</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/28/银行排队问题/">
-                <span class="level-item">银行排队问题</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/11/制简单操作系统（4）/">
+                <span class="level-item">自制简单操作系统（4）</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1472,7 +910,7 @@ return 0;}</code></pre>
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="飞机射击小游戏" height="28">
+                    <img src="/images/logo.svg" alt="自制简单操作系统（5）" height="28">
                 
                 </a>
                 <p class="is-size-7">
