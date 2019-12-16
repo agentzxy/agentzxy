@@ -133,6 +133,59 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 526 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/16/制简单操作系统（6）/">自制简单操作系统（6）</a>
+            
+        </h1>
+        <div class="content">
+            <p>这次主要是将鼠标移动优化和做出一个计时器的窗口。</p>
+<p>之前由于每移动一次鼠标就需要将整个画面重新绘制，导致鼠标不太灵敏，画面有些一顿一顿。为了优化鼠标移动，我们将绘制整个画面缩小为只绘制移动的画面。写三个函数，分别是刷新整个画面的某一部分、刷新一个图层的某一部分、有移动后刷新，依次调用上一个函数即可。</p>
+<p>计时器就是显示数字，不断地for循环。难点是每次刷新时总是先要绘制背景，才能显示数字，所以每次显示数字前会有背景色覆盖。所以这里引入了map，主要是记录每个像素点属于哪一个图层，重新绘制时只需要绘制指定的图层即可。具体做法是在绘制每一层图层时，如果map记录的是该图层，就可以绘制。</p>
+<p>下面总结一下图层的应用：</p>
+<p>分别由两个结构体SHEET和SHTCTL，SHEET是记录每个图层的信息，参数有该图层的每个像素点的地址、图层长宽、图层位置、图层透明度、图层高度（高度越高，显示越靠前）、是否可见、该图层所属的图层体。<br>SHTCTL我将它成为图层体，图层体里有很多图层，参数有图层体大小、图层体里的图层最高高度、数组记录每个图层位置、每个图层。</p>
+<p>首先将图层图层体初始化，在内存中分配地址，再将图层体分配给一个个图层并且初始化。如果有移动，则重新绘制移动部分的该图层。图层不要了就要释放所占的内存。</p>
+<p>成果图如下：</p>
+<p><img src="//agentzxy.github.io/2019/12/16/制简单操作系统（6）/%5Cimages%5Cpasted-8.png" alt="upload successful"></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time>
                 
                 <div class="level-item">
@@ -763,393 +816,6 @@ public static void main(String[] args) {
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-03T08:41:00.000Z">2019-09-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/c/">c++</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 分钟 读完 (大约 1077 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/03/控制台实现贪吃蛇/">控制台实现贪吃蛇</a>
-            
-        </h1>
-        <div class="content">
-            <p>1.首先要有定义坐标的类，坐标类里参数包括(x,y)。</p>
-<p>2.其次定义snake类。用蛇身各点坐标描述蛇的位置，可将蛇的位置分为蛇头和蛇身来描述，蛇头为一个坐标点，使用#表示，蛇身为一个数组，数组各值表示蛇身各点位置。再定义几个成员函数，包括蛇的上下左右移动、蛇吃到食物后变长、蛇直径前行、判断蛇是否出边界或撞向自己、蛇是否吃到食物、显示蛇的图案。</p>
-<p>3.然后定义一些函数。有界面上围墙的形成、光标的移动、食物的随机产生。</p>
-<p>4.最后通过主函数的调用实现。</p>
-<p>cpp：</p>
-<pre><code>#include &quot;pch.h&quot;
-#include &lt;iostream&gt;
-#include &lt;Windows.h&gt;
-#define n 20
-#include &lt;conio.h&gt;
-#include&lt;time.h&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdio&gt;
-#include &quot;stdlib.h&quot;
-using namespace std;
-//控制光标
-void gotoxy(int x, int y)
-{
-COORD pos;
-pos.X = x;
-pos.Y = y;
-SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-}
-void gotoxy(int x, int y, HANDLE consoleBuf) {
-COORD pos;
-pos.X = x;
-pos.Y = y;
-SetConsoleCursorPosition(consoleBuf, pos);
-}
-//坐标类
-template&lt;typename T&gt;
-class sPoint {
-public:
-T x, y;
-sPoint() {};
-sPoint(T xval, T yval) :x(xval), y(yval) {};
-sPoint&lt;T&gt; &amp; operator = (const sPoint&lt;T&gt; &amp; rval) {
-    this-&gt;x = rval.x;
-    this-&gt;y = rval.y;
-    return *this;
-}
-};
-
-//方向
-enum Direction {
-left=&apos;a&apos;,right=&apos;d&apos;
-};
-
-//随机产生一个食物
-double * setFood()
-{
-double *a=new double[2];
-int x, y;
-srand(time(0));//随机种子
-do {
-    x = rand() % 50 + 1;
-    y = rand() % 30 + 1;
-    break;
-} while (1);
-gotoxy(x, y);
-a[0] = x;
-a[1] = y;//将生成的食物坐标存储起来
-std::cout &lt;&lt; &apos;0&apos; ;
-return a;
-}
-//生成围墙
-void getWall()
-{
-    sPoint&lt;double&gt; wall;
-    wall.x = 0;
-    wall.y =0;
-    while (wall.y &lt;= 30)
-    {
-        gotoxy(50,wall.y);
-        std::cout &lt;&lt; &quot;|&quot;;
-        wall.y++;
-    }
-    gotoxy(0, 30);
-    while (wall.x &lt;= 50)
-    {
-        std::cout &lt;&lt; &quot;-&quot;;
-        wall.x++;
-    }
-}
-
-//蛇类
-class Snake {
-private:
-sPoint&lt;double&gt; snakeHead;//蛇头的位置
-sPoint&lt;double&gt; snakeTail;//蛇尾的位置
-sPoint&lt;double&gt; snakeBody[n];//蛇身各点
-//int forwardTime;//前进的时间间隔
-Direction direction;
-char sym;
-int last;
-public:
-Snake() {};
-Snake(sPoint&lt;double&gt;  head, sPoint&lt;double&gt; tail,int Last,sPoint&lt;double&gt; body[n]) {
-    this-&gt;snakeHead = head;
-    this-&gt;snakeTail = tail;
-    this-&gt;last = Last;
-    this-&gt;snakeBody[20] = body[20];
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-    snakeBody[0].x = 15; snakeBody[0].y = 15; snakeBody[1].x = 16; snakeBody[1].y = 15;
-    snakeBody[2].x = 17; snakeBody[2].y = 15; snakeBody[3].x = 18; snakeBody[3].y = 15;
-    last = 4;
-}
-//蛇向左转
-void setSnakeLeft()
-{
-    //蛇的后一点往前一点移动
-    for (int i = last-1; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeHead.x = snakeHead.x - 1;
-    snakeHead.y = snakeHead.y;
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇向右转
-void setSnakeRight()
-{
-    //蛇的后一点往前一点移动
-    for (int i = last-1; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeHead.y = snakeHead.y;
-    snakeHead.x = snakeHead.x+1;
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇向上转
-void setSnakeUp()
-{
-    for (int i = last-1; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeHead.y = snakeHead.y - 1;
-    snakeHead.x = snakeHead.x;
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇向下转
-void setSnakeDown()
-{
-    for (int i = last-1; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeHead.y = snakeHead.y + 1;
-    snakeHead.x = snakeHead.x;
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇直走
-void setSnakeForward()
-{
-    if (snakeBody[0].y &lt; snakeBody[1].y)
-        snakeHead.y = snakeHead.y - 1;
-    if (snakeBody[0].y &gt; snakeBody[1].y)
-        snakeHead.y = snakeHead.y + 1;
-    if (snakeBody[0].x &lt; snakeBody[1].x)
-        snakeHead.x = snakeHead.x - 1;
-    if (snakeBody[0].x &gt; snakeBody[1].x)
-        snakeHead.x = snakeHead.x + 1;
-    for (int i = last; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇身加一点
-void addSnake()
-{
-    if (snakeBody[last - 1].y &lt; snakeBody[last - 2].y)
-    {
-        snakeBody[last] = snakeBody[last - 1];
-        snakeBody[last].y--;
-    }
-    if (snakeBody[last -1].y &gt; snakeBody[last -2].y)
-    {
-        snakeBody[last] = snakeBody[last - 1];
-        snakeBody[last].y++;
-    }
-    if (snakeBody[last -1].x &lt; snakeBody[last -2].x)
-    {
-        snakeBody[last] = snakeBody[last - 1];
-        snakeBody[last].x--;
-    }
-    if (snakeBody[last -1].x &gt; snakeBody[last -2].x)
-    {
-        snakeBody[last] = snakeBody[last - 1];
-        snakeBody[last].x++;
-    }
-    last++;
-    snakeHead.x = snakeBody[0].x;
-    snakeHead.y = snakeBody[0].y;
-}
-//判断蛇是否撞墙或撞自己
-int ifOut()
-{
-    //蛇是否到达边界
-    if (snakeBody[0].x == 50 || snakeBody[0].y == 30 || snakeBody[0].x == 0 || snakeBody[0].y == 0)
-        return 0;
-    //判断蛇是否撞到自己
-    for (int j = 1; j &lt;last; j++)
-    {
-        if ((snakeHead.x == snakeBody[j].x)&amp;&amp;(snakeHead.y == snakeBody[j].y))
-            return 0;
-    }
-    return 1;
-}
-//初步显示蛇的图案
-void snakeDisplay()
-{
-    gotoxy(snakeBody[0].x, snakeBody[0].y);
-    std::cout &lt;&lt; &quot;*&quot;;//显示蛇头
-    for (int a = 1; a &lt; last; a++)
-    {
-        //std::cout &lt;&lt; this-&gt;snakeBody[a].x &lt;&lt; this-&gt;snakeBody[a].y;
-        gotoxy(snakeBody[a].x, snakeBody[a].y);
-        std::cout &lt;&lt; &quot;#&quot;;
-    }
-}
-//判断蛇是否吃到食物
-int ifEat(double x,double y)
-{
-    if (this-&gt;snakeHead.x == x&amp;&amp;this-&gt;snakeHead.y == y)
-        return true;
-    else return false;
-}
-};
-int main()    {
-    double x, y, *a;
-    sPoint&lt;double&gt; body[20];//用于存储身体各点坐标
-    system(&quot;cls&quot;);
-    getWall();
-    Snake snake = Snake(sPoint&lt;double&gt;(15, 15), sPoint&lt;double&gt;(18, 15), 4, body);//初始化蛇
-    snake.snakeDisplay();
-    a=setFood();
-    x = a[0]; y = a[1];
-    char ch = &apos;/0&apos;;
-    Sleep(5000);
-    //当没有键按下，蛇往前走
-    while (!_kbhit())
-    {
-        snake.setSnakeForward();
-        Sleep(300);
-        system(&quot;cls&quot;);
-        getWall();
-        gotoxy(x,y);
-        cout &lt;&lt; &quot;0&quot;;
-        snake.snakeDisplay();
-        if (snake.ifEat(x, y))
-        {
-            snake.addSnake();
-            system(&quot;cls&quot;);
-            getWall();
-            gotoxy(x, y);
-            cout &lt;&lt; &quot;0&quot;;
-            setFood();
-            snake.snakeDisplay();
-        }
-        if (!snake.ifOut())
-            return 0;
-    }
-    while (1) {
-        if (_kbhit())
-        {
-            ch = _getche();//ch记录按下的键是什么
-            switch (ch)
-            {
-            case &apos;d&apos;:
-                snake.setSnakeRight();
-                Sleep(200);
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                snake.snakeDisplay();
-                break;
-            case &apos;a&apos;:
-                snake.setSnakeLeft();
-                Sleep(200);
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                snake.snakeDisplay();
-                break;
-            case &apos;w&apos;:
-                snake.setSnakeUp();
-                Sleep(200);
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                snake.snakeDisplay();
-                break;
-            case &apos;s&apos;:
-                snake.setSnakeDown();
-                Sleep(200);
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                snake.snakeDisplay();
-                break;
-            case &apos;p&apos;:
-                return 0;
-            default:
-                break;
-            }
-        }
-        while (!_kbhit())
-        {
-            snake.setSnakeForward();
-            Sleep(300);
-            system(&quot;cls&quot;);
-            getWall();
-            gotoxy(x, y);
-            cout &lt;&lt; &quot;0&quot;;
-            snake.snakeDisplay();
-            if (snake.ifEat(x, y))
-            {
-                snake.addSnake();
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                setFood();
-                snake.snakeDisplay();
-            }
-        }
-        if (!snake.ifOut())
-            return 0;
-        if (snake.ifEat(x,y))
-        {
-            snake.addSnake();
-            system(&quot;cls&quot;);
-            getWall();    
-            a=setFood();
-            x = a[0]; y = a[1];
-            snake.snakeDisplay();
-        }
-    }
-    return 0;
-}</code></pre>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1214,7 +880,7 @@ int main()    {
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            13
+                            14
                         </p>
                     </a>
                 </div>
@@ -1362,7 +1028,7 @@ int main()    {
                 <span class="level-item">操作系统</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li>
             </ul>
@@ -1390,6 +1056,25 @@ int main()    {
         
         <article class="media">
             
+            <a href="/2019/12/16/制简单操作系统（6）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（6）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/制简单操作系统（6）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（6）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
@@ -1464,25 +1149,6 @@ int main()    {
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/07/制简单操作系统（1）-1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（1）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:57:00.000Z">2019-12-07</time></div>
-                    <a href="/2019/12/07/制简单操作系统（1）-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（1）</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1500,7 +1166,7 @@ int main()    {
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1593,7 +1259,7 @@ int main()    {
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1621,6 +1287,25 @@ int main()    {
         
         <article class="media">
             
+            <a href="/2019/12/16/制简单操作系统（6）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（6）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/制简单操作系统（6）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（6）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
@@ -1695,25 +1380,6 @@ int main()    {
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/07/制简单操作系统（1）-1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（1）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:57:00.000Z">2019-12-07</time></div>
-                    <a href="/2019/12/07/制简单操作系统（1）-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（1）</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1731,7 +1397,7 @@ int main()    {
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1824,7 +1490,7 @@ int main()    {
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 

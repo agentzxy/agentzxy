@@ -144,6 +144,59 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 526 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/16/制简单操作系统（6）/">自制简单操作系统（6）</a>
+            
+        </h1>
+        <div class="content">
+            <p>这次主要是将鼠标移动优化和做出一个计时器的窗口。</p>
+<p>之前由于每移动一次鼠标就需要将整个画面重新绘制，导致鼠标不太灵敏，画面有些一顿一顿。为了优化鼠标移动，我们将绘制整个画面缩小为只绘制移动的画面。写三个函数，分别是刷新整个画面的某一部分、刷新一个图层的某一部分、有移动后刷新，依次调用上一个函数即可。</p>
+<p>计时器就是显示数字，不断地for循环。难点是每次刷新时总是先要绘制背景，才能显示数字，所以每次显示数字前会有背景色覆盖。所以这里引入了map，主要是记录每个像素点属于哪一个图层，重新绘制时只需要绘制指定的图层即可。具体做法是在绘制每一层图层时，如果map记录的是该图层，就可以绘制。</p>
+<p>下面总结一下图层的应用：</p>
+<p>分别由两个结构体SHEET和SHTCTL，SHEET是记录每个图层的信息，参数有该图层的每个像素点的地址、图层长宽、图层位置、图层透明度、图层高度（高度越高，显示越靠前）、是否可见、该图层所属的图层体。<br>SHTCTL我将它成为图层体，图层体里有很多图层，参数有图层体大小、图层体里的图层最高高度、数组记录每个图层位置、每个图层。</p>
+<p>首先将图层图层体初始化，在内存中分配地址，再将图层体分配给一个个图层并且初始化。如果有移动，则重新绘制移动部分的该图层。图层不要了就要释放所占的内存。</p>
+<p>成果图如下：</p>
+<p><img src="//agentzxy.github.io/2019/12/16/制简单操作系统（6）/%5Cimages%5Cpasted-8.png" alt="upload successful"></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time>
                 
                 <div class="level-item">
@@ -280,7 +333,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            13
+                            14
                         </p>
                     </a>
                 </div>
@@ -428,7 +481,7 @@
                 <span class="level-item">操作系统</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li>
             </ul>
@@ -456,6 +509,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/16/制简单操作系统（6）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（6）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/制简单操作系统（6）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（6）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
@@ -530,25 +602,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/07/制简单操作系统（1）-1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（1）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:57:00.000Z">2019-12-07</time></div>
-                    <a href="/2019/12/07/制简单操作系统（1）-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（1）</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -566,7 +619,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -659,7 +712,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -687,6 +740,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/16/制简单操作系统（6）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（6）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/制简单操作系统（6）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（6）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
@@ -761,25 +833,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/07/制简单操作系统（1）-1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（1）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T13:57:00.000Z">2019-12-07</time></div>
-                    <a href="/2019/12/07/制简单操作系统（1）-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（1）</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -797,7 +850,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -890,7 +943,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
