@@ -1,307 +1,2293 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
 
-<head><meta name="generator" content="Hexo 3.8.0">
-	<link rel="bookmark" type="image/x-icon" href="/img/logo_miccall.png">
-	<link rel="shortcut icon" href="/img/logo_miccall.png">
-	
-			    <title>
+<meta name="generator" content="Hexo 3.8.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title></title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title">
+<meta property="og:url" content="http://agentzxy.github.io/page/2/index.html">
+<meta property="og:site_name">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title">
+<meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
     
-    </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="/css/mic_main.css">
-    <link rel="stylesheet" href="/css/dropdownMenu.css">
-    <meta name="keywords" content="miccall">
     
-    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	 
-    <noscript>
-        <link rel="stylesheet" href="/css/noscript.css">
-    </noscript>
-    <style type="text/css">
-        body:before {
-          content: ' ';
-          position: fixed;
-          top: 0;
-          background: url('/img/bg.jpg') center 0 no-repeat;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          background-size: cover; 
-        }
-    </style>
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
 
-			    
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
 
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/jquery.scrollex.min.js"></script>
-    <script src="/js/jquery.scrolly.min.js"></script>
-    <script src="/js/skel.min.js"></script>
-    <script src="/js/util.js"></script>
-    <script src="/js/main.js"></script>
-	
+<link rel="stylesheet" href="/css/style.css">
 </head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
     
-		<body class="is-loading">
-    <!-- Wrapper 外包 s-->
-    <div id="wrapper" class="fade-in overlay">
-        <!-- Intro 头部显示 s -->
-                <div id="intro">
-            <h1>This is<br>
-                        AGENT'S BLOG </h1>
-            <p> Whatever is worth doing is worth doing well <br> I'll think of you every step of the way
-            </p>
-            <ul class="actions">
-                <li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-03T08:41:00.000Z">2019-09-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/c/">c++</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 分钟 读完 (大约 1077 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/03/控制台实现贪吃蛇/">控制台实现贪吃蛇</a>
+            
+        </h1>
+        <div class="content">
+            <p>1.首先要有定义坐标的类，坐标类里参数包括(x,y)。</p>
+<p>2.其次定义snake类。用蛇身各点坐标描述蛇的位置，可将蛇的位置分为蛇头和蛇身来描述，蛇头为一个坐标点，使用#表示，蛇身为一个数组，数组各值表示蛇身各点位置。再定义几个成员函数，包括蛇的上下左右移动、蛇吃到食物后变长、蛇直径前行、判断蛇是否出边界或撞向自己、蛇是否吃到食物、显示蛇的图案。</p>
+<p>3.然后定义一些函数。有界面上围墙的形成、光标的移动、食物的随机产生。</p>
+<p>4.最后通过主函数的调用实现。</p>
+<p>cpp：</p>
+<pre><code>#include &quot;pch.h&quot;
+#include &lt;iostream&gt;
+#include &lt;Windows.h&gt;
+#define n 20
+#include &lt;conio.h&gt;
+#include&lt;time.h&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include &quot;stdlib.h&quot;
+using namespace std;
+//控制光标
+void gotoxy(int x, int y)
+{
+COORD pos;
+pos.X = x;
+pos.Y = y;
+SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+void gotoxy(int x, int y, HANDLE consoleBuf) {
+COORD pos;
+pos.X = x;
+pos.Y = y;
+SetConsoleCursorPosition(consoleBuf, pos);
+}
+//坐标类
+template&lt;typename T&gt;
+class sPoint {
+public:
+T x, y;
+sPoint() {};
+sPoint(T xval, T yval) :x(xval), y(yval) {};
+sPoint&lt;T&gt; &amp; operator = (const sPoint&lt;T&gt; &amp; rval) {
+    this-&gt;x = rval.x;
+    this-&gt;y = rval.y;
+    return *this;
+}
+};
+
+//方向
+enum Direction {
+left=&apos;a&apos;,right=&apos;d&apos;
+};
+
+//随机产生一个食物
+double * setFood()
+{
+double *a=new double[2];
+int x, y;
+srand(time(0));//随机种子
+do {
+    x = rand() % 50 + 1;
+    y = rand() % 30 + 1;
+    break;
+} while (1);
+gotoxy(x, y);
+a[0] = x;
+a[1] = y;//将生成的食物坐标存储起来
+std::cout &lt;&lt; &apos;0&apos; ;
+return a;
+}
+//生成围墙
+void getWall()
+{
+    sPoint&lt;double&gt; wall;
+    wall.x = 0;
+    wall.y =0;
+    while (wall.y &lt;= 30)
+    {
+        gotoxy(50,wall.y);
+        std::cout &lt;&lt; &quot;|&quot;;
+        wall.y++;
+    }
+    gotoxy(0, 30);
+    while (wall.x &lt;= 50)
+    {
+        std::cout &lt;&lt; &quot;-&quot;;
+        wall.x++;
+    }
+}
+
+//蛇类
+class Snake {
+private:
+sPoint&lt;double&gt; snakeHead;//蛇头的位置
+sPoint&lt;double&gt; snakeTail;//蛇尾的位置
+sPoint&lt;double&gt; snakeBody[n];//蛇身各点
+//int forwardTime;//前进的时间间隔
+Direction direction;
+char sym;
+int last;
+public:
+Snake() {};
+Snake(sPoint&lt;double&gt;  head, sPoint&lt;double&gt; tail,int Last,sPoint&lt;double&gt; body[n]) {
+    this-&gt;snakeHead = head;
+    this-&gt;snakeTail = tail;
+    this-&gt;last = Last;
+    this-&gt;snakeBody[20] = body[20];
+    snakeBody[0].x = snakeHead.x;
+    snakeBody[0].y = snakeHead.y;
+    snakeBody[0].x = 15; snakeBody[0].y = 15; snakeBody[1].x = 16; snakeBody[1].y = 15;
+    snakeBody[2].x = 17; snakeBody[2].y = 15; snakeBody[3].x = 18; snakeBody[3].y = 15;
+    last = 4;
+}
+//蛇向左转
+void setSnakeLeft()
+{
+    //蛇的后一点往前一点移动
+    for (int i = last-1; i &gt;= 1; i--)
+        snakeBody[i] = snakeBody[i - 1];
+    snakeHead.x = snakeHead.x - 1;
+    snakeHead.y = snakeHead.y;
+    snakeBody[0].x = snakeHead.x;
+    snakeBody[0].y = snakeHead.y;
+}
+//蛇向右转
+void setSnakeRight()
+{
+    //蛇的后一点往前一点移动
+    for (int i = last-1; i &gt;= 1; i--)
+        snakeBody[i] = snakeBody[i - 1];
+    snakeHead.y = snakeHead.y;
+    snakeHead.x = snakeHead.x+1;
+    snakeBody[0].x = snakeHead.x;
+    snakeBody[0].y = snakeHead.y;
+}
+//蛇向上转
+void setSnakeUp()
+{
+    for (int i = last-1; i &gt;= 1; i--)
+        snakeBody[i] = snakeBody[i - 1];
+    snakeHead.y = snakeHead.y - 1;
+    snakeHead.x = snakeHead.x;
+    snakeBody[0].x = snakeHead.x;
+    snakeBody[0].y = snakeHead.y;
+}
+//蛇向下转
+void setSnakeDown()
+{
+    for (int i = last-1; i &gt;= 1; i--)
+        snakeBody[i] = snakeBody[i - 1];
+    snakeHead.y = snakeHead.y + 1;
+    snakeHead.x = snakeHead.x;
+    snakeBody[0].x = snakeHead.x;
+    snakeBody[0].y = snakeHead.y;
+}
+//蛇直走
+void setSnakeForward()
+{
+    if (snakeBody[0].y &lt; snakeBody[1].y)
+        snakeHead.y = snakeHead.y - 1;
+    if (snakeBody[0].y &gt; snakeBody[1].y)
+        snakeHead.y = snakeHead.y + 1;
+    if (snakeBody[0].x &lt; snakeBody[1].x)
+        snakeHead.x = snakeHead.x - 1;
+    if (snakeBody[0].x &gt; snakeBody[1].x)
+        snakeHead.x = snakeHead.x + 1;
+    for (int i = last; i &gt;= 1; i--)
+        snakeBody[i] = snakeBody[i - 1];
+    snakeBody[0].x = snakeHead.x;
+    snakeBody[0].y = snakeHead.y;
+}
+//蛇身加一点
+void addSnake()
+{
+    if (snakeBody[last - 1].y &lt; snakeBody[last - 2].y)
+    {
+        snakeBody[last] = snakeBody[last - 1];
+        snakeBody[last].y--;
+    }
+    if (snakeBody[last -1].y &gt; snakeBody[last -2].y)
+    {
+        snakeBody[last] = snakeBody[last - 1];
+        snakeBody[last].y++;
+    }
+    if (snakeBody[last -1].x &lt; snakeBody[last -2].x)
+    {
+        snakeBody[last] = snakeBody[last - 1];
+        snakeBody[last].x--;
+    }
+    if (snakeBody[last -1].x &gt; snakeBody[last -2].x)
+    {
+        snakeBody[last] = snakeBody[last - 1];
+        snakeBody[last].x++;
+    }
+    last++;
+    snakeHead.x = snakeBody[0].x;
+    snakeHead.y = snakeBody[0].y;
+}
+//判断蛇是否撞墙或撞自己
+int ifOut()
+{
+    //蛇是否到达边界
+    if (snakeBody[0].x == 50 || snakeBody[0].y == 30 || snakeBody[0].x == 0 || snakeBody[0].y == 0)
+        return 0;
+    //判断蛇是否撞到自己
+    for (int j = 1; j &lt;last; j++)
+    {
+        if ((snakeHead.x == snakeBody[j].x)&amp;&amp;(snakeHead.y == snakeBody[j].y))
+            return 0;
+    }
+    return 1;
+}
+//初步显示蛇的图案
+void snakeDisplay()
+{
+    gotoxy(snakeBody[0].x, snakeBody[0].y);
+    std::cout &lt;&lt; &quot;*&quot;;//显示蛇头
+    for (int a = 1; a &lt; last; a++)
+    {
+        //std::cout &lt;&lt; this-&gt;snakeBody[a].x &lt;&lt; this-&gt;snakeBody[a].y;
+        gotoxy(snakeBody[a].x, snakeBody[a].y);
+        std::cout &lt;&lt; &quot;#&quot;;
+    }
+}
+//判断蛇是否吃到食物
+int ifEat(double x,double y)
+{
+    if (this-&gt;snakeHead.x == x&amp;&amp;this-&gt;snakeHead.y == y)
+        return true;
+    else return false;
+}
+};
+int main()    {
+    double x, y, *a;
+    sPoint&lt;double&gt; body[20];//用于存储身体各点坐标
+    system(&quot;cls&quot;);
+    getWall();
+    Snake snake = Snake(sPoint&lt;double&gt;(15, 15), sPoint&lt;double&gt;(18, 15), 4, body);//初始化蛇
+    snake.snakeDisplay();
+    a=setFood();
+    x = a[0]; y = a[1];
+    char ch = &apos;/0&apos;;
+    Sleep(5000);
+    //当没有键按下，蛇往前走
+    while (!_kbhit())
+    {
+        snake.setSnakeForward();
+        Sleep(300);
+        system(&quot;cls&quot;);
+        getWall();
+        gotoxy(x,y);
+        cout &lt;&lt; &quot;0&quot;;
+        snake.snakeDisplay();
+        if (snake.ifEat(x, y))
+        {
+            snake.addSnake();
+            system(&quot;cls&quot;);
+            getWall();
+            gotoxy(x, y);
+            cout &lt;&lt; &quot;0&quot;;
+            setFood();
+            snake.snakeDisplay();
+        }
+        if (!snake.ifOut())
+            return 0;
+    }
+    while (1) {
+        if (_kbhit())
+        {
+            ch = _getche();//ch记录按下的键是什么
+            switch (ch)
+            {
+            case &apos;d&apos;:
+                snake.setSnakeRight();
+                Sleep(200);
+                system(&quot;cls&quot;);
+                getWall();
+                gotoxy(x, y);
+                cout &lt;&lt; &quot;0&quot;;
+                snake.snakeDisplay();
+                break;
+            case &apos;a&apos;:
+                snake.setSnakeLeft();
+                Sleep(200);
+                system(&quot;cls&quot;);
+                getWall();
+                gotoxy(x, y);
+                cout &lt;&lt; &quot;0&quot;;
+                snake.snakeDisplay();
+                break;
+            case &apos;w&apos;:
+                snake.setSnakeUp();
+                Sleep(200);
+                system(&quot;cls&quot;);
+                getWall();
+                gotoxy(x, y);
+                cout &lt;&lt; &quot;0&quot;;
+                snake.snakeDisplay();
+                break;
+            case &apos;s&apos;:
+                snake.setSnakeDown();
+                Sleep(200);
+                system(&quot;cls&quot;);
+                getWall();
+                gotoxy(x, y);
+                cout &lt;&lt; &quot;0&quot;;
+                snake.snakeDisplay();
+                break;
+            case &apos;p&apos;:
+                return 0;
+            default:
+                break;
+            }
+        }
+        while (!_kbhit())
+        {
+            snake.setSnakeForward();
+            Sleep(300);
+            system(&quot;cls&quot;);
+            getWall();
+            gotoxy(x, y);
+            cout &lt;&lt; &quot;0&quot;;
+            snake.snakeDisplay();
+            if (snake.ifEat(x, y))
+            {
+                snake.addSnake();
+                system(&quot;cls&quot;);
+                getWall();
+                gotoxy(x, y);
+                cout &lt;&lt; &quot;0&quot;;
+                setFood();
+                snake.snakeDisplay();
+            }
+        }
+        if (!snake.ifOut())
+            return 0;
+        if (snake.ifEat(x,y))
+        {
+            snake.addSnake();
+            system(&quot;cls&quot;);
+            getWall();    
+            a=setFood();
+            x = a[0]; y = a[1];
+            snake.snakeDisplay();
+        }
+    }
+    return 0;
+}</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-31T06:09:00.000Z">2019-08-31</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    21 分钟 读完 (大约 3111 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/08/31/飞机射击小游戏-1/">飞机射击小游戏</a>
+            
+        </h1>
+        <div class="content">
+            <p><img src="//agentzxy.github.io/2019/08/31/飞机射击小游戏-1/source_posts%5C%E9%A3%9E%E6%9C%BA%E5%B0%84%E5%87%BB%E5%B0%8F%E6%B8%B8%E6%88%8F%5C1.png" alt></p>
+<p>fsObject.h:</p>
+<pre><code>#pragma once
+#include &lt;iostream&gt;
+#include &lt;chrono&gt;
+#ifndef FSOBJECTS_H
+#define FSOBJECTS_H
+
+using namespace std;
+
+namespace flightShooting
+{
+#define FSOBJECTS_H
+#define FS_DEFAULT_FIRE_INTERVAL std::chrono::milliseconds(500)  // 默认的开火间隔
+#define FS_DEFAULT_FRAME_INTERVAL 10 // 默认的刷新频率，即每隔多少毫秒刷新一次
+#define FS_DEFAULT_MOVE_STEP 0.01   // 在moveleft()方法和moveright()方法中默认的每次移动距离
+#define FS_MOVE_LEFT_KEY &apos;a&apos;  // 控制玩家飞机向左移动一个单位所对应的按键
+#define FS_MOVE_RIGHT_KEY &apos;d&apos; // 控制玩家飞机向右移动一个单位所对应的按键
+#define FS_ESCAPE_KEY &apos; &apos;  // 退出游戏所使用的按键
+#define FS_DEFAULT_BULLET_FLY_SPEED 3.0  // 默认子弹飞行速度，3代表每秒飞行三个屏幕
+#define FS_DEFAULT_AIRCRAFT_FLY_SPEED 0.1  // 默认的飞机飞行速度
+#define FS_DEFAULT_BULLET_COLOR fsColor(255,0,0,0)  // 默认子弹颜色
+#define FS_DEFAULT_BULLET_SIZE 0.1 //默认的子弹正方形边长
+#define FS_DEFAULT_BULLET_SIZE_X 0.05 //默认的子弹长方形在x轴方向的长度
+#define FS_DEFAULT_BULLET_SIZE_Y 0.1 //默认的子弹长方形在y轴方向的长度
+#define FS_DEFAULT_PLAYER_SYMBOL &apos;*&apos;  // 默认的玩家的飞机的符号
+#define FS_DEFAULT_ENEMY_SYMBOL &apos;+&apos; // 默认的敌人的飞机的符号
+#define FS_DEFAULT_BULLET_SYMBOL &apos;o&apos; // 默认的子弹的符号
+#define FS_DEFAULT_SCOREBOARD_COLOR fsColor(0,255,0,0)  // 默认的计分版颜色
+// 默认的边界位置，这些位置主要在move*方法中限制物体不要超出屏幕边界
+#define FS_DEFAULT_COORD_LOWER_LIMIT 0.05
+#define FS_DEFAULT_COORD_UPPER_LIMIT 0.95
+#define FS_DEFAULT_COORD_LOWER_LIMIT_X 0.05
+#define FS_DEFAULT_COORD_UPPER_LIMIT_X 0.95
+#define FS_DEFAULT_COORD_LOWER_LIMIT_Y 0.05
+#define FS_DEFAULT_COORD_UPPER_LIMIT_Y 0.95
+// 飞机子弹来源
+template&lt;typename T&gt;
+class fsPoint
+{
+public:
+    T x, y;
+    fsPoint() {};
+    fsPoint(T xval, T yval) :x(xval), y(yval) {};
+    fsPoint&lt;T&gt; &amp; operator = (const fsPoint&lt;T&gt; &amp; rval) {
+        this-&gt;x = rval.x;
+        this-&gt;y = rval.y;
+        return *this;
+    }
+};
+//飞机子弹的来源
+enum bulletSource
+{
+    player = 1, enemy = 2, playerFriend = 3//分别来自玩家、敌方、玩家朋友
+};
+//子弹射击方向
+enum direction
+{
+    up = 1, down = 2, right = 3, left = 4
+};
+/*enum symbol
+{
+    play = FS_DEFAULT_PLAYER_SYMBOL,en= FS_DEFAULT_ENEMY_SYMBOL,bullet=FS_DEFAULT_BULLET_SYMBOL
+
+};
+*/
+class fsInvalidInitializePointValException : public std::logic_error {
+public:
+    fsInvalidInitializePointValException() :std::logic_error(&quot;Invalid initialze fsPoints!&quot;) {};
+};
+
+class fsOutRangeMoveToPointException : public std::logic_error {
+public:
+    fsOutRangeMoveToPointException() : std::logic_error(&quot;the move to point is out of the range of 0 to 1 for either x or y&quot;) {};
+};
+
+class fsInvalidFireTimeException :public std::logic_error {
+public:
+    fsInvalidFireTimeException() :std::logic_error(&quot;Not right time to fire!&quot;) {};
+};
+
+class fsInvalidBulletSpeedInException : public std::logic_error {
+public:
+    fsInvalidBulletSpeedInException() : std::logic_error(&quot;bullet speed in must be a positive number!&quot;) {};
+};
+class fsColor {
+public:
+    unsigned char r, g, b, a;  //全部为0~255  0 表示完全不透明
+    fsColor() {};
+    fsColor(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) :
+        r(red), g(green), b(blue), a(alpha) {};
+};
+//游戏中所用物体的基类
+class fsObject {
+private:
+    fsPoint&lt;double&gt; upperLeftCorner;  // the position 
+    fsPoint&lt;double&gt; lowerRightCorner;
+    fsColor            foregroundColor;
+    char            symbol;
+    int                visible;  // 物体是否可见，如果为0则不可见
+public:
+    fsObject() {};
+    //物体的位置、颜色、符号
+    fsObject(const fsPoint&lt;double&gt; &amp;upperleft, const fsPoint&lt;double&gt; &amp;lowerright, const fsColor &amp;fgc, char sym = 0)
+    {
+        if (upperleft.x &gt; lowerright.x || upperleft.y &gt; lowerright.y)
+            throw fsInvalidInitializePointValException();
+        this-&gt;upperLeftCorner = upperleft;
+        this-&gt;lowerRightCorner = lowerright;
+        this-&gt;foregroundColor = fgc;
+        this-&gt;symbol = sym;
+        this-&gt;visible = 1;
+    }
+    //获得左上角位置
+    fsPoint&lt;double&gt; getUpperLeftCorner() const { return this-&gt;upperLeftCorner; }
+    //获得右下角位置
+    fsPoint&lt;double&gt; getLowerRightCorner() const { return this-&gt;lowerRightCorner; }
+    //获得符号
+    char getSymbol() const { return this-&gt;symbol; }
+    //设置符号
+    void setSymbol(char c) { this-&gt;symbol = c; }
+    //设置为可见
+    int getVisible() const { return this-&gt;visible; }
+    //获得是否可见
+    void setVisible(int newVisible) { this-&gt;visible = newVisible; return; }
+    // 移动位置，向左移动一个单位（步长为FS_DEFAULT_MOVE_STEP） 移动成功则返回1 移动失败返回0
+    int moveleft() {
+        if (this-&gt;upperLeftCorner.x - FS_DEFAULT_MOVE_STEP &lt; 0)
+            return 0;
+        this-&gt;upperLeftCorner.x = this-&gt;upperLeftCorner.x - FS_DEFAULT_MOVE_STEP;
+        this-&gt;lowerRightCorner.x = this-&gt;lowerRightCorner.x - FS_DEFAULT_MOVE_STEP;
+        return 1;
+    }
+    // 移动位置，向右移动一个单位（步长为FS_DEFAULT_MOVE_STEP） 移动成功则返回1 移动失败返回0
+    int moveright() {
+        if (this-&gt;lowerRightCorner.x + FS_DEFAULT_MOVE_STEP &gt; 1)
+            return 0;
+        this-&gt;upperLeftCorner.x = this-&gt;upperLeftCorner.x + FS_DEFAULT_MOVE_STEP;
+        this-&gt;lowerRightCorner.x = this-&gt;lowerRightCorner.x + FS_DEFAULT_MOVE_STEP;
+        return 1;
+    }
+    //检测竖直方向上移位是否正确
+    int moveVertically(double delta) {
+        if (this-&gt;upperLeftCorner.y + delta &gt; FS_DEFAULT_COORD_UPPER_LIMIT_Y) {
+            this-&gt;upperLeftCorner.y = FS_DEFAULT_COORD_UPPER_LIMIT_Y;
+            return 0;
+        }
+        if (this-&gt;upperLeftCorner.y + delta &lt; FS_DEFAULT_COORD_LOWER_LIMIT_Y) {
+            this-&gt;upperLeftCorner.y = FS_DEFAULT_COORD_LOWER_LIMIT_Y;
+            return 0;
+        }
+        this-&gt;upperLeftCorner.y = this-&gt;upperLeftCorner.y + delta;
+        this-&gt;lowerRightCorner.y = this-&gt;lowerRightCorner.y + delta;
+        return 1;
+    }
+    //在水平方向上移动位置，如果输入的delta导致物体的左上角超出屏幕，就将其置为最近的FS_DEFAULT_COORD_UPPER_LIMIT_X或FS_DEFAULT_COORD_UPPER_LIMIT_X
+    int moveHorizontally(double delta) {
+        if (this-&gt;upperLeftCorner.x + delta &gt; FS_DEFAULT_COORD_UPPER_LIMIT_X) {
+            this-&gt;upperLeftCorner.x = FS_DEFAULT_COORD_UPPER_LIMIT_X;
+            return 0;
+        }
+        if (this-&gt;upperLeftCorner.x + delta &lt; FS_DEFAULT_COORD_LOWER_LIMIT_X) {
+            this-&gt;upperLeftCorner.x = FS_DEFAULT_COORD_LOWER_LIMIT_X;
+            return 0;
+        }
+        this-&gt;upperLeftCorner.x = this-&gt;upperLeftCorner.x + delta;
+        this-&gt;lowerRightCorner.x = this-&gt;lowerRightCorner.x + delta;
+        return 1;
+    }
+    //将物体的右下角移动到一点
+    int movePoint(const fsPoint&lt;double&gt; &amp;dest)
+    {
+        if (dest.x &gt; 1 || dest.x &lt; 0 || dest.y &gt;1 || dest.y &lt; 0) {
+            throw fsOutRangeMoveToPointException();
+        }
+        this-&gt;lowerRightCorner.x = this-&gt;lowerRightCorner.x + dest.x - this-&gt;upperLeftCorner.x;
+        this-&gt;lowerRightCorner.y = this-&gt;lowerRightCorner.x + dest.y - this-&gt;upperLeftCorner.y;
+        this-&gt;upperLeftCorner = dest;
+    }
+    void printpos() const
+    { cout &lt;&lt; &quot;ULC:&quot; &lt;&lt; (this-&gt;getLowerRightCorner()).x &lt;&lt; &quot;  &quot; &lt;&lt; (this-&gt;getLowerRightCorner()).y &lt;&lt; endl;
+    return;
+    }
+};
+//子弹类
+class fsBullet :public fsObject {
+private:
+    fsObject bullet;
+    bulletSource source;
+    direction bulletDirection;  // 飞行方向
+    double vec; // 飞行速度，目前暂时不允许子弹斜着飞 并且不允许是负数
+    int bulletDamage;
+    std::chrono::high_resolution_clock::time_point lastPositionUpdateTime;
+public:
+    fsBullet() {};
+    fsBullet(bulletSource sourceOfBullet, direction directionOfBullet, int damageOfBullet, fsPoint&lt;double&gt; sourceulc,
+        double bulletVec = FS_DEFAULT_BULLET_FLY_SPEED) :
+        fsObject(sourceulc, fsPoint&lt;double&gt;(sourceulc.x + FS_DEFAULT_BULLET_SIZE_X, sourceulc.y + FS_DEFAULT_BULLET_SIZE_Y), FS_DEFAULT_BULLET_COLOR),
+        source(sourceOfBullet),
+        bulletDirection(directionOfBullet), bulletDamage(damageOfBullet),
+        lastPositionUpdateTime(std::chrono::high_resolution_clock::now()) {
+        if (bulletVec &lt; 0)
+            throw fsInvalidBulletSpeedInException();
+        this-&gt;vec = bulletVec;
+        if (this-&gt;bulletDirection == up)
+            vec = vec * -1;
+        bullet.setSymbol(FS_DEFAULT_BULLET_SYMBOL);
+    }
+    //更新子弹位置
+    int updataPosition() {
+        std::chrono::microseconds timeelapsed = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(std::chrono::high_resolution_clock::now() - this-&gt;lastPositionUpdateTime);
+        double delta = 1.0 * timeelapsed.count() / 1000000 * vec;
+        //cout &lt;&lt; &quot;delta&quot; &lt;&lt; delta &lt;&lt; endl;
+        this-&gt;lastPositionUpdateTime = std::chrono::high_resolution_clock::now();
+        if (bullet.moveVertically(delta) == 0)
+            return 0;
+        return 1;
+    }
+};
+//所有飞机的基类
+class fsAircraft :public fsObject {
+private:
+    chrono::milliseconds fireInterval; // 两发炮弹之间的间隔，单位为ms
+    chrono::steady_clock::time_point lastFireTime;
+    int lifeLeft = 1;  // 剩余的生命值
+    int bulletDamage = 1;  // 默认的机体伤害值
+    bulletSource source;
+    direction bullteDirection;
+public:
+    fsAircraft() {};
+    fsAircraft(fsPoint&lt;double&gt; upperleft,  // 飞机左上角的位置
+        fsPoint&lt;double&gt; lowerright,   // 飞机右下角的位置
+        fsColor fgc,  // 飞机的显示颜色，在控制台中此参数无效
+        std::chrono::milliseconds fireinterval = FS_DEFAULT_FIRE_INTERVAL  // 飞机的子弹发射间隔，在经过此段时间后飞机才能发射子弹
+    ) :
+        fsObject(upperleft, lowerright, fgc),
+        fireInterval(fireinterval) {
+        this-&gt;lastFireTime = chrono::high_resolution_clock::now();
+    };
+    inline int fireReady() {
+        if (chrono::high_resolution_clock::now() - this-&gt;lastFireTime &gt; fireInterval)
+        {
+            return 1;
+        }
+        return 0;
+    }
+    // 强制发射子弹，返回fsBullet的对象，即该飞机所发射的子弹
+    fsBullet fire() {
+        //if (fireReady()) {
+        this-&gt;lastFireTime = chrono::high_resolution_clock::now();
+        return fsBullet(this-&gt;source, this-&gt;bullteDirection, this-&gt;bulletDamage, this-&gt;getUpperLeftCorner());
+        //}
+        //throw fsInvalidFireTimeException();
+    }
+    int setBullteDamage(int newBulletDamage) {
+        this-&gt;bulletDamage = newBulletDamage;
+        return 0;
+    }
+    // 设置飞机是玩家的飞机还是敌人的飞机
+    void setSource(bulletSource newSource) { this-&gt;source = newSource; }
+    // 设置新的子弹飞行方向
+    void setFireDirection(direction newDirection) { this-&gt;bullteDirection = newDirection; }
+
+    //返回剩余生命值，当返回0或者负数时说明死亡（本程序中没有使用）
+    int getLifeLeft() const {
+        return this-&gt;lifeLeft;
+    }
+    int gotHit(int bulletDamage = 1) {
+        if (this-&gt;lifeLeft - bulletDamage &lt;= 0) {
+            this-&gt;lifeLeft = this-&gt;lifeLeft - bulletDamage;
+            return 0;
+        }
+        this-&gt;lifeLeft = this-&gt;lifeLeft - bulletDamage;
+    }
+};
+//玩家的飞机
+class fsMyAircraft :public fsAircraft {
+public:
+    fsMyAircraft(fsPoint&lt;double&gt; upperleft,  // 飞机左上角的位置
+        fsPoint&lt;double&gt; lowerright,   // 飞机右下角的位置
+        fsColor fgc,   // 飞机的显示颜色，在控制台中此参数无效
+        std::chrono::milliseconds  fireinterval = FS_DEFAULT_FIRE_INTERVAL  // 飞机的子弹发射间隔，发射子弹后，再经过此段时间后才能再次发射子弹
+    ) :
+        fsAircraft(upperleft, lowerright, fgc, fireinterval) {
+        this-&gt;setSource(player);
+        this-&gt;setFireDirection(up);
+        this-&gt;setSymbol(FS_DEFAULT_PLAYER_SYMBOL);
+    };
+};
+//敌方的飞机
+class fsEnemyAircraft : public fsAircraft {
+private:
+    std::chrono::high_resolution_clock::time_point lastPositionUpdateTime;  // 最后一次更新物体位置的时间
+    std::chrono::high_resolution_clock::time_point lastDirectionUpdateTime;  // 最后一次更新运动方向的时间
+    double vec; // 飞行速度，指在水平方向上的飞行速度
+    std::chrono::milliseconds directionUpdateInterval;  // 两次速度方向更新之间的时间间隔，最好能用随机数产生
+public:
+    fsEnemyAircraft(fsPoint&lt;double&gt; upperleft, // 飞机左上角的位置
+        fsPoint&lt;double&gt; lowerright,  // 飞机右下角的位置
+        fsColor fgc,  // 飞机的显示颜色，在控制台中此参数无效
+        std::chrono::milliseconds  fireinterval = FS_DEFAULT_FIRE_INTERVAL  // 飞机的子弹发射间隔，在经过此段时间后飞机才能发射子弹
+    ) :
+        fsAircraft(upperleft, lowerright, fgc, fireinterval) {
+        this-&gt;setSource(enemy);
+        this-&gt;setFireDirection(down);
+        this-&gt;setSymbol(FS_DEFAULT_ENEMY_SYMBOL);
+        this-&gt;lastPositionUpdateTime = std::chrono::high_resolution_clock::now();
+        this-&gt;lastDirectionUpdateTime = std::chrono::high_resolution_clock::now();
+        this-&gt;directionUpdateInterval = std::chrono::milliseconds(1000);
+        this-&gt;vec = FS_DEFAULT_AIRCRAFT_FLY_SPEED;
+    }
+
+    // 更新敌机的位置，敌机随机移动，每隔一段时间更换一个方向，移动会在一个矩形框中进行
+    int updatePosition() {
+        // 是否要更换方向
+        if (std::chrono::high_resolution_clock::now() - lastDirectionUpdateTime &gt; directionUpdateInterval) {
+            //产生一个新的方向
+            lastDirectionUpdateTime = std::chrono::high_resolution_clock::now();
+            this-&gt;vec = this-&gt;vec * (-1);
+            srand((unsigned)time(NULL));
+            directionUpdateInterval = std::chrono::milliseconds(rand() / 5 + 1000);  // 随机数的范围在1s到7s之间
+        }
+        std::chrono::milliseconds elapsedtime = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(std::chrono::high_resolution_clock::now() - lastPositionUpdateTime);
+        lastPositionUpdateTime = std::chrono::high_resolution_clock::now();
+        this-&gt;moveHorizontally(1.0 * elapsedtime.count() / 1000 * vec);
+        return 0;
+    }
+};
+// 计分版 用于记录玩家的分数
+class fsScoreBoard : public fsObject {
+private:
+    int score = 0;  // 每次击中算一分
+
+public:
+    fsScoreBoard() {};
+    fsScoreBoard(const fsPoint&lt;double&gt; &amp; upperleft, // 计分版左上角的位置 推荐将左上角的横坐标设置为大于1的数，避免分数的显示与游戏画面重叠
+        const fsPoint&lt;double&gt; &amp; lowerright,  // 计分版右下角的位置
+        const fsColor &amp; fgc = FS_DEFAULT_SCOREBOARD_COLOR  // 计分版颜色，在控制台情况下无效
+    ) :fsObject(upperleft, lowerright, fgc) {
+        ;
+    }
+
+    // 获取计分版分数
+    int getCurScore() const {
+        return this-&gt;score;
+    }
+    // 增加得分
+    void addScore(int delta = 1) {
+        this-&gt;score = this-&gt;score + 1;
+    }
+};
+
+// 判断两个物体是否重叠 如果重叠将返回1 否则返回0，主要用来判定子弹是否击中了飞机
+int fsOverlap(const fsObject &amp; obj1, const fsObject &amp; obj2) ;
+// 判断一个点是否在一个矩形中，包括在矩形边上的情况
+template &lt;typename T&gt;
+bool fsPointInRect(fsPoint&lt;T&gt; point, fsPoint&lt;T&gt; RectUpperLeft, fsPoint&lt;T&gt; RectLowerRight);
+
+int fsInitialize();
+//int fsGameLoop();
+}
+#endif</code></pre><p>fsDraw.h：</p>
+<pre><code>#pragma once
+#include &quot;fsObject.h&quot;
+#include &lt;Windows.h&gt;
+#include &lt;conio.h&gt;
+#ifndef FSDRAW_H
+#define FSDRAW_H
+
+using namespace flightShooting;
+using namespace std;
+namespace flightShooting {
+#define FS_DEFAULT_CONSOLE_BUFFER_SCALE 50
+//光标位置
+void gotoxy(int x, int y)
+{
+    COORD pos;
+    pos.X = x;
+    pos.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+void gotoxy(int x, int y, HANDLE consoleBuf) {
+    COORD pos;
+    pos.X = x;
+    pos.Y = y;
+    SetConsoleCursorPosition(consoleBuf, pos);
+}
+//设置颜色
+void setcolor(WORD color)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+void setcolor(WORD color, HANDLE consoleBuf) {
+    SetConsoleTextAttribute(consoleBuf, color);
+}
+//画出对象
+int fsDraw(const fsObject &amp; fso) {
+    if (fso.getVisible() == 0) return 0;
+    gotoxy((fso.getUpperLeftCorner()).x * FS_DEFAULT_CONSOLE_BUFFER_SCALE,
+        (fso.getUpperLeftCorner()).y * FS_DEFAULT_CONSOLE_BUFFER_SCALE);
+    setcolor(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+    cout &lt;&lt; fso.getSymbol();
+    return 0;
+}
+int fsDraw(const fsObject &amp; fso, HANDLE consoleBuf) {
+    if (fso.getVisible() == 0) return 0;
+    gotoxy((fso.getUpperLeftCorner()).x * FS_DEFAULT_CONSOLE_BUFFER_SCALE,
+        (fso.getUpperLeftCorner()).y * FS_DEFAULT_CONSOLE_BUFFER_SCALE, consoleBuf);
+    setcolor(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED, consoleBuf);
+    cout &lt;&lt; fso.getSymbol();
+    return 0;
+}
+
+//画出计分板
+int fsDrawScoreBoard(const fsScoreBoard &amp;fsb)
+{
+    if (fsb.getVisible() == 0) return 0;
+    gotoxy((fsb.getUpperLeftCorner()).x * FS_DEFAULT_CONSOLE_BUFFER_SCALE,
+        (fsb.getUpperLeftCorner()).y * FS_DEFAULT_CONSOLE_BUFFER_SCALE);
+    setcolor(FOREGROUND_GREEN);
+    cout &lt;&lt; &quot;SCORE: &quot; &lt;&lt; fsb.getCurScore();
+    return 0;
+}
+int fsDrawScoreBoard(const fsScoreBoard &amp; fsb, HANDLE consoleBuf) {
+    if (fsb.getVisible() == 0) return 0;
+    gotoxy((fsb.getUpperLeftCorner()).x * FS_DEFAULT_CONSOLE_BUFFER_SCALE,
+        (fsb.getUpperLeftCorner()).y * FS_DEFAULT_CONSOLE_BUFFER_SCALE, consoleBuf);
+    setcolor(FOREGROUND_GREEN, consoleBuf);
+    cout &lt;&lt; &quot;SCORE: &quot; &lt;&lt; fsb.getCurScore();
+    return 0;
+}
+// 用空格填充控制台的缓存
+int fsFillWithBlank() {
+    gotoxy(0, 0);
+    for (int i = 0; i &lt; 1000 * 1000; ++i) {
+        cout &lt;&lt; &quot; &quot;;
+    }
+    return 0;
+}</code></pre><p>   }</p>
+<pre><code>#endif</code></pre><p>test.h:</p>
+<pre><code>int gameTestOneBuf() {
+// 初始化玩家飞机
+fsMyAircraft playerAircraft = fsMyAircraft(fsPoint&lt;double&gt;(0.5, 0.99),
+    fsPoint&lt;double&gt;(0.51, 1.00),
+    fsColor(255, 255, 255, 0));
+// 初始化敌方飞机
+fsEnemyAircraft enemy1 = fsEnemyAircraft(fsPoint&lt;double&gt;(0.5, 0.10),
+    fsPoint&lt;double&gt;(0.51, 0.11),
+    fsColor(255, 0, 0, 0));
+// 初始化计分板
+fsScoreBoard scoreBoard = fsScoreBoard(fsPoint&lt;double&gt;(1.1, 0.3), fsPoint&lt;double&gt;(1.11, 0.31));
+// 等待1s以便能够通过fire函数成功初始化子弹
+Sleep(1000);
+fsBullet mybullet;
+if (playerAircraft.fireReady()) {
+    mybullet = playerAircraft.fire();
+}
+fsBullet enemybullet;
+if (enemy1.fireReady()) {
+    enemybullet = enemy1.fire();
+}
+// 初始化键盘按键存储变量
+char ch = &apos;/0&apos;;
+
+// 游戏循环
+while (1) {
+    // 获取按键
+    if (_kbhit())
+    {
+        ch =_getche();
+
+    }
+    // 依据不同的按键做出对应的反应
+    switch (ch)
+    {
+    case FS_MOVE_LEFT_KEY:
+        playerAircraft.moveleft();
+        break;
+    case FS_MOVE_RIGHT_KEY:
+        playerAircraft.moveright();
+        break;
+    case FS_ESCAPE_KEY:
+        cout &lt;&lt; &quot;You ended this game!&quot;;
+        return 0;
+    default:
+        break;
+    }
+    ch = 0;
+    // 更新各对象的状态
+    if (playerAircraft.fireReady()) {
+        mybullet = playerAircraft.fire();
+    }
+    if (enemy1.fireReady()) {
+        enemybullet = enemy1.fire();
+    }
+    mybullet.updataPosition();
+    enemybullet.updataPosition();
+    enemy1.updatePosition();
+
+    // 呈现图像
+    system(&quot;cls&quot;);
+    fsDraw(playerAircraft);
+    fsDraw(mybullet);
+    fsDraw(enemy1);
+    fsDraw(enemybullet);
+    fsDrawScoreBoard(scoreBoard);
+    // 子弹击中的判定，如果子弹击中，则将原来的子弹设为不可见
+    if (fsOverlap(mybullet, enemy1)) {
+        scoreBoard.addScore();
+        mybullet.setVisible(0);
+    }
+    if (fsOverlap(enemybullet, playerAircraft)) {
+        cout &lt;&lt; &quot;you are hit!&quot;;
+        enemybullet.setVisible(0);
+        Sleep(500);
+    }
+    Sleep(FS_DEFAULT_FRAME_INTERVAL);
+}
+return 0;
+}</code></pre><p>fsObject.cpp:</p>
+<pre><code>#include &quot;pch.h&quot;
+#include &lt;iostream&gt;
+#include &lt;iostream&gt;
+#include &lt;Windows.h&gt;
+#include &lt;chrono&gt;
+#include &lt;vector&gt;
+#include &lt;conio.h&gt;
+#include &quot;fsObject.h&quot;
+using namespace std;
+using namespace flightShooting;
+
+
+int flightShooting::fsOverlap(const fsObject &amp; obj1, const fsObject &amp; obj2)
+{
+if (obj1.getVisible() == 0 || obj2.getVisible() == 0) return 0;
+// 重叠判定要稍微费点脑筋
+// 判断矩形是否重叠，只需要对每个矩形，分别判断其四个顶点是否在另外一个矩形内
+const fsPoint&lt;double&gt; obj1ulc = obj1.getUpperLeftCorner();
+const fsPoint&lt;double&gt; obj1lrc = obj1.getLowerRightCorner();
+const fsPoint&lt;double&gt; obj1urc = fsPoint&lt;double&gt;(obj1lrc.x, obj1ulc.y);
+const fsPoint&lt;double&gt; obj1llc = fsPoint&lt;double&gt;(obj1ulc.x, obj1lrc.y);
+
+const fsPoint&lt;double&gt; obj2ulc = obj2.getUpperLeftCorner();
+const fsPoint&lt;double&gt; obj2lrc = obj2.getLowerRightCorner();
+const fsPoint&lt;double&gt; obj2urc = fsPoint&lt;double&gt;(obj2lrc.x, obj2ulc.y);
+const fsPoint&lt;double&gt; obj2llc = fsPoint&lt;double&gt;(obj2ulc.x, obj2lrc.y);
+
+//    bool test = fsPointInRect(obj1lrc, obj2ulc, obj2lrc);
+bool obj1InObj2 = fsPointInRect(obj1ulc, obj2ulc, obj2lrc) ||
+    fsPointInRect(obj1urc, obj2ulc, obj2lrc) ||
+    fsPointInRect(obj1llc, obj2ulc, obj2lrc) ||
+    fsPointInRect(obj1lrc, obj2ulc, obj2lrc);
+bool obj2InObj1 = fsPointInRect(obj2ulc, obj1ulc, obj1lrc) ||
+    fsPointInRect(obj2urc, obj1ulc, obj1lrc) ||
+    fsPointInRect(obj2llc, obj1ulc, obj1lrc) ||
+    fsPointInRect(obj2lrc, obj1ulc, obj1lrc);
+return obj1InObj2 || obj2InObj1;
+}
+
+template&lt;typename T&gt;
+bool flightShooting::fsPointInRect(fsPoint&lt;T&gt; point, fsPoint&lt;T&gt; RectUpperLeft, fsPoint&lt;T&gt; RectLowerRight)
+{
+return (point.x &gt;= RectUpperLeft.x &amp;&amp; point.x &lt;= RectLowerRight.x) &amp;&amp; (point.y &gt;= RectUpperLeft.y &amp;&amp; point.y &lt;= RectLowerRight.y);
+}</code></pre><p>fsTest.cpp:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &quot;pch.h&quot;
+#include &quot;fsObject.h&quot;
+#include &quot;fsTest.h&quot;
+using namespace std;
+using namespace flightShooting;
+
+int main() {
+gameTestOneBuf();
+return 0;}</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-28T08:51:00.000Z">2019-08-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/c/">c++</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 789 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/08/28/银行排队问题/">银行排队问题</a>
+            
+        </h1>
+        <div class="content">
+            <p>要解决的问题——银行一天之内的：</p>
+<p>  1.总客户数</p>
+<p>   2.客户总逗留时间</p>
+<p>   3.客户平均逗留时间</p>
+<p>   银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。</p>
+<p>   bank头文件：</p>
+<pre><code>#include &lt;queue&gt;
+#include &lt;list&gt;
+
+//事件链表
+struct Event
+{
+int _occur_time;//事件发生时间
+int _type;//事件类型，0表示到达事件，1~4表示4个窗口离开事件
+};
+
+//银行链表的队伍结点
+struct QueueNode
+{
+int _arrival_time;//客户到达时间
+int _duration_time;//客户在银行待的时间
+};
+
+//银行链表
+class Bank
+{
+public:
+//防止隐式转化
+explicit Bank(int window = 4, int close_time = 8 * 3600);
+~Bank();
+void Simulation();
+private:
+int _queue_number; //队列个数
+int _close_time; //关门时间
+int _total_time;//所有客人待的总时间
+int _customer_number;//客户数目
+std::list&lt;Event&gt; _event_list;//事件链表
+std::queue&lt;QueueNode&gt; *_work_queue;//工作队伍队列
+void OpenForDay();
+void CustomerArrival(Event *event);//客户到达事件
+void CustomerDeparture(Event *event);//客户离开事件
+int FindShortestQueue();
+void SortEventList();
+};</code></pre><p>   bank.cpp:</p>
+<pre><code>#include &quot;pch.h&quot;
+#include &lt;iostream&gt;
+#include &quot;bank.h&quot;
+#include &lt;clocale&gt;
+#include &lt;chrono&gt;
+#include &lt;cstdlib&gt;
+
+Bank::Bank(int window, int close_time) :_queue_number(window), _close_time(close_time), _total_time(0), _customer_number(0)
+{
+_work_queue = new std::queue&lt;QueueNode&gt;[window];//产生一个新的工作队列
+srand(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));//产生伪随机序列
+}
+Bank::~Bank()
+{
+delete[] _work_queue;
+}
+void Bank::OpenForDay()
+{
+//第一个客户到达,将第一个客户到达事件压入栈
+_event_list.push_back({ 0,0 });
+}
+void Bank::CustomerArrival(Event *event)
+{
+++_customer_number;//客户数加一
+int duration_time, inter_time;//inter_time:下一个客户隔多长时间来
+duration_time = rand() % 1800 + 1;//一个客户最多30分钟
+inter_time = rand() % 600 + 1;//最多10分钟来一个客户
+
+//下一个客户到达时间
+int t = event-&gt;_occur_time + inter_time;
+
+//假设银行未关门
+if (t &lt; _close_time)
+{
+    _event_list.push_back({ t,0 });//将下一个客户到达事件压栈
+    SortEventList();//整理、排序事件
+}
+int i;
+i = FindShortestQueue();//i为最短队列
+//将新客户压入最短队列
+_work_queue[i].push({ event-&gt;_occur_time,duration_time });
+//生成i队列最后一个人的离开事件
+if (_work_queue[i].size() == 1)
+{
+    _event_list.push_back({ event-&gt;_occur_time + duration_time,i + 1 });
+    SortEventList();
+}
+}
+
+void Bank::CustomerDeparture(Event *event)
+{
+int i = event-&gt;_type - 1;//i表示1~4哪个队伍离开
+QueueNode customer;
+//客户离开，从队伍中弹出
+customer = _work_queue[i].front();
+_work_queue[i].pop();
+//客户总耗时=之前的耗时+此刻的耗时
+_total_time += event-&gt;_occur_time - customer._arrival_time;
+if (!_work_queue[i].empty()) {
+    customer = _work_queue[i].front();
+    _event_list.push_back(
+        { customer._duration_time + event-&gt;_occur_time, i + 1 });
+    SortEventList();
+}
+}
+
+int Bank::FindShortestQueue()
+{
+int result = 0;
+for (int i = 0; i &lt; _queue_number; ++i) {
+    if (_work_queue[result].size() &gt; _work_queue[i].size())
+        result = i;
+}
+return result;
+}
+void Bank::SortEventList()
+{
+// Lambda表达式
+_event_list.sort([](const Event &amp;e1, const Event &amp;e2) -&gt; bool {return e1._occur_time &lt; e2._occur_time; });
+}
+
+//模拟仿真排队
+void Bank::Simulation()
+{
+OpenForDay();
+Event event;
+while (!_event_list.empty()) {
+    event = _event_list.front();
+    _event_list.pop_front();
+    if (event._type == 0) // 到达事件
+        CustomerArrival(&amp;event);
+    else
+        CustomerDeparture(&amp;event);
+}
+// 计算并输出平均逗留时间
+std::wcout &lt;&lt; L&quot;客户数：&quot; &lt;&lt; _customer_number &lt;&lt; std::endl
+    &lt;&lt; L&quot;总逗留时间（小时）：&quot; &lt;&lt; (double)_total_time / 3600.0
+    &lt;&lt; std::endl
+    &lt;&lt; L&quot;平均逗留时间（分钟）：&quot;
+    &lt;&lt; (double)_total_time / (double)(_customer_number * 60)
+    &lt;&lt; std::endl;
+}
+int wmain(int argc, wchar_t *argv[], wchar_t *env[])
+{
+_wsetlocale(LC_ALL, L&quot;&quot;);
+
+Bank bank;
+bank.Simulation();
+return 0;
+}</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-02T12:02:00.000Z">2019-06-02</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 477 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/06/02/递归问题/">递归问题</a>
+            
+        </h1>
+        <div class="content">
+            <p>最近数据结构刚刚学了递归问题，感觉理解的不太到位，刚好leetcode刷题刷到了两个递归问题，对递归算是更进一步理解了吧。</p>
+<p>leetcode—22.括号生成</p>
+<p>给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。</p>
+<p>例如，给出 n = 3，生成结果为：</p>
+<p>[<br>  “((()))”,<br>  “(()())”,<br>  “(())()”,<br>  “()(())”,<br>  “()()()”<br>]</p>
+<p>当加入一个左括号时，剩余的可看作新的组合，但右括号的个数必须大于左括号的个数时，才表明可以加入右括号，C++代码如下：</p>
+<pre><code>vector&lt;string&gt; res;
+void back(string s,int i,int j){
+        int n;
+        if(i==0&amp;&amp;j==0)
+        {
+            res.push_back(s);
+            return;
+        }
+        if(i&gt;0)
+            back(s+&apos;(&apos;,i-1,j);
+        if(j&gt;i)
+            back(s+&apos;)&apos;,i,j-1);
+    }
+vector&lt;string&gt; generateParenthesis(int n) {
+    back(&quot;&quot;,n,n);
+    return res;
+}</code></pre><p>leetcode—39.组合总数</p>
+<p>给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
+<p>candidates 中的数字可以无限制重复被选取。</p>
+<p>说明：</p>
+<p>所有数字（包括 target）都是正整数。<br>解集不能包含重复的组合。 </p>
+<p>示例 1:</p>
+<p>输入: candidates = [2,3,6,7], target = 7,<br>所求解集为:<br>[<br>  [7],<br>  [2,2,3]<br>]</p>
+<p>示例 2:</p>
+<p>输入: candidates = [2,3,5], target = 8,<br>所求解集为:<br>[<br>  [2,2,2,2],<br>  [2,3,3],<br>  [3,5]<br>]</p>
+<p>利用递归求解，将数组中的第一个数提取出来，则可以看作是求candidates中所有可以使数字和为（target-第一个数字）的组合，以此类推，但必须注意不能有重复的组合，所以应该在后面的数被提取时，不能与前面的数相匹配。C++代码如下：</p>
+<pre><code>vector&lt;vector&lt;int&gt;&gt; res;
+vector&lt;int&gt; tmp;
+vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) {
+    com(0,candidates,target);
+    return res;
+}
+void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
+{
+    int t;
+    t=target;
+    for(int i=cur;i&lt;candidates.size();i++)
+    {
+        if(target==0)
+        {
+            res.push_back(tmp);
+            return;
+        }
+        if(target&gt;0)
+        {
+            tmp.push_back(candidates[i]);
+            com(i,candidates,target-candidates[i]);
+            tmp.pop_back();
+        }
+        else continue;
+        target=t;
+
+    }
+}</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/">上一页</a>
+        </div>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/page/3/">下一页</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
+            
+            <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="每天都在期待着回家">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        每天都在期待着回家
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        希望2020年能去看苏打绿演唱会
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            14
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            3
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/c/">
+            <span class="level-start">
+                <span class="level-item">c++</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/python/">
+            <span class="level-start">
+                <span class="level-item">python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/操作系统/">
+            <span class="level-start">
+                <span class="level-item">操作系统</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li>
             </ul>
         </div>
-        <!-- Intro 头部显示 e -->
-        <!-- Header 头部logo start -->
-        <header id="header">
-    <a href="/" class="logo">MICCALL</a>
-</header>
-        <!-- Header 头部logo end -->
-        <!-- Nav 导航条 start -->
-        <nav id="nav" class="special">
-            <ul class="menu links">
-			<!-- Homepage  主页  --> 
-			<li>
-	            <a href="/" rel="nofollow">主页</a>
-	        </li>
-			<!-- categories_name  分类   --> 
-	        
-	        <li class="active">
-	            <a href="#s1">分类</a>
-	                    <ul class="submenu">
-	                        <li>
-	                        <a class="category-link" href="/categories/c/">c++</a></li><li><a class="category-link" href="/categories/python/">python</a></li><li><a class="category-link" href="/categories/操作系统/">操作系统</a>
-	                    </li></ul>
-	        </li>
-	        
-	        <!-- archives  归档   --> 
-	        
-	        
-		        <!-- Pages 自定义   -->
-		        
-		        <li>
-		            <a href="/about/" title="简历">
-		                简历
-		            </a>
-		        </li>
-		        
-		        <li>
-		            <a href="/group/" title="团队">
-		                团队
-		            </a>
-		        </li>
-		        
-		        <li>
-		            <a href="/gallery/" title="图库">
-		                图库
-		            </a>
-		        </li>
-		        
-		        <li>
-		            <a href="/tag/" title="标签">
-		                标签
-		            </a>
-		        </li>
-		        
-
-
-            </ul>
-            <!-- icons 图标   -->
-			<ul class="icons">
-                    
-                    <li>
-                        <a title="github" href="https://github.com/miccall" target="_blank" rel="noopener">
-                            <i class="icon fa fa-github"></i>
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a title="500px" href="http://500px.com" target="_blank" rel="noopener">
-                            <i class="icon fa fa-500px"></i>
-                        </a>
-                    </li>
-                    
-			</ul>
-</nav>
-        <!-- Nav 导航条 end -->
-        <!-- Main 主要部分 start -->
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
         
-        <!-- 文章列表   s -->
-        <div id="main" style="background-color: transparent; padding:0;">
-        <section class="link_container" style="margin-top: 0; background-color: transparent; ">
-            <div class="link_row">
-                <!-- 文章sample  s-->
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/制简单操作系统（6）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（6）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/制简单操作系统（6）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（6）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time></div>
+                    <a href="/2019/12/13/制简单操作系统（5）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（5）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/11/制简单操作系统（4）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（4）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T14:27:00.000Z">2019-12-11</time></div>
+                    <a href="/2019/12/11/制简单操作系统（4）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（4）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time></div>
+                    <a href="/2019/12/09/制简单操作系统（3）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（3）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/08/制简单操作系统（2）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（2）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T13:38:00.000Z">2019-12-08</time></div>
+                    <a href="/2019/12/08/制简单操作系统（2）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（2）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/c/">
+                        <span class="tag">c++</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/flask/">
+                        <span class="tag">flask</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/java/">
+                        <span class="tag">java</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/recursion/">
+                        <span class="tag">recursion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/操作系统/">
+                        <span class="tag">操作系统</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
 
                 
-                <div class="6u 12u(narrower)">
-                    <section class="link_box special">
-                       <a href="/2019/09/03/控制台实现贪吃蛇/">
-                        <div class="page_title" style="background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
-                            <!--标题-->
-                            <h2 class="page_title_text"> 控制台实现贪吃蛇 </h2>
-                            <!--段落-->
-                        </div>
-                        </a>
-                        <div class="home-post-info">
-                            <!-- Author Avatar -->
-                            <div class="home-post-info-author-avatar">
-                                <h6><span class="home-post-info-data">2019-09-03</span></h6>
-                                <div class="home-post-info-Category">
-                                    <!-- Category -->
-                                    <span>
-                            <h6>
-                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/">
-                                <a class="post_category-link" href="/categories/c/">c++</a></a>
-                            </h6>
-                        </span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <!-- 文章sample  e-->
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
             
-                <div class="6u 12u(narrower)">
-                    <section class="link_box special">
-                       <a href="/2019/08/31/飞机射击小游戏-1/">
-                        <div class="page_title" style="background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
-                            <!--标题-->
-                            <h2 class="page_title_text"> 飞机射击小游戏 </h2>
-                            <!--段落-->
-                        </div>
-                        </a>
-                        <div class="home-post-info">
-                            <!-- Author Avatar -->
-                            <div class="home-post-info-author-avatar">
-                                <h6><span class="home-post-info-data">2019-08-31</span></h6>
-                                <div class="home-post-info-Category">
-                                    <!-- Category -->
-                                    <span>
-                            <h6>
-                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/">
-                                </a>
-                            </h6>
-                        </span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <!-- 文章sample  e-->
+            <a href="/2019/12/16/制简单操作系统（6）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（6）">
+                </p>
+            </a>
             
-                <div class="6u 12u(narrower)">
-                    <section class="link_box special">
-                       <a href="/2019/08/28/银行排队问题/">
-                        <div class="page_title" style="background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
-                            <!--标题-->
-                            <h2 class="page_title_text"> 银行排队问题 </h2>
-                            <!--段落-->
-                        </div>
-                        </a>
-                        <div class="home-post-info">
-                            <!-- Author Avatar -->
-                            <div class="home-post-info-author-avatar">
-                                <h6><span class="home-post-info-data">2019-08-28</span></h6>
-                                <div class="home-post-info-Category">
-                                    <!-- Category -->
-                                    <span>
-                            <h6>
-                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/">
-                                <a class="post_category-link" href="/categories/c/">c++</a></a>
-                            </h6>
-                        </span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/制简单操作系统（6）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（6）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
                 </div>
-                <!-- 文章sample  e-->
+            </div>
+        </article>
+        
+        <article class="media">
             
-                <div class="6u 12u(narrower)">
-                    <section class="link_box special">
-                       <a href="/2019/06/02/递归问题/">
-                        <div class="page_title" style="background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
-                            <!--标题-->
-                            <h2 class="page_title_text"> 递归问题 </h2>
-                            <!--段落-->
-                        </div>
-                        </a>
-                        <div class="home-post-info">
-                            <!-- Author Avatar -->
-                            <div class="home-post-info-author-avatar">
-                                <h6><span class="home-post-info-data">2019-06-02</span></h6>
-                                <div class="home-post-info-Category">
-                                    <!-- Category -->
-                                    <span>
-                            <h6>
-                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/">
-                                </a>
-                            </h6>
-                        </span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+            <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time></div>
+                    <a href="/2019/12/13/制简单操作系统（5）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（5）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
                 </div>
-                <!-- 文章sample  e-->
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/11/制简单操作系统（4）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（4）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-11T14:27:00.000Z">2019-12-11</time></div>
+                    <a href="/2019/12/11/制简单操作系统（4）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（4）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time></div>
+                    <a href="/2019/12/09/制简单操作系统（3）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（3）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/08/制简单操作系统（2）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（2）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T13:38:00.000Z">2019-12-08</time></div>
+                    <a href="/2019/12/08/制简单操作系统（2）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（2）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/c/">
+                        <span class="tag">c++</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/flask/">
+                        <span class="tag">flask</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/java/">
+                        <span class="tag">java</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/recursion/">
+                        <span class="tag">recursion</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/操作系统/">
+                        <span class="tag">操作系统</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Xinyi Zhang&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
             
             </div>
-        </section>
         </div>
-        <!-- 文章列表   end -->
-        <!-- Main 主要部分 end -->
-        <!-- footer  页码 start-->
-        <footer style="text-align: center; padding-top: 2em;">
-  
-    <div class="pagination">
-        <a class="extend prev" rel="prev" href="/">pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </div>  
-    
-</footer>
-
-        <!-- footer  页码 end-->
-        <!-- Copyright 版权 start -->
-                <div id="copyright">
-            <ul>
-                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
-                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
-            </ul>
-            
-                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
-			
-        </div>
-        <!-- Copyright 版权 end -->
     </div>
-    <!-- Wrapper 外包 e-->
-    <!-- Scripts -->
-</body>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
 
- 	
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
 </html>
