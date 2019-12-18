@@ -19,7 +19,7 @@
 <meta property="og:description" content="今天主要是学习中断处理程序的制作，以键盘和鼠标为例，键盘输入后，CPU进行中断处理。 GDT是记录段号的，一共64KB，每个段分配8个字节，用20位记录段大小。32位记录段起始地址，12位记录段的管理信息。然后进行初始化。 PIC是可编程中断控制器，一般来说CPU只能单独的处理一个中断，PIC将8个中断信号集合成一个，PIC分为主PIC和从PIC，从PIC连接到主PIC的一个端口。首先要将PIC初">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-17T02:51:59.546Z">
+<meta property="og:updated_time" content="2019-12-18T11:31:12.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自制简单操作系统（2）">
 <meta name="twitter:description" content="今天主要是学习中断处理程序的制作，以键盘和鼠标为例，键盘输入后，CPU进行中断处理。 GDT是记录段号的，一共64KB，每个段分配8个字节，用20位记录段大小。32位记录段起始地址，12位记录段的管理信息。然后进行初始化。 PIC是可编程中断控制器，一般来说CPU只能单独的处理一个中断，PIC将8个中断信号集合成一个，PIC分为主PIC和从PIC，从PIC连接到主PIC的一个端口。首先要将PIC初">
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 514 个字)
+                    4 分钟 读完 (大约 539 个字)
                 </span>
                 
                 
@@ -167,7 +167,7 @@
 <p>写一个函数将鼠标和键盘中断的GDT和IDT初始化，将每段的信息利用for循环存入GDT中，再将键盘和鼠标注册到IDT的第21和2c号。如果发生中断，CPU就自动调用利用汇编编写的相应的中断处理函数。</p>
 <p>在主函数中，允许键盘中断和鼠标终端，具体就是将值送到PIC的主从端口，设定中断号，这样一旦有键按下，就会触发中断执行，然后由于键盘在IDT中注册了中断号，所以就会触发程序执行。</p>
 <p>成果图如下：</p>
-<p><img src="//agentzxy.github.io/2019/12/08/制简单操作系统（2）/%5Cimages%5Cpasted-4.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/2019121819304347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 <p>但鼠标不知道为什么不能执行中断。</p>
 <p>上面讲的肯定有很多不对的地方，也有一些地方是模糊的，继续往后做，我觉得肯定能越来越明白的。</p>
 
@@ -292,7 +292,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            13
                         </p>
                     </a>
                 </div>
@@ -589,7 +589,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -820,7 +820,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>

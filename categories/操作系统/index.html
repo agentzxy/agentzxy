@@ -154,7 +154,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 526 个字)
+                    4 分钟 读完 (大约 551 个字)
                 </span>
                 
                 
@@ -174,7 +174,7 @@
 <p>分别由两个结构体SHEET和SHTCTL，SHEET是记录每个图层的信息，参数有该图层的每个像素点的地址、图层长宽、图层位置、图层透明度、图层高度（高度越高，显示越靠前）、是否可见、该图层所属的图层体。<br>SHTCTL我将它成为图层体，图层体里有很多图层，参数有图层体大小、图层体里的图层最高高度、数组记录每个图层位置、每个图层。</p>
 <p>首先将图层图层体初始化，在内存中分配地址，再将图层体分配给一个个图层并且初始化。如果有移动，则重新绘制移动部分的该图层。图层不要了就要释放所占的内存。</p>
 <p>成果图如下：</p>
-<p><img src="//agentzxy.github.io/2019/12/16/制简单操作系统（6）/%5Cimages%5Cpasted-8.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191218193254293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 
         </div>
         
@@ -207,7 +207,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 249 个字)
+                    2 分钟 读完 (大约 274 个字)
                 </span>
                 
                 
@@ -223,7 +223,7 @@
             <p>这次增加了图层的应用，用来进行画面的叠加处理。同样也是利用结构体完成，SHEET结构体记录每个图层的信息，SHTCTL结构体记录了所有图层的信息。然后首先给每个图层分配相应的内存空间。将图层的显示顺序从次到主依次排序，显示越底层的，内存分配的起始地址越小。接着将每个图层绘制处理，每个图层都有自己的显示buf，将其在整个显示屏上绘制出来。鼠标一移动，就要刷新图层，重新绘制所有图层。也正因为这样，让鼠标动得有点一闪一闪的，所以还得优化一下，明天做优化内容。</p>
 <p>成果图如下：</p>
 <p>由于图层分配了内存，所以可用内存又减少了。</p>
-<p><img src="//agentzxy.github.io/2019/12/13/制简单操作系统（5）/%5Cimages%5Cpasted-7.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/201912181932286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 
         </div>
         
@@ -256,7 +256,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 192 个字)
+                    1 分钟 读完 (大约 217 个字)
                 </span>
                 
                 
@@ -272,7 +272,7 @@
             <p>今天学习的是内存管理。首先是内存检查，把值写入内存再反转，观察值是否改变，若没变就代表内存没问题，利用for循环将每个内存地址都写入值。</p>
 <p>然后是内存管理，本系统采用的是将每个空闲内存的起始地址和空闲大小记录下来，可以利用结构体来完成。再用一个结构体记录所有空闲内存的情况，然后进行初始化、内存分配和释放内存。采用这种方式记录内存使用情况只用消耗32KB的内存，所以是不错的。</p>
 <p>成果图如下：</p>
-<p><img src="//agentzxy.github.io/2019/12/11/制简单操作系统（4）/%5Cimages%5Cpasted-6.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191218193159229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 
         </div>
         
@@ -305,7 +305,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 394 个字)
+                    3 分钟 读完 (大约 419 个字)
                 </span>
                 
                 
@@ -324,7 +324,7 @@
 <p>里面还涉及到鼠标和键盘的控制电路的初始化，激活鼠标，因为键盘控制电路中含有鼠标控制电路，所以获取鼠标发送的字节和键盘一样。</p>
 <p>关于控制电路初始化那块不太明白，感觉鼠标移动还是很好理解的。</p>
 <p>成果图：</p>
-<p><img src="//agentzxy.github.io/2019/12/09/制简单操作系统（3）/%5Cimages%5Cpasted-5.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191218193120698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 
         </div>
         
@@ -357,7 +357,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 514 个字)
+                    4 分钟 读完 (大约 539 个字)
                 </span>
                 
                 
@@ -377,7 +377,7 @@
 <p>写一个函数将鼠标和键盘中断的GDT和IDT初始化，将每段的信息利用for循环存入GDT中，再将键盘和鼠标注册到IDT的第21和2c号。如果发生中断，CPU就自动调用利用汇编编写的相应的中断处理函数。</p>
 <p>在主函数中，允许键盘中断和鼠标终端，具体就是将值送到PIC的主从端口，设定中断号，这样一旦有键按下，就会触发中断执行，然后由于键盘在IDT中注册了中断号，所以就会触发程序执行。</p>
 <p>成果图如下：</p>
-<p><img src="//agentzxy.github.io/2019/12/08/制简单操作系统（2）/%5Cimages%5Cpasted-4.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/2019121819304347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 <p>但鼠标不知道为什么不能执行中断。</p>
 <p>上面讲的肯定有很多不对的地方，也有一些地方是模糊的，继续往后做，我觉得肯定能越来越明白的。</p>
 
@@ -412,7 +412,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 519 个字)
+                    4 分钟 读完 (大约 544 个字)
                 </span>
                 
                 
@@ -433,7 +433,7 @@
 <p>为了不会出现很多批处理文件，使用了Makefile，在makefile文件里面执行命令，将nas文件转成bin文件，将C的源文件转成gas，把gas再转为nas文件，nas转obj目标文件，接着就可以转二进制映像了。</p>
 <p>nas文件用nask编译后可输出sys文件，将sys文件与做成的映像文件作比较可以发现，一般向一个空软盘保存文件时，文件名会写在0x002600以后的地方，文件内容会写在0x004200以后的地方（我觉得的也就是程序的意思）.</p>
 <p>成果：</p>
-<p><img src="//agentzxy.github.io/2019/12/07/制简单操作系统（1）-1/%5Cimages%5Cpasted-2.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191218192830435.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 
         </div>
         
@@ -494,7 +494,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            13
                         </p>
                     </a>
                 </div>
@@ -791,7 +791,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1022,7 +1022,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>

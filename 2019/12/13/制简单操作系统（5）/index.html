@@ -19,7 +19,7 @@
 <meta property="og:description" content="这次增加了图层的应用，用来进行画面的叠加处理。同样也是利用结构体完成，SHEET结构体记录每个图层的信息，SHTCTL结构体记录了所有图层的信息。然后首先给每个图层分配相应的内存空间。将图层的显示顺序从次到主依次排序，显示越底层的，内存分配的起始地址越小。接着将每个图层绘制处理，每个图层都有自己的显示buf，将其在整个显示屏上绘制出来。鼠标一移动，就要刷新图层，重新绘制所有图层。也正因为这样，让鼠">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-17T02:51:42.271Z">
+<meta property="og:updated_time" content="2019-12-18T11:32:40.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自制简单操作系统（5）">
 <meta name="twitter:description" content="这次增加了图层的应用，用来进行画面的叠加处理。同样也是利用结构体完成，SHEET结构体记录每个图层的信息，SHTCTL结构体记录了所有图层的信息。然后首先给每个图层分配相应的内存空间。将图层的显示顺序从次到主依次排序，显示越底层的，内存分配的起始地址越小。接着将每个图层绘制处理，每个图层都有自己的显示buf，将其在整个显示屏上绘制出来。鼠标一移动，就要刷新图层，重新绘制所有图层。也正因为这样，让鼠">
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 249 个字)
+                    2 分钟 读完 (大约 274 个字)
                 </span>
                 
                 
@@ -163,7 +163,7 @@
             <p>这次增加了图层的应用，用来进行画面的叠加处理。同样也是利用结构体完成，SHEET结构体记录每个图层的信息，SHTCTL结构体记录了所有图层的信息。然后首先给每个图层分配相应的内存空间。将图层的显示顺序从次到主依次排序，显示越底层的，内存分配的起始地址越小。接着将每个图层绘制处理，每个图层都有自己的显示buf，将其在整个显示屏上绘制出来。鼠标一移动，就要刷新图层，重新绘制所有图层。也正因为这样，让鼠标动得有点一闪一闪的，所以还得优化一下，明天做优化内容。</p>
 <p>成果图如下：</p>
 <p>由于图层分配了内存，所以可用内存又减少了。</p>
-<p><img src="//agentzxy.github.io/2019/12/13/制简单操作系统（5）/%5Cimages%5Cpasted-7.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/201912181932286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 
         </div>
         
@@ -286,7 +286,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            13
                         </p>
                     </a>
                 </div>
@@ -583,7 +583,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -814,7 +814,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>

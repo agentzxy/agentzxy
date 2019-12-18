@@ -19,7 +19,7 @@
 <meta property="og:description" content="今天主要是实现鼠标的移动，昨天写的是中断后直接跳转到中断处理程序，处理过程也在那个函数里面。今天改良了，使用缓冲区来实现（其实就是栈）,比如键盘按下一个键后，将发送的字节送入缓冲区，然后在主函数里面，读出存储的字节，这样就可以实现不停的按下键，并且读入字节。利用结构体实现一个缓冲区。 鼠标移动就会发送出三个字节，第一个字节是点击和移动鼠标的，第二个字节是x值，第三个是y值（位置），也可以将鼠标发送">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-17T02:52:06.382Z">
+<meta property="og:updated_time" content="2019-12-18T11:31:45.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自制简单操作系统（3）">
 <meta name="twitter:description" content="今天主要是实现鼠标的移动，昨天写的是中断后直接跳转到中断处理程序，处理过程也在那个函数里面。今天改良了，使用缓冲区来实现（其实就是栈）,比如键盘按下一个键后，将发送的字节送入缓冲区，然后在主函数里面，读出存储的字节，这样就可以实现不停的按下键，并且读入字节。利用结构体实现一个缓冲区。 鼠标移动就会发送出三个字节，第一个字节是点击和移动鼠标的，第二个字节是x值，第三个是y值（位置），也可以将鼠标发送">
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 394 个字)
+                    3 分钟 读完 (大约 419 个字)
                 </span>
                 
                 
@@ -166,7 +166,7 @@
 <p>里面还涉及到鼠标和键盘的控制电路的初始化，激活鼠标，因为键盘控制电路中含有鼠标控制电路，所以获取鼠标发送的字节和键盘一样。</p>
 <p>关于控制电路初始化那块不太明白，感觉鼠标移动还是很好理解的。</p>
 <p>成果图：</p>
-<p><img src="//agentzxy.github.io/2019/12/09/制简单操作系统（3）/%5Cimages%5Cpasted-5.png" alt="upload successful"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191218193120698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 
         </div>
         
@@ -289,7 +289,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            13
                         </p>
                     </a>
                 </div>
@@ -586,7 +586,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -817,7 +817,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
