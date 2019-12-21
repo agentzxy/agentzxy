@@ -144,6 +144,52 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 545 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/21/自制简单操作系统（8）/">自制简单操作系统（8）</a>
+            
+        </h1>
+        <div class="content">
+            <p>这次学习的仍然是定时器，以及提高性能。<br>首先是测试性能，在判断中断的for循环里进行count++计数，当到了10秒之后就将count值显示出来，但在5秒处要归零（作者是在3秒处归零），这是因为电脑初始化所花费的时间有很大变化。<br>然后通过优化FIFO缓冲区来进行性能提升。因为鼠标、键盘、各个定时器的中断，都使用了不同的缓冲区，这样在判断的时候就会很麻烦，所以采用同一个缓冲区，但往缓冲区送入的不同数字代表不同的中断。<br>最后是加快定时器的中断处理，使用了线性链表和哨兵。<br>我在这里总结一下定时器所采用的结构和方法（提升性能后有所变化）：<br>定时器的结构体参数有：下一个超时的定时器、超时时间、使用标记、中断处理的缓冲区、该中断的数字号。<br>定时器控制体的结构体参数有：计时器、下一个的超时时间、第一个定时器、存放500个定时器的数组。<br>首先是初始化定时器：给每个定时器分配（就是存放500个定时器数组里的标志设为1），设置哨兵，往中断缓冲存入该定时器对应的数字号。<br>若有中断到达则往缓冲区存入数字，并且将下一个会到达的超时定时器指定。<br>由于定时器是线性链表结构排列，所以当有一个新的定时器加入时，要将新定时器插入链表，按照顺序排列。<br>以下是成果图：<br><img src="https://img-blog.csdnimg.cn/20191221173048529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt="counter里记的数是5秒内的，性能提升后确实比最开始的值要高上近一倍"></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-12-18T11:54:05.000Z">2019-12-18</time>
                 
                 <div class="level-item">
@@ -540,7 +586,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            15
                         </p>
                     </a>
                 </div>
@@ -688,7 +734,7 @@
                 <span class="level-item">操作系统</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li>
             </ul>
@@ -716,6 +762,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（8）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
+                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（8）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/18/自制简单操作系统（7）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（7）">
@@ -790,25 +855,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time></div>
-                    <a href="/2019/12/09/制简单操作系统（3）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（3）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -826,7 +872,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -919,7 +965,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -947,6 +993,25 @@
         
         <article class="media">
             
+            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（8）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
+                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（8）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/18/自制简单操作系统（7）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（7）">
@@ -1021,25 +1086,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time></div>
-                    <a href="/2019/12/09/制简单操作系统（3）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（3）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1057,7 +1103,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -1150,7 +1196,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 

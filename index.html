@@ -133,6 +133,52 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 545 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/21/自制简单操作系统（8）/">自制简单操作系统（8）</a>
+            
+        </h1>
+        <div class="content">
+            <p>这次学习的仍然是定时器，以及提高性能。<br>首先是测试性能，在判断中断的for循环里进行count++计数，当到了10秒之后就将count值显示出来，但在5秒处要归零（作者是在3秒处归零），这是因为电脑初始化所花费的时间有很大变化。<br>然后通过优化FIFO缓冲区来进行性能提升。因为鼠标、键盘、各个定时器的中断，都使用了不同的缓冲区，这样在判断的时候就会很麻烦，所以采用同一个缓冲区，但往缓冲区送入的不同数字代表不同的中断。<br>最后是加快定时器的中断处理，使用了线性链表和哨兵。<br>我在这里总结一下定时器所采用的结构和方法（提升性能后有所变化）：<br>定时器的结构体参数有：下一个超时的定时器、超时时间、使用标记、中断处理的缓冲区、该中断的数字号。<br>定时器控制体的结构体参数有：计时器、下一个的超时时间、第一个定时器、存放500个定时器的数组。<br>首先是初始化定时器：给每个定时器分配（就是存放500个定时器数组里的标志设为1），设置哨兵，往中断缓冲存入该定时器对应的数字号。<br>若有中断到达则往缓冲区存入数字，并且将下一个会到达的超时定时器指定。<br>由于定时器是线性链表结构排列，所以当有一个新的定时器加入时，要将新定时器插入链表，按照顺序排列。<br>以下是成果图：<br><img src="https://img-blog.csdnimg.cn/20191221173048529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt="counter里记的数是5秒内的，性能提升后确实比最开始的值要高上近一倍"></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-12-18T11:54:05.000Z">2019-12-18</time>
                 
                 <div class="level-item">
@@ -741,85 +787,6 @@ public static void main(String[] args) {
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-13T16:46:00.000Z">2019-11-14</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/python/">python</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 392 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/11/14/crapy框架爬取豆瓣电影top250/">scrapy框架爬取豆瓣电影top250</a>
-            
-        </h1>
-        <div class="content">
-            <p>在items里主要有五个item：序号、电影名字、电影标签、评分、图片url</p>
-<p>由于只爬取了电影，所以movie.py里只有电影这一个spider。里面的parse函数利用xpath将搜索出来的数据导入items里的各个item的列表中，<br>具体代码如下：</p>
-<pre><code>def parse(self, response):
-    html=response.text
-    html=etree.HTML(html)
-    order=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div/em&apos;)#序号
-    title=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;pic&quot;]/a/img/@alt&apos;)         inq=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;info&quot;]/div[@class=&quot;bd&quot;]/p[@class=&quot;quote&quot;]/span&apos;)        rating_num=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;info&quot;]/div[@class=&quot;bd&quot;]/div/span[@class=&quot;rating_num&quot;]&apos;)        image_url=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;pic&quot;]/a/img/@src&apos;)
-    item=movieItem()
-    item[&apos;nums&apos;]=order
-    item[&apos;names&apos;]=title
-    item[&apos;tags&apos;]=inq
-    item[&apos;scores&apos;]=rating_num
-    item[&apos;images&apos;]=image_url
-    yield item</code></pre><p>   注意一定要yield item，不然无法对items里面的进行数据处理</p>
-<p>   然后就是利用pipeline对数据处理，分为三个，分别是原始的、传入mysql的、将剧照保存的。</p>
-<p>   传入mysql：</p>
-<pre><code>def process_item(self,item,spider):
-    for i in range(24):
-        sql=&quot;INSERT INTO top250(NUM,NAME,TAG,SCORE) VALUES(%s,%s,%s,%s)&quot;
-        num=item[&apos;nums&apos;][i].text
-        name=item[&apos;names&apos;][i]
-        tag=item[&apos;tags&apos;][i].text
-        score=item[&apos;scores&apos;][i].text
-        s=(num,name,tag,score)
-        self.cursor.execute(sql,s)
-    self.db.commit()
-    return item</code></pre><p>   保存图片的：</p>
-<pre><code>def process_item(self,item,spider):
-    for i in range(24):
-        splitPath=item[&apos;images&apos;][i].split(&apos;.&apos;)
-        fTail=splitPath.pop()
-        fileName=item[&apos;names&apos;][i]+&quot;.&quot;+fTail
-        filepath=&quot;D:/ddddd/&quot;+fileName
-        request.urlretrieve(item[&apos;images&apos;][i],filepath)</code></pre><p>  最后就是在settings里面设置一些参数，具体代码参见<a href="https://github.com/agentzxy/Scrapy" target="_blank" rel="noopener">github</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -884,7 +851,7 @@ public static void main(String[] args) {
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            15
                         </p>
                     </a>
                 </div>
@@ -1032,7 +999,7 @@ public static void main(String[] args) {
                 <span class="level-item">操作系统</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li>
             </ul>
@@ -1060,6 +1027,25 @@ public static void main(String[] args) {
         
         <article class="media">
             
+            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（8）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
+                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（8）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/18/自制简单操作系统（7）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（7）">
@@ -1134,25 +1120,6 @@ public static void main(String[] args) {
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time></div>
-                    <a href="/2019/12/09/制简单操作系统（3）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（3）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1170,7 +1137,7 @@ public static void main(String[] args) {
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -1263,7 +1230,7 @@ public static void main(String[] args) {
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -1291,6 +1258,25 @@ public static void main(String[] args) {
         
         <article class="media">
             
+            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（8）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
+                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（8）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/18/自制简单操作系统（7）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（7）">
@@ -1365,25 +1351,6 @@ public static void main(String[] args) {
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time></div>
-                    <a href="/2019/12/09/制简单操作系统（3）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（3）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1401,7 +1368,7 @@ public static void main(String[] args) {
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -1494,7 +1461,7 @@ public static void main(String[] args) {
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 

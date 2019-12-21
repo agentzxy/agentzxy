@@ -133,6 +133,85 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-13T16:46:00.000Z">2019-11-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/python/">python</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 392 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/14/crapy框架爬取豆瓣电影top250/">scrapy框架爬取豆瓣电影top250</a>
+            
+        </h1>
+        <div class="content">
+            <p>在items里主要有五个item：序号、电影名字、电影标签、评分、图片url</p>
+<p>由于只爬取了电影，所以movie.py里只有电影这一个spider。里面的parse函数利用xpath将搜索出来的数据导入items里的各个item的列表中，<br>具体代码如下：</p>
+<pre><code>def parse(self, response):
+    html=response.text
+    html=etree.HTML(html)
+    order=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div/em&apos;)#序号
+    title=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;pic&quot;]/a/img/@alt&apos;)         inq=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;info&quot;]/div[@class=&quot;bd&quot;]/p[@class=&quot;quote&quot;]/span&apos;)        rating_num=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;info&quot;]/div[@class=&quot;bd&quot;]/div/span[@class=&quot;rating_num&quot;]&apos;)        image_url=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;pic&quot;]/a/img/@src&apos;)
+    item=movieItem()
+    item[&apos;nums&apos;]=order
+    item[&apos;names&apos;]=title
+    item[&apos;tags&apos;]=inq
+    item[&apos;scores&apos;]=rating_num
+    item[&apos;images&apos;]=image_url
+    yield item</code></pre><p>   注意一定要yield item，不然无法对items里面的进行数据处理</p>
+<p>   然后就是利用pipeline对数据处理，分为三个，分别是原始的、传入mysql的、将剧照保存的。</p>
+<p>   传入mysql：</p>
+<pre><code>def process_item(self,item,spider):
+    for i in range(24):
+        sql=&quot;INSERT INTO top250(NUM,NAME,TAG,SCORE) VALUES(%s,%s,%s,%s)&quot;
+        num=item[&apos;nums&apos;][i].text
+        name=item[&apos;names&apos;][i]
+        tag=item[&apos;tags&apos;][i].text
+        score=item[&apos;scores&apos;][i].text
+        s=(num,name,tag,score)
+        self.cursor.execute(sql,s)
+    self.db.commit()
+    return item</code></pre><p>   保存图片的：</p>
+<pre><code>def process_item(self,item,spider):
+    for i in range(24):
+        splitPath=item[&apos;images&apos;][i].split(&apos;.&apos;)
+        fTail=splitPath.pop()
+        fileName=item[&apos;names&apos;][i]+&quot;.&quot;+fTail
+        filepath=&quot;D:/ddddd/&quot;+fileName
+        request.urlretrieve(item[&apos;images&apos;][i],filepath)</code></pre><p>  最后就是在settings里面设置一些参数，具体代码参见<a href="https://github.com/agentzxy/Scrapy" target="_blank" rel="noopener">github</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-09-03T08:41:00.000Z">2019-09-03</time>
                 
                 <div class="level-item">
@@ -1489,7 +1568,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            15
                         </p>
                     </a>
                 </div>
@@ -1637,7 +1716,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                 <span class="level-item">操作系统</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li>
             </ul>
@@ -1665,6 +1744,25 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         
         <article class="media">
             
+            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（8）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
+                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（8）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/18/自制简单操作系统（7）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（7）">
@@ -1739,25 +1837,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time></div>
-                    <a href="/2019/12/09/制简单操作系统（3）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（3）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1775,7 +1854,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -1868,7 +1947,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -1896,6 +1975,25 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         
         <article class="media">
             
+            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（8）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
+                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（8）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/18/自制简单操作系统（7）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（7）">
@@ -1970,25 +2068,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/09/制简单操作系统（3）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（3）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-09T11:58:00.000Z">2019-12-09</time></div>
-                    <a href="/2019/12/09/制简单操作系统（3）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（3）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2006,7 +2085,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -2099,7 +2178,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                 <div class="control">
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
