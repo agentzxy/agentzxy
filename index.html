@@ -133,6 +133,146 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 437 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/01/13/rees-on-the-level-UVa-122/">Trees on the level-UVa 122</a>
+            
+        </h1>
+        <div class="content">
+            <p>树和队列的应用</p>
+<p>输入一棵二叉树，你的任务是按从上到下、从左到右的顺序输出各个结点的值。</p>
+<p>每个结 点都按照从根结点到它的移动序列给出（L表示左，R表示右）。</p>
+<p>在输入中，每个结点的左 括号和右括号之间没有空格，相邻结点之间用一个空格隔开。每棵树的输入用一对空括 号“()”结束（这对括号本身不代表一个结点），如图6-3所示。 (具体参见Uva-122)</p>
+<p>注意，如果从根到某个叶结点的路径上有的结点没有在输入中给出，或者给出超过一 次，应当输出-1。结点个数不超过256。 </p>
+<p>样例输入： (11,LL) (7,LLL) (8,R) (5,) (4,L) (13,RL) (2,LLR) (1,RRR) (4,RR) () </p>
+<p>(3,L) (4,R) () </p>
+<p>样例输出： 5 4 8 11 13 4 7 2 1 -1</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;vector&gt;
+using namespace std;
+struct Node {
+    bool have_value;
+    int v;
+    Node* left, * right;
+    Node() :have_value(false), left(NULL), right(NULL){}
+};
+bool failed;
+Node* root;
+Node* newnode() { return new Node(); }
+queue&lt;Node*&gt; q;
+void addnode(int v, string s) {
+    int n = s.length();
+    Node* u = root;
+    for (int i = 0; i &lt; n; i++) {
+        if (s[i] == &apos;L&apos;) {
+            if (u-&gt;left == NULL)
+                u-&gt;left = newnode();
+            u = u-&gt;left;
+        }
+        if (s[i] == &apos;R&apos;) {
+            if (u-&gt;right == NULL)
+                u-&gt;right = newnode();
+            u = u-&gt;right;
+        }
+    }
+    if (u-&gt;have_value)
+        failed = true;
+    u-&gt;v = v;
+    u-&gt;have_value = true;
+}
+int main() {
+    string str;
+    cin &gt;&gt; str;
+    root = newnode();
+    int i = 0;
+
+    while (true) {
+        string s = &quot;&quot;;
+        int j = 0;
+        int v = 0;
+        if (str[i] == &apos;(&apos; &amp;&amp; str[i + 1] == &apos;)&apos;) {
+            break;
+        }
+        else if (str[i] == &apos;(&apos;) {
+            i++;
+            while (str[i] != &apos;,&apos;) {
+                v += int(str[i] - &apos;0&apos;) * pow(10, j);
+                j++;
+                i++;
+            }
+            int t = i;
+            i++;
+            while (str[t] == &apos;,&apos;) {
+                if (str[i] == &apos;)&apos;)
+                    break;
+                s += str[i];
+                i++;
+            }
+            addnode(v, s);
+        }
+        i++;
+    }
+    Node* ans = root;
+    Node* temp;
+    vector&lt;int&gt; vec;
+    q.push(ans);
+    while (!q.empty()) {
+        temp = q.front();
+        vec.push_back(temp-&gt;v);
+        q.pop();
+        if (temp-&gt;left != NULL) {
+            ans = temp-&gt;left;
+            q.push(ans);
+        }
+        if (temp-&gt;right != NULL) {
+            ans = temp-&gt;right;
+            q.push(ans);
+        }
+    }
+    for (vector&lt;int&gt;::iterator it = vec.begin(); it != vec.end(); it++)        {
+        cout &lt;&lt; *it &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time>
                 
                 <div class="level-item">
@@ -706,60 +846,6 @@ int main(){
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-07T13:57:00.000Z">2019-12-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 544 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/07/制简单操作系统（1）-1/">自制简单操作系统（1）</a>
-            
-        </h1>
-        <div class="content">
-            <p>我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。</p>
-<p>主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。</p>
-<p>首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出error。</p>
-<p>接着开始写程序。使用C语言编写，里面有整个操作系统颜色定义，现在只定义了16种颜色，但足够了，将颜色读入显卡的内存地址，BIOS里面定义VRAM（显卡内存）是0xa0000-0xaffff的64KB，依次读入就可以了。里面有的中断设置和使CPU休眠的HLT指令要利用汇编完成。</p>
-<p>C语言编写后将其转成nas文件（作者自己命名的，相当于汇编语言文件），然后再将nas文件转为机器语言即可。</p>
-<p>为了不会出现很多批处理文件，使用了Makefile，在makefile文件里面执行命令，将nas文件转成bin文件，将C的源文件转成gas，把gas再转为nas文件，nas转obj目标文件，接着就可以转二进制映像了。</p>
-<p>nas文件用nask编译后可输出sys文件，将sys文件与做成的映像文件作比较可以发现，一般向一个空软盘保存文件时，文件名会写在0x002600以后的地方，文件内容会写在0x004200以后的地方（我觉得的也就是程序的意思）.</p>
-<p>成果：</p>
-<p><img src="https://img-blog.csdnimg.cn/20191218192830435.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -824,7 +910,7 @@ int main(){
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            17
+                            18
                         </p>
                     </a>
                 </div>
@@ -956,7 +1042,7 @@ int main(){
                 <span class="level-item">STL</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/c/">
@@ -1005,6 +1091,25 @@ int main(){
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Trees on the level-UVa 122">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
+                    <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1082,25 +1187,6 @@ int main(){
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/16/制简单操作系统（6）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（6）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time></div>
-                    <a href="/2019/12/16/制简单操作系统（6）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（6）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1118,7 +1204,7 @@ int main(){
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1194,7 +1280,7 @@ int main(){
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STL/">
                         <span class="tag">STL</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1257,6 +1343,25 @@ int main(){
         
         <article class="media">
             
+            <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Trees on the level-UVa 122">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
+                    <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
@@ -1331,25 +1436,6 @@ int main(){
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/16/制简单操作系统（6）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（6）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time></div>
-                    <a href="/2019/12/16/制简单操作系统（6）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（6）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1367,7 +1453,7 @@ int main(){
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1443,7 +1529,7 @@ int main(){
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STL/">
                         <span class="tag">STL</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
