@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>自制简单操作系统（4）</title>
+<title>The Set Stack Computer-Uva 12096</title>
 
 
-    <meta name="description" content="今天学习的是内存管理。首先是内存检查，把值写入内存再反转，观察值是否改变，若没变就代表内存没问题，利用for循环将每个内存地址都写入值。 然后是内存管理，本系统采用的是将每个空闲内存的起始地址和空闲大小记录下来，可以利用结构体来完成。再用一个结构体记录所有空闲内存的情况，然后进行初始化、内存分配和释放内存。采用这种方式记录内存使用情况只用消耗32KB的内存，所以是不错的。 成果图如下：">
-<meta name="keywords" content="操作系统">
+    <meta name="description" content="有一个专门为了集合运算而设计的“集合栈”计算机。该机器有一个初始为空的栈，并且 支持以下操作。  PUSH：空集“{}”入栈。  DUP：把当前栈顶元素复制一份后再入栈。  UNION：出栈两个集合，然后把二者的并集入栈。  INTERSECT：出栈两个集合，然后把二者的交集入栈。 ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。 每次操作后，输出栈顶集合的大小（即元素个">
+<meta name="keywords" content="STL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自制简单操作系统（4）">
-<meta property="og:url" content="http://agentzxy.github.io/2019/12/11/制简单操作系统（4）/index.html">
+<meta property="og:title" content="The Set Stack Computer-Uva 12096">
+<meta property="og:url" content="http://agentzxy.github.io/2020/01/11/The-Set-Stack-Computer-Uva-12096/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="今天学习的是内存管理。首先是内存检查，把值写入内存再反转，观察值是否改变，若没变就代表内存没问题，利用for循环将每个内存地址都写入值。 然后是内存管理，本系统采用的是将每个空闲内存的起始地址和空闲大小记录下来，可以利用结构体来完成。再用一个结构体记录所有空闲内存的情况，然后进行初始化、内存分配和释放内存。采用这种方式记录内存使用情况只用消耗32KB的内存，所以是不错的。 成果图如下：">
+<meta property="og:description" content="有一个专门为了集合运算而设计的“集合栈”计算机。该机器有一个初始为空的栈，并且 支持以下操作。  PUSH：空集“{}”入栈。  DUP：把当前栈顶元素复制一份后再入栈。  UNION：出栈两个集合，然后把二者的并集入栈。  INTERSECT：出栈两个集合，然后把二者的交集入栈。 ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。 每次操作后，输出栈顶集合的大小（即元素个">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-18T11:32:17.112Z">
+<meta property="og:updated_time" content="2020-01-13T03:02:43.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自制简单操作系统（4）">
-<meta name="twitter:description" content="今天学习的是内存管理。首先是内存检查，把值写入内存再反转，观察值是否改变，若没变就代表内存没问题，利用for循环将每个内存地址都写入值。 然后是内存管理，本系统采用的是将每个空闲内存的起始地址和空闲大小记录下来，可以利用结构体来完成。再用一个结构体记录所有空闲内存的情况，然后进行初始化、内存分配和释放内存。采用这种方式记录内存使用情况只用消耗32KB的内存，所以是不错的。 成果图如下：">
+<meta name="twitter:title" content="The Set Stack Computer-Uva 12096">
+<meta name="twitter:description" content="有一个专门为了集合运算而设计的“集合栈”计算机。该机器有一个初始为空的栈，并且 支持以下操作。  PUSH：空集“{}”入栈。  DUP：把当前栈顶元素复制一份后再入栈。  UNION：出栈两个集合，然后把二者的并集入栈。  INTERSECT：出栈两个集合，然后把二者的交集入栈。 ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。 每次操作后，输出栈顶集合的大小（即元素个">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -81,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="自制简单操作系统（4）" height="28">
+                <img src="/images/logo.svg" alt="The Set Stack Computer-Uva 12096" height="28">
             
             </a>
         </div>
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-11T14:27:00.000Z">2019-12-11</time>
+                <time class="level-item has-text-grey" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                <a class="has-link-grey -link" href="/categories/STL/">STL</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 217 个字)
+                    3 分钟 读完 (大约 384 个字)
                 </span>
                 
                 
@@ -156,22 +156,98 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                自制简单操作系统（4）
+                The Set Stack Computer-Uva 12096
             
         </h1>
         <div class="content">
-            <p>今天学习的是内存管理。首先是内存检查，把值写入内存再反转，观察值是否改变，若没变就代表内存没问题，利用for循环将每个内存地址都写入值。</p>
-<p>然后是内存管理，本系统采用的是将每个空闲内存的起始地址和空闲大小记录下来，可以利用结构体来完成。再用一个结构体记录所有空闲内存的情况，然后进行初始化、内存分配和释放内存。采用这种方式记录内存使用情况只用消耗32KB的内存，所以是不错的。</p>
-<p>成果图如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/20191218193159229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
+            <p>有一个专门为了集合运算而设计的“集合栈”计算机。该机器有一个初始为空的栈，并且 支持以下操作。 </p>
+<p>PUSH：空集“{}”入栈。 </p>
+<p>DUP：把当前栈顶元素复制一份后再入栈。 </p>
+<p>UNION：出栈两个集合，然后把二者的并集入栈。 </p>
+<p>INTERSECT：出栈两个集合，然后把二者的交集入栈。</p>
+<p>ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。</p>
+<p>每次操作后，输出栈顶集合的大小（即元素个数）。 </p>
+<p>输入不超过2000个操作，并且保证操作均能顺利进行（不需要对空栈执行出栈操作）。</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;map&gt;
+#include&lt;set&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+using namespace std;
 
+map&lt;set&lt;int&gt;, int&gt; idcache;
+vector&lt;set&lt;int&gt;&gt; setcache;
+
+int getid(set&lt;int&gt; s) {
+    if (idcache.count(s))
+        return idcache[s];
+    setcache.push_back(s);
+    idcache[s] = setcache.size() - 1;
+    return idcache[s];
+}
+
+int main() {
+    int count;
+    cin &gt;&gt; count;
+    while (count--) {
+        stack&lt;int&gt; s;
+        idcache.clear();
+        setcache.clear();
+        int n;
+        cin &gt;&gt; n;
+        while (n--) {
+            string str;
+            cin &gt;&gt; str;
+            if (str == &quot;PUSH&quot;) {
+                set&lt;int&gt; temp;
+                //setcache.push_back(temp);
+                s.push(getid(temp));
+            }
+            else if (str == &quot;DUP&quot;) {
+                s.push(s.top());
+            }
+             else {
+                set&lt;int&gt; first = setcache[s.top()];
+                s.pop();
+                set&lt;int&gt; second = setcache[s.top()];
+                s.pop();
+                set&lt;int&gt; ans;
+                if (str == &quot;ADD&quot;) {
+                    ans = second;
+                    ans.insert(getid(first));
+                }
+                if (str == &quot;INTERSECT&quot;) {
+                    set&lt;int&gt;::iterator it_f = first.begin();
+                    for (; it_f != first.end(); it_f++) {
+                        set&lt;int&gt;::iterator it_s = second.begin();
+                        for (; it_s != second.end(); it_s++) {
+                            if (*it_f == *it_s) {
+                                ans.insert(*it_f);
+                            }
+                        }
+                    }
+                }
+                if (str == &quot;UNION&quot;) {
+                    ans = second;
+                    set&lt;int&gt;::iterator it_f = first.begin();
+                    for (; it_f != first.end(); it_f++) {
+                        ans.insert(*it_f);
+                    }
+                }
+                s.push(getid(ans));
+            }
+            cout &lt;&lt; setcache[s.top()].size() &lt;&lt; endl;
+        }
+        return 0;
+    }
+}</code></pre>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/操作系统/">操作系统</a>
+                    <a class="has-link-grey -link" href="/tags/STL/">STL</a>
                 </div>
             </div>
         </div>
@@ -222,17 +298,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/13/制简单操作系统（5）/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">自制简单操作系统（5）</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/09/制简单操作系统（3）/">
-                <span class="level-item">自制简单操作系统（3）</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/11/TL相关题/">
+                <span class="level-item">Ananagrams-Uva 156</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -961,7 +1030,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="自制简单操作系统（4）" height="28">
+                    <img src="/images/logo.svg" alt="The Set Stack Computer-Uva 12096" height="28">
                 
                 </a>
                 <p class="is-size-7">

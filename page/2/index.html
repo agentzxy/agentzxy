@@ -133,6 +133,216 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-06T10:57:00.000Z">2019-12-06</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 788 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/06/ava小作业-简单计算器/">java小作业-简单计算器</a>
+            
+        </h1>
+        <div class="content">
+            <p>java课上老师布置的小作业，一个简单计算器的实现，挺简单的。</p>
+<p>代码如下：</p>
+<pre><code>package com.company;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.String;
+import java.util.Stack;
+
+public class GridL extends JFrame{
+static Font ff=new Font(&quot;幼圆&quot;,Font.BOLD,30);
+public GridL(String title) {
+    super(title);
+    setLayout(new BorderLayout());
+    JPanel p=new JPanel();
+    TextField t=new TextField(300);
+    add(&quot;North&quot;,t);
+    add(p);
+    GridLayout g=new GridLayout(4, 4);
+    p.setLayout(g);
+    for (int i = 1; i &lt;= 3; i++) {
+        JButton b2 = new JButton(i+&quot;&quot;);
+        String input=i+&quot;&quot;;
+        //result=i;
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String s=t.getText();
+                t.setText(s+input);
+            }
+        });
+        p.add(b2);
+        b2.setFont(ff);
+    }
+    JButton b1 = new JButton(&quot;-&quot;);
+    b1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String s=t.getText();
+            t.setText(s+&quot;-&quot;);
+        }
+    });
+    p.add(b1);
+    b1.setFont(ff);
+    for (int i = 4; i &lt;= 6; i++){
+        JButton b2 = new JButton(i+&quot;&quot;);
+        String input=i+&quot;&quot;;
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s = t.getText();
+                t.setText(s + input);
+            }
+        });
+        p.add(b2);
+        b2.setFont(ff);
+    }
+    JButton b3 = new JButton(&quot;+&quot;);
+    b3.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String s=t.getText();
+            t.setText(s+&quot;+&quot;);
+        }
+    });
+    p.add(b3);
+    b3.setFont(ff);
+    for (int i = 7; i &lt;= 9; i++) {
+        JButton b2 = new JButton(i + &quot;&quot;);
+        String input = i + &quot;&quot;;
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s = t.getText();
+                t.setText(s + input);
+            }
+        });
+        p.add(b2);
+        b2.setFont(ff);
+    }
+    JButton b4 = new JButton(&quot;*&quot;);
+    b4.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String s=t.getText();
+            t.setText(s+&quot;*&quot;);
+        }
+    });
+    b4.setFont(ff);
+    p.add(b4);
+    JButton b5 = new JButton(&quot;.&quot;);
+    b5.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String s=t.getText();
+            t.setText(s+&quot;.&quot;);
+        }
+    });
+    b5.setFont(ff);
+    p.add(b5);
+    JButton b6 = new JButton(&quot;*&quot;);
+    b6.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String s=t.getText();
+            t.setText(s+&quot;0&quot;);
+        }
+    });
+    b6.setFont(ff);
+    p.add(b6);
+    JButton b7 = new JButton(&quot;=&quot;);
+    b7.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String s=t.getText();
+            int result=0;
+            Stack&lt;Integer&gt; stack=new Stack&lt;&gt;();
+            stack.push((int) (s.charAt(0)-&apos;0&apos;));
+            for(int i=1;i&lt;s.length()-1;i++) {
+                char ch = s.charAt(i);
+                if (ch == &apos;+&apos;) {
+                    stack.push((int) (s.charAt(i + 1) - &apos;0&apos;));
+                } else if (ch == &apos;-&apos;) {
+                    stack.push((int) -1 * (s.charAt(i + 1) - &apos;0&apos;));
+                } else if (ch == &apos;*&apos;) {
+                    int num = stack.peek();
+                    stack.pop();
+                    stack.push((int) num * (s.charAt(i + 1) - &apos;0&apos;));
+                } else if (ch == &apos;/&apos;) {
+                    int num = stack.peek();
+                    stack.pop();
+                    stack.push((int) num / (s.charAt(i + 1) - &apos;0&apos;));
+                }
+            }
+            while(!stack.empty()){
+                result=result+stack.peek();
+                stack.pop();
+            }
+            t.setText(result+&quot;&quot;);
+        }
+    });
+    b7.setFont(ff);
+    p.add(b7);
+    JButton b8 = new JButton(&quot;/&quot;);
+    b8.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String s=t.getText();
+            t.setText(s+&quot;/&quot;);
+        }
+    });
+    b8.setFont(ff);
+    p.add(b8);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}
+
+public static void main(String[] args) {
+    GridL frm=new GridL(&quot;计算器&quot;);
+    frm.setSize(300,350);
+    frm.setVisible(true);
+
+}
+}</code></pre><p>界面也很简单：</p>
+<p><img src="https://img-blog.csdnimg.cn/20191218193448397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
+<p>大二刚转专业时有一门课叫做程序设计上机实践，是利用C#来写，第一个小作业就是实现一个简单计算器。当时刚转专业，除了大一学习的C++，之前也没怎么接触过计算机。所以开始看见这个项目是一脸懵逼的，全程都是抄的别人的，看也看不懂。</p>
+<p>一年过去了，现在大三，还是很菜鸡，但比起大二刚转专业算是入门了吧。整个大二都在学习中度过，因为大二上学期成绩下滑厉害，所以即便是下学期拼命追赶也无法保研，真的很多情绪只能自己体会。现在也放弃保研了，要准备考研，但不后悔大二做的一切。</p>
+<p>哈哈哈，做完这个小作业后有感而发</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-12-05T08:12:00.000Z">2019-12-05</time>
                 
                 
@@ -1615,7 +1825,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            16
+                            17
                         </p>
                     </a>
                 </div>
@@ -1747,7 +1957,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                 <span class="level-item">STL</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/c/">
@@ -1784,7 +1994,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
+        <a href="/tags/STL/" style="font-size: 15px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
     </div>
 </div>
     
@@ -1796,6 +2006,25 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
+                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1873,25 +2102,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time></div>
-                    <a href="/2019/12/13/制简单操作系统（5）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（5）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1909,7 +2119,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1985,7 +2195,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STL/">
                         <span class="tag">STL</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -2048,6 +2258,25 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         
         <article class="media">
             
+            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
+                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/11/TL相关题/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
@@ -2122,25 +2351,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time></div>
-                    <a href="/2019/12/13/制简单操作系统（5）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（5）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2158,7 +2368,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -2234,7 +2444,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STL/">
                         <span class="tag">STL</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

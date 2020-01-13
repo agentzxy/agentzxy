@@ -144,6 +144,131 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 384 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/">The Set Stack Computer-Uva 12096</a>
+            
+        </h1>
+        <div class="content">
+            <p>有一个专门为了集合运算而设计的“集合栈”计算机。该机器有一个初始为空的栈，并且 支持以下操作。 </p>
+<p>PUSH：空集“{}”入栈。 </p>
+<p>DUP：把当前栈顶元素复制一份后再入栈。 </p>
+<p>UNION：出栈两个集合，然后把二者的并集入栈。 </p>
+<p>INTERSECT：出栈两个集合，然后把二者的交集入栈。</p>
+<p>ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。</p>
+<p>每次操作后，输出栈顶集合的大小（即元素个数）。 </p>
+<p>输入不超过2000个操作，并且保证操作均能顺利进行（不需要对空栈执行出栈操作）。</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;map&gt;
+#include&lt;set&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+using namespace std;
+
+map&lt;set&lt;int&gt;, int&gt; idcache;
+vector&lt;set&lt;int&gt;&gt; setcache;
+
+int getid(set&lt;int&gt; s) {
+    if (idcache.count(s))
+        return idcache[s];
+    setcache.push_back(s);
+    idcache[s] = setcache.size() - 1;
+    return idcache[s];
+}
+
+int main() {
+    int count;
+    cin &gt;&gt; count;
+    while (count--) {
+        stack&lt;int&gt; s;
+        idcache.clear();
+        setcache.clear();
+        int n;
+        cin &gt;&gt; n;
+        while (n--) {
+            string str;
+            cin &gt;&gt; str;
+            if (str == &quot;PUSH&quot;) {
+                set&lt;int&gt; temp;
+                //setcache.push_back(temp);
+                s.push(getid(temp));
+            }
+            else if (str == &quot;DUP&quot;) {
+                s.push(s.top());
+            }
+             else {
+                set&lt;int&gt; first = setcache[s.top()];
+                s.pop();
+                set&lt;int&gt; second = setcache[s.top()];
+                s.pop();
+                set&lt;int&gt; ans;
+                if (str == &quot;ADD&quot;) {
+                    ans = second;
+                    ans.insert(getid(first));
+                }
+                if (str == &quot;INTERSECT&quot;) {
+                    set&lt;int&gt;::iterator it_f = first.begin();
+                    for (; it_f != first.end(); it_f++) {
+                        set&lt;int&gt;::iterator it_s = second.begin();
+                        for (; it_s != second.end(); it_s++) {
+                            if (*it_f == *it_s) {
+                                ans.insert(*it_f);
+                            }
+                        }
+                    }
+                }
+                if (str == &quot;UNION&quot;) {
+                    ans = second;
+                    set&lt;int&gt;::iterator it_f = first.begin();
+                    for (; it_f != first.end(); it_f++) {
+                        ans.insert(*it_f);
+                    }
+                }
+                s.push(getid(ans));
+            }
+            cout &lt;&lt; setcache[s.top()].size() &lt;&lt; endl;
+        }
+        return 0;
+    }
+}</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time>
                 
                 <div class="level-item">
@@ -168,8 +293,8 @@
         </h1>
         <div class="content">
             <p>输入一些单词，找出所有满足如下条件的单词：该单词不能通过字母重排，得到输入文 本中的另外一个单词。在判断是否满足条件时，字母不分大小写，但在输出时应保留输入中 的大小写，按字典序进行排列（所有大写字母在所有小写字母的前面）。 </p>
-<p>#样例输入： ladder came tape soon leader acme RIDE lone Dreis peat ScAlE orb eye Rides dealer NotE derail LaCeS drIed<br>noel dire Disk mace Rob dries </p>
-<p>#样例输出： </p>
+<p>样例输入： ladder came tape soon leader acme RIDE lone Dreis peat ScAlE orb eye Rides dealer NotE derail LaCeS drIed<br>noel dire Disk mace Rob dries </p>
+<p>样例输出： </p>
 <p>Disk </p>
 <p>NotE </p>
 <p>derail </p>
@@ -287,7 +412,7 @@ int main(){
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            16
+                            17
                         </p>
                     </a>
                 </div>
@@ -419,7 +544,7 @@ int main(){
                 <span class="level-item">STL</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/c/">
@@ -456,7 +581,7 @@ int main(){
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/STL/" style="font-size: 10px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
+        <a href="/tags/STL/" style="font-size: 15px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
     </div>
 </div>
     
@@ -468,6 +593,25 @@ int main(){
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
+                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -545,25 +689,6 @@ int main(){
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time></div>
-                    <a href="/2019/12/13/制简单操作系统（5）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（5）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -581,7 +706,7 @@ int main(){
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -657,7 +782,7 @@ int main(){
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STL/">
                         <span class="tag">STL</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -720,6 +845,25 @@ int main(){
         
         <article class="media">
             
+            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
+                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/11/TL相关题/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
@@ -794,25 +938,6 @@ int main(){
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/12/13/制简单操作系统（5）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（5）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-13T13:59:00.000Z">2019-12-13</time></div>
-                    <a href="/2019/12/13/制简单操作系统（5）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（5）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -830,7 +955,7 @@ int main(){
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -906,7 +1031,7 @@ int main(){
                 <div class="control">
                     <a class="tags has-addons" href="/tags/STL/">
                         <span class="tag">STL</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
