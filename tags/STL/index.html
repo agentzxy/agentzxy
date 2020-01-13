@@ -7,21 +7,17 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>scrapy框架爬取豆瓣电影top250</title>
+<title>标签: STL</title>
 
 
-    <meta name="description" content="在items里主要有五个item：序号、电影名字、电影标签、评分、图片url 由于只爬取了电影，所以movie.py里只有电影这一个spider。里面的parse函数利用xpath将搜索出来的数据导入items里的各个item的列表中，具体代码如下： def parse(self, response):     html=response.text     html=etree.HTML(html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="scrapy框架爬取豆瓣电影top250">
-<meta property="og:url" content="http://agentzxy.github.io/2019/11/14/crapy框架爬取豆瓣电影top250/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title">
+<meta property="og:url" content="http://agentzxy.github.io/tags/STL/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="在items里主要有五个item：序号、电影名字、电影标签、评分、图片url 由于只爬取了电影，所以movie.py里只有电影这一个spider。里面的parse函数利用xpath将搜索出来的数据导入items里的各个item的列表中，具体代码如下： def parse(self, response):     html=response.text     html=etree.HTML(html">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-06T11:14:51.641Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="scrapy框架爬取豆瓣电影top250">
-<meta name="twitter:description" content="在items里主要有五个item：序号、电影名字、电影标签、评分、图片url 由于只爬取了电影，所以movie.py里只有电影这一个spider。里面的parse函数利用xpath将搜索出来的数据导入items里的各个item的列表中，具体代码如下： def parse(self, response):     html=response.text     html=etree.HTML(html">
+<meta name="twitter:title">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -80,7 +76,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="scrapy框架爬取豆瓣电影top250" height="28">
+                <img src="/images/logo.svg" alt="" height="28">
             
             </a>
         </div>
@@ -129,24 +125,35 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">STL</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
 <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-13T16:46:00.000Z">2019-11-14</time>
+                <time class="level-item has-text-grey" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/python/">python</a>
+                <a class="has-link-grey -link" href="/categories/STL/">STL</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 392 个字)
+                    2 分钟 读完 (大约 279 个字)
                 </span>
                 
                 
@@ -155,45 +162,71 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                scrapy框架爬取豆瓣电影top250
+                <a class="has-link-black-ter" href="/2020/01/11/TL相关题/">Ananagrams-Uva 156</a>
             
         </h1>
         <div class="content">
-            <p>在items里主要有五个item：序号、电影名字、电影标签、评分、图片url</p>
-<p>由于只爬取了电影，所以movie.py里只有电影这一个spider。里面的parse函数利用xpath将搜索出来的数据导入items里的各个item的列表中，<br>具体代码如下：</p>
-<pre><code>def parse(self, response):
-    html=response.text
-    html=etree.HTML(html)
-    order=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div/em&apos;)#序号
-    title=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;pic&quot;]/a/img/@alt&apos;)         inq=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;info&quot;]/div[@class=&quot;bd&quot;]/p[@class=&quot;quote&quot;]/span&apos;)        rating_num=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;info&quot;]/div[@class=&quot;bd&quot;]/div/span[@class=&quot;rating_num&quot;]&apos;)        image_url=html.xpath(&apos;//ol[@class=&quot;grid_view&quot;]/li/div/div[@class=&quot;pic&quot;]/a/img/@src&apos;)
-    item=movieItem()
-    item[&apos;nums&apos;]=order
-    item[&apos;names&apos;]=title
-    item[&apos;tags&apos;]=inq
-    item[&apos;scores&apos;]=rating_num
-    item[&apos;images&apos;]=image_url
-    yield item</code></pre><p>   注意一定要yield item，不然无法对items里面的进行数据处理</p>
-<p>   然后就是利用pipeline对数据处理，分为三个，分别是原始的、传入mysql的、将剧照保存的。</p>
-<p>   传入mysql：</p>
-<pre><code>def process_item(self,item,spider):
-    for i in range(24):
-        sql=&quot;INSERT INTO top250(NUM,NAME,TAG,SCORE) VALUES(%s,%s,%s,%s)&quot;
-        num=item[&apos;nums&apos;][i].text
-        name=item[&apos;names&apos;][i]
-        tag=item[&apos;tags&apos;][i].text
-        score=item[&apos;scores&apos;][i].text
-        s=(num,name,tag,score)
-        self.cursor.execute(sql,s)
-    self.db.commit()
-    return item</code></pre><p>   保存图片的：</p>
-<pre><code>def process_item(self,item,spider):
-    for i in range(24):
-        splitPath=item[&apos;images&apos;][i].split(&apos;.&apos;)
-        fTail=splitPath.pop()
-        fileName=item[&apos;names&apos;][i]+&quot;.&quot;+fTail
-        filepath=&quot;D:/ddddd/&quot;+fileName
-        request.urlretrieve(item[&apos;images&apos;][i],filepath)</code></pre><p>  最后就是在settings里面设置一些参数，具体代码参见<a href="https://github.com/agentzxy/Scrapy" target="_blank" rel="noopener">github</a></p>
-
+            <p>输入一些单词，找出所有满足如下条件的单词：该单词不能通过字母重排，得到输入文 本中的另外一个单词。在判断是否满足条件时，字母不分大小写，但在输出时应保留输入中 的大小写，按字典序进行排列（所有大写字母在所有小写字母的前面）。 </p>
+<p>#样例输入： ladder came tape soon leader acme RIDE lone Dreis peat ScAlE orb eye Rides dealer NotE derail LaCeS drIed<br>noel dire Disk mace Rob dries </p>
+<p>#样例输出： </p>
+<p>Disk </p>
+<p>NotE </p>
+<p>derail </p>
+<p>drIed </p>
+<p>eye </p>
+<p>ladder </p>
+<p>soon</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+string change(string s){
+    string s1=&quot;&quot;;
+    for (int i = 0; i &lt; s.length(); i++) {
+        s1+= tolower(s[i]);
+    }
+    sort(s1.begin(),s1.end());
+    return s1;
+}
+int main(){
+    string s;
+    int i = 0, j = 0;
+    vector&lt;string&gt; vec;
+    vec.push_back(&quot;&quot;);
+    getline(cin, s);
+    while (true) {
+        if (s[j] == &apos;#&apos;)
+            break;
+        else if (s[j] == &apos; &apos;) {
+            i++;
+            vec.push_back(&quot;&quot;);
+        }
+        else
+            vec[i] += s[j];
+        j++;
+    }
+    map&lt;string, int&gt; m;
+    vector&lt;string&gt; out;
+    int count = vec.size();
+    for (i = 0; i &lt; count; i++) {
+        string r = change(vec[i]);
+        if (m.count(r)) {
+            m[r] = 1;
+        }
+        m.insert(pair&lt;string, int&gt;(r, 0));
+    }
+    for (i = 0; i &lt; vec.size(); i++) {
+        if (m[change(vec[i])] == 0) {
+            out.push_back(vec[i]);
+        }
+    }
+    sort(out.begin(), out.end());
+    for (i = 0; i &lt; out.size(); i++)
+        cout &lt;&lt; out[i] &lt;&lt; endl;
+    return 0;
+}</code></pre>
         </div>
         
         
@@ -203,62 +236,9 @@
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<div class="notification is-danger">
-    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/05/用Flask框架写一个简单的预约系统/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">利用Flask框架写一个简单的预约系统</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/03/控制台实现贪吃蛇/">
-                <span class="level-item">控制台实现贪吃蛇</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
 </div>
@@ -981,7 +961,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="scrapy框架爬取豆瓣电影top250" height="28">
+                    <img src="/images/logo.svg" alt="" height="28">
                 
                 </a>
                 <p class="is-size-7">
