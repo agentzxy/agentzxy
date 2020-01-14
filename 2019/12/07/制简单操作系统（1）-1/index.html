@@ -7,21 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>自制简单操作系统（1）</title>
+<title>OS-汇编学习和Makefile入门</title>
 
 
     <meta name="description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
 <meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自制简单操作系统（1）">
+<meta property="og:title" content="OS-汇编学习和Makefile入门">
 <meta property="og:url" content="http://agentzxy.github.io/2019/12/07/制简单操作系统（1）-1/index.html">
 <meta property="og:site_name">
 <meta property="og:description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-18T11:30:30.002Z">
+<meta property="og:updated_time" content="2020-01-14T12:31:39.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自制简单操作系统（1）">
+<meta name="twitter:title" content="OS-汇编学习和Makefile入门">
 <meta name="twitter:description" content="我是跟着川合秀实的《30天自制操作系统》做的，感觉这本书挺好的，比较易懂，打算在博客记录下我的学习过程。 主要是用C语言写，有些C语言没有的功能，比如HLT指令之类的，就需要用汇编嵌入C语言中。 首先制作启动区，0x7c00-0x7dff用于启动区，写一个汇编语言程序，并且将它转成机器语言。主要功能是能读取软盘的10个柱面（当然我并没有买软盘，是用的作者提供的一个模拟器），如果读取错误则显示出er">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
@@ -81,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="自制简单操作系统（1）" height="28">
+                <img src="/images/logo.svg" alt="OS-汇编学习和Makefile入门" height="28">
             
             </a>
         </div>
@@ -156,7 +156,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                自制简单操作系统（1）
+                OS-汇编学习和Makefile入门
             
         </h1>
         <div class="content">
@@ -230,7 +230,7 @@
         <div class="level-start">
             <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/08/制简单操作系统（2）/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">自制简单操作系统（2）</span>
+                <span class="level-item">OS-中断制作</span>
             </a>
         </div>
         
@@ -291,7 +291,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            18
+                            19
                         </p>
                     </a>
                 </div>
@@ -475,6 +475,25 @@
         
         <article class="media">
             
+            <a href="/2020/01/14/制简单操作系统（9）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-多任务处理(1)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time></div>
+                    <a href="/2020/01/14/制简单操作系统（9）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-多任务处理(1)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Trees on the level-UVa 122">
@@ -534,33 +553,14 @@
             
             <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（8）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（8）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/18/自制简单操作系统（7）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（7）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-18T11:54:05.000Z">2019-12-18</time></div>
-                    <a href="/2019/12/18/自制简单操作系统（7）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（7）</a>
+                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
                     </p>
@@ -585,7 +585,7 @@
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -724,6 +724,25 @@
         
         <article class="media">
             
+            <a href="/2020/01/14/制简单操作系统（9）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-多任务处理(1)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time></div>
+                    <a href="/2020/01/14/制简单操作系统（9）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-多任务处理(1)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Trees on the level-UVa 122">
@@ -783,33 +802,14 @@
             
             <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（8）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（8）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/18/自制简单操作系统（7）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="自制简单操作系统（7）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-18T11:54:05.000Z">2019-12-18</time></div>
-                    <a href="/2019/12/18/自制简单操作系统（7）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">自制简单操作系统（7）</a>
+                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
                     </p>
@@ -834,7 +834,7 @@
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -966,7 +966,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="自制简单操作系统（1）" height="28">
+                    <img src="/images/logo.svg" alt="OS-汇编学习和Makefile入门" height="28">
                 
                 </a>
                 <p class="is-size-7">

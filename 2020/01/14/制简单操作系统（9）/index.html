@@ -7,22 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>java小作业-简单计算器</title>
+<title>OS-多任务处理(1)</title>
 
 
-    <meta name="description" content="java课上老师布置的小作业，一个简单计算器的实现，挺简单的。 代码如下： package com.company; import javax.swing.*; import java.awt.*; import java.awt.event.ActionEvent; import java.awt.event.ActionListener; import java.lang.String; im">
-<meta name="keywords" content="java">
+    <meta name="description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java小作业-简单计算器">
-<meta property="og:url" content="http://agentzxy.github.io/2019/12/06/ava小作业-简单计算器/index.html">
+<meta property="og:title" content="OS-多任务处理(1)">
+<meta property="og:url" content="http://agentzxy.github.io/2020/01/14/制简单操作系统（9）/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="java课上老师布置的小作业，一个简单计算器的实现，挺简单的。 代码如下： package com.company; import javax.swing.*; import java.awt.*; import java.awt.event.ActionEvent; import java.awt.event.ActionListener; import java.lang.String; im">
+<meta property="og:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-18T11:35:23.334Z">
+<meta property="og:updated_time" content="2020-01-14T12:36:21.380Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java小作业-简单计算器">
-<meta name="twitter:description" content="java课上老师布置的小作业，一个简单计算器的实现，挺简单的。 代码如下： package com.company; import javax.swing.*; import java.awt.*; import java.awt.event.ActionEvent; import java.awt.event.ActionListener; import java.lang.String; im">
+<meta name="twitter:title" content="OS-多任务处理(1)">
+<meta name="twitter:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -81,7 +80,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="java小作业-简单计算器" height="28">
+                <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
             
             </a>
         </div>
@@ -137,13 +136,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-06T10:57:00.000Z">2019-12-06</time>
+                <time class="level-item has-text-grey" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 788 个字)
+                    2 分钟 读完 (大约 355 个字)
                 </span>
                 
                 
@@ -152,189 +151,16 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                java小作业-简单计算器
+                OS-多任务处理(1)
             
         </h1>
         <div class="content">
-            <p>java课上老师布置的小作业，一个简单计算器的实现，挺简单的。</p>
-<p>代码如下：</p>
-<pre><code>package com.company;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.String;
-import java.util.Stack;
+            <p>由于考试，已经将近一个月没碰操作系统了，今天继续。</p>
+<p>今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。</p>
+<p>先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。</p>
+<p>接着设置0.02s的定时器，规定每0.02秒切换任务。切换任务很简单，直接JMP到任务的位置就可以了。</p>
+<p>为了使系统更稳定，在检查超时计时器的程序当中加入一段程序：如果是0.02秒的超时了，则转入一个任务切换函数。该任务切换函数是如果目前任务是A则jmp到任务B（jmp利用汇编完成）。如果是直接在主函数里面进行跳转到另一个任务，然后再在另一个任务跳转到原始任务，那么要是另一个任务出现问题，则系统会无法运行其他程序。</p>
 
-public class GridL extends JFrame{
-static Font ff=new Font(&quot;幼圆&quot;,Font.BOLD,30);
-public GridL(String title) {
-    super(title);
-    setLayout(new BorderLayout());
-    JPanel p=new JPanel();
-    TextField t=new TextField(300);
-    add(&quot;North&quot;,t);
-    add(p);
-    GridLayout g=new GridLayout(4, 4);
-    p.setLayout(g);
-    for (int i = 1; i &lt;= 3; i++) {
-        JButton b2 = new JButton(i+&quot;&quot;);
-        String input=i+&quot;&quot;;
-        //result=i;
-        b2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String s=t.getText();
-                t.setText(s+input);
-            }
-        });
-        p.add(b2);
-        b2.setFont(ff);
-    }
-    JButton b1 = new JButton(&quot;-&quot;);
-    b1.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;-&quot;);
-        }
-    });
-    p.add(b1);
-    b1.setFont(ff);
-    for (int i = 4; i &lt;= 6; i++){
-        JButton b2 = new JButton(i+&quot;&quot;);
-        String input=i+&quot;&quot;;
-        b2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = t.getText();
-                t.setText(s + input);
-            }
-        });
-        p.add(b2);
-        b2.setFont(ff);
-    }
-    JButton b3 = new JButton(&quot;+&quot;);
-    b3.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;+&quot;);
-        }
-    });
-    p.add(b3);
-    b3.setFont(ff);
-    for (int i = 7; i &lt;= 9; i++) {
-        JButton b2 = new JButton(i + &quot;&quot;);
-        String input = i + &quot;&quot;;
-        b2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = t.getText();
-                t.setText(s + input);
-            }
-        });
-        p.add(b2);
-        b2.setFont(ff);
-    }
-    JButton b4 = new JButton(&quot;*&quot;);
-    b4.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;*&quot;);
-        }
-    });
-    b4.setFont(ff);
-    p.add(b4);
-    JButton b5 = new JButton(&quot;.&quot;);
-    b5.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;.&quot;);
-        }
-    });
-    b5.setFont(ff);
-    p.add(b5);
-    JButton b6 = new JButton(&quot;*&quot;);
-    b6.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;0&quot;);
-        }
-    });
-    b6.setFont(ff);
-    p.add(b6);
-    JButton b7 = new JButton(&quot;=&quot;);
-    b7.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            int result=0;
-            Stack&lt;Integer&gt; stack=new Stack&lt;&gt;();
-            stack.push((int) (s.charAt(0)-&apos;0&apos;));
-            for(int i=1;i&lt;s.length()-1;i++) {
-                char ch = s.charAt(i);
-                if (ch == &apos;+&apos;) {
-                    stack.push((int) (s.charAt(i + 1) - &apos;0&apos;));
-                } else if (ch == &apos;-&apos;) {
-                    stack.push((int) -1 * (s.charAt(i + 1) - &apos;0&apos;));
-                } else if (ch == &apos;*&apos;) {
-                    int num = stack.peek();
-                    stack.pop();
-                    stack.push((int) num * (s.charAt(i + 1) - &apos;0&apos;));
-                } else if (ch == &apos;/&apos;) {
-                    int num = stack.peek();
-                    stack.pop();
-                    stack.push((int) num / (s.charAt(i + 1) - &apos;0&apos;));
-                }
-            }
-            while(!stack.empty()){
-                result=result+stack.peek();
-                stack.pop();
-            }
-            t.setText(result+&quot;&quot;);
-        }
-    });
-    b7.setFont(ff);
-    p.add(b7);
-    JButton b8 = new JButton(&quot;/&quot;);
-    b8.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;/&quot;);
-        }
-    });
-    b8.setFont(ff);
-    p.add(b8);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-}
-
-public static void main(String[] args) {
-    GridL frm=new GridL(&quot;计算器&quot;);
-    frm.setSize(300,350);
-    frm.setVisible(true);
-
-}
-}</code></pre><p>界面也很简单：</p>
-<p><img src="https://img-blog.csdnimg.cn/20191218193448397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
-<p>大二刚转专业时有一门课叫做程序设计上机实践，是利用C#来写，第一个小作业就是实现一个简单计算器。当时刚转专业，除了大一学习的C++，之前也没怎么接触过计算机。所以开始看见这个项目是一脸懵逼的，全程都是抄的别人的，看也看不懂。</p>
-<p>一年过去了，现在大三，还是很菜鸡，但比起大二刚转专业算是入门了吧。整个大二都在学习中度过，因为大二上学期成绩下滑厉害，所以即便是下学期拼命追赶也无法保研，真的很多情绪只能自己体会。现在也放弃保研了，要准备考研，但不后悔大二做的一切。</p>
-<p>哈哈哈，做完这个小作业后有感而发</p>
-
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/java/">java</a>
-                </div>
-            </div>
         </div>
         
         
@@ -383,17 +209,10 @@ public static void main(String[] args) {
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/07/制简单操作系统（1）-1/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">OS-汇编学习和Makefile入门</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/05/用Flask框架写一个简单的预约系统/">
-                <span class="level-item">利用Flask框架写一个简单的预约系统</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/13/rees-on-the-level-UVa-122/">
+                <span class="level-item">Trees on the level-UVa 122</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1122,7 +941,7 @@ public static void main(String[] args) {
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="java小作业-简单计算器" height="28">
+                    <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
                 
                 </a>
                 <p class="is-size-7">
