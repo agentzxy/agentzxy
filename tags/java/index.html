@@ -149,7 +149,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 788 个字)
+                    5 分钟 读完 (大约 789 个字)
                 </span>
                 
                 
@@ -164,169 +164,9 @@
         <div class="content">
             <p>java课上老师布置的小作业，一个简单计算器的实现，挺简单的。</p>
 <p>代码如下：</p>
-<pre><code>package com.company;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.String;
-import java.util.Stack;
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line">package com.company;</span><br><span class="line"><span class="hljs-keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="hljs-keyword">import</span> java.awt.*;</span><br><span class="line"><span class="hljs-keyword">import</span> java.awt.event.ActionEvent;</span><br><span class="line"><span class="hljs-keyword">import</span> java.awt.event.ActionListener;</span><br><span class="line"><span class="hljs-keyword">import</span> java.lang.String;</span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GridL</span> <span class="hljs-title">extends</span> <span class="hljs-title">JFrame</span>&#123;</span></span><br><span class="line"><span class="hljs-keyword">static</span> Font ff=<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"幼圆"</span>,Font.BOLD,<span class="hljs-number">30</span>);</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GridL</span><span class="hljs-params">(String title)</span> </span>&#123;</span><br><span class="line">    super(title);</span><br><span class="line">    setLayout(<span class="hljs-keyword">new</span> BorderLayout());</span><br><span class="line">    JPanel p=<span class="hljs-keyword">new</span> JPanel();</span><br><span class="line">    TextField t=<span class="hljs-keyword">new</span> TextField(<span class="hljs-number">300</span>);</span><br><span class="line">    add(<span class="hljs-string">"North"</span>,t);</span><br><span class="line">    add(p);</span><br><span class="line">    GridLayout g=<span class="hljs-keyword">new</span> GridLayout(<span class="hljs-number">4</span>, <span class="hljs-number">4</span>);</span><br><span class="line">    p.setLayout(g);</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">3</span>; i++) &#123;</span><br><span class="line">        JButton b2 = <span class="hljs-keyword">new</span> JButton(i+<span class="hljs-string">""</span>);</span><br><span class="line">        String input=i+<span class="hljs-string">""</span>;</span><br><span class="line">        <span class="hljs-comment">//result=i;</span></span><br><span class="line">        b2.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line"></span><br><span class="line">                String s=t.getText();</span><br><span class="line">                t.setText(s+input);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        p.add(b2);</span><br><span class="line">        b2.setFont(ff);</span><br><span class="line">    &#125;</span><br><span class="line">    JButton b1 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">"-"</span>);</span><br><span class="line">    b1.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">            String s=t.getText();</span><br><span class="line">            t.setText(s+<span class="hljs-string">"-"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    p.add(b1);</span><br><span class="line">    b1.setFont(ff);</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">4</span>; i &lt;= <span class="hljs-number">6</span>; i++)&#123;</span><br><span class="line">        JButton b2 = <span class="hljs-keyword">new</span> JButton(i+<span class="hljs-string">""</span>);</span><br><span class="line">        String input=i+<span class="hljs-string">""</span>;</span><br><span class="line">        b2.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">                String s = t.getText();</span><br><span class="line">                t.setText(s + input);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        p.add(b2);</span><br><span class="line">        b2.setFont(ff);</span><br><span class="line">    &#125;</span><br><span class="line">    JButton b3 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">"+"</span>);</span><br><span class="line">    b3.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">            String s=t.getText();</span><br><span class="line">            t.setText(s+<span class="hljs-string">"+"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    p.add(b3);</span><br><span class="line">    b3.setFont(ff);</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">7</span>; i &lt;= <span class="hljs-number">9</span>; i++) &#123;</span><br><span class="line">        JButton b2 = <span class="hljs-keyword">new</span> JButton(i + <span class="hljs-string">""</span>);</span><br><span class="line">        String input = i + <span class="hljs-string">""</span>;</span><br><span class="line">        b2.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">                String s = t.getText();</span><br><span class="line">                t.setText(s + input);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        p.add(b2);</span><br><span class="line">        b2.setFont(ff);</span><br><span class="line">    &#125;</span><br><span class="line">    JButton b4 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">"*"</span>);</span><br><span class="line">    b4.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">            String s=t.getText();</span><br><span class="line">            t.setText(s+<span class="hljs-string">"*"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    b4.setFont(ff);</span><br><span class="line">    p.add(b4);</span><br><span class="line">    JButton b5 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">"."</span>);</span><br><span class="line">    b5.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">            String s=t.getText();</span><br><span class="line">            t.setText(s+<span class="hljs-string">"."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    b5.setFont(ff);</span><br><span class="line">    p.add(b5);</span><br><span class="line">    JButton b6 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">"*"</span>);</span><br><span class="line">    b6.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">            String s=t.getText();</span><br><span class="line">            t.setText(s+<span class="hljs-string">"0"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    b6.setFont(ff);</span><br><span class="line">    p.add(b6);</span><br><span class="line">    JButton b7 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">"="</span>);</span><br><span class="line">    b7.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">            String s=t.getText();</span><br><span class="line">            <span class="hljs-keyword">int</span> result=<span class="hljs-number">0</span>;</span><br><span class="line">            Stack&lt;Integer&gt; <span class="hljs-built_in">stack</span>=<span class="hljs-keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">            <span class="hljs-built_in">stack</span>.push((<span class="hljs-keyword">int</span>) (s.charAt(<span class="hljs-number">0</span>)-<span class="hljs-string">'0'</span>));</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;s.length()<span class="hljs-number">-1</span>;i++) &#123;</span><br><span class="line">                <span class="hljs-keyword">char</span> ch = s.charAt(i);</span><br><span class="line">                <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'+'</span>) &#123;</span><br><span class="line">                    <span class="hljs-built_in">stack</span>.push((<span class="hljs-keyword">int</span>) (s.charAt(i + <span class="hljs-number">1</span>) - <span class="hljs-string">'0'</span>));</span><br><span class="line">                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'-'</span>) &#123;</span><br><span class="line">                    <span class="hljs-built_in">stack</span>.push((<span class="hljs-keyword">int</span>) <span class="hljs-number">-1</span> * (s.charAt(i + <span class="hljs-number">1</span>) - <span class="hljs-string">'0'</span>));</span><br><span class="line">                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'*'</span>) &#123;</span><br><span class="line">                    <span class="hljs-keyword">int</span> num = <span class="hljs-built_in">stack</span>.peek();</span><br><span class="line">                    <span class="hljs-built_in">stack</span>.pop();</span><br><span class="line">                    <span class="hljs-built_in">stack</span>.push((<span class="hljs-keyword">int</span>) num * (s.charAt(i + <span class="hljs-number">1</span>) - <span class="hljs-string">'0'</span>));</span><br><span class="line">                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ch == <span class="hljs-string">'/'</span>) &#123;</span><br><span class="line">                    <span class="hljs-keyword">int</span> num = <span class="hljs-built_in">stack</span>.peek();</span><br><span class="line">                    <span class="hljs-built_in">stack</span>.pop();</span><br><span class="line">                    <span class="hljs-built_in">stack</span>.push((<span class="hljs-keyword">int</span>) num / (s.charAt(i + <span class="hljs-number">1</span>) - <span class="hljs-string">'0'</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-keyword">while</span>(!<span class="hljs-built_in">stack</span>.empty())&#123;</span><br><span class="line">                result=result+<span class="hljs-built_in">stack</span>.peek();</span><br><span class="line">                <span class="hljs-built_in">stack</span>.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            t.setText(result+<span class="hljs-string">""</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    b7.setFont(ff);</span><br><span class="line">    p.add(b7);</span><br><span class="line">    JButton b8 = <span class="hljs-keyword">new</span> JButton(<span class="hljs-string">"/"</span>);</span><br><span class="line">    b8.addActionListener(<span class="hljs-keyword">new</span> ActionListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> actionPerformed(ActionEvent e) &#123;</span><br><span class="line">            String s=t.getText();</span><br><span class="line">            t.setText(s+<span class="hljs-string">"/"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    b8.setFont(ff);</span><br><span class="line">    p.add(b8);</span><br><span class="line">    <span class="hljs-keyword">this</span>.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">    GridL frm=<span class="hljs-keyword">new</span> GridL(<span class="hljs-string">"计算器"</span>);</span><br><span class="line">    frm.setSize(<span class="hljs-number">300</span>,<span class="hljs-number">350</span>);</span><br><span class="line">    frm.setVisible(<span class="hljs-literal">true</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public class GridL extends JFrame{
-static Font ff=new Font(&quot;幼圆&quot;,Font.BOLD,30);
-public GridL(String title) {
-    super(title);
-    setLayout(new BorderLayout());
-    JPanel p=new JPanel();
-    TextField t=new TextField(300);
-    add(&quot;North&quot;,t);
-    add(p);
-    GridLayout g=new GridLayout(4, 4);
-    p.setLayout(g);
-    for (int i = 1; i &lt;= 3; i++) {
-        JButton b2 = new JButton(i+&quot;&quot;);
-        String input=i+&quot;&quot;;
-        //result=i;
-        b2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String s=t.getText();
-                t.setText(s+input);
-            }
-        });
-        p.add(b2);
-        b2.setFont(ff);
-    }
-    JButton b1 = new JButton(&quot;-&quot;);
-    b1.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;-&quot;);
-        }
-    });
-    p.add(b1);
-    b1.setFont(ff);
-    for (int i = 4; i &lt;= 6; i++){
-        JButton b2 = new JButton(i+&quot;&quot;);
-        String input=i+&quot;&quot;;
-        b2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = t.getText();
-                t.setText(s + input);
-            }
-        });
-        p.add(b2);
-        b2.setFont(ff);
-    }
-    JButton b3 = new JButton(&quot;+&quot;);
-    b3.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;+&quot;);
-        }
-    });
-    p.add(b3);
-    b3.setFont(ff);
-    for (int i = 7; i &lt;= 9; i++) {
-        JButton b2 = new JButton(i + &quot;&quot;);
-        String input = i + &quot;&quot;;
-        b2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = t.getText();
-                t.setText(s + input);
-            }
-        });
-        p.add(b2);
-        b2.setFont(ff);
-    }
-    JButton b4 = new JButton(&quot;*&quot;);
-    b4.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;*&quot;);
-        }
-    });
-    b4.setFont(ff);
-    p.add(b4);
-    JButton b5 = new JButton(&quot;.&quot;);
-    b5.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;.&quot;);
-        }
-    });
-    b5.setFont(ff);
-    p.add(b5);
-    JButton b6 = new JButton(&quot;*&quot;);
-    b6.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;0&quot;);
-        }
-    });
-    b6.setFont(ff);
-    p.add(b6);
-    JButton b7 = new JButton(&quot;=&quot;);
-    b7.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            int result=0;
-            Stack&lt;Integer&gt; stack=new Stack&lt;&gt;();
-            stack.push((int) (s.charAt(0)-&apos;0&apos;));
-            for(int i=1;i&lt;s.length()-1;i++) {
-                char ch = s.charAt(i);
-                if (ch == &apos;+&apos;) {
-                    stack.push((int) (s.charAt(i + 1) - &apos;0&apos;));
-                } else if (ch == &apos;-&apos;) {
-                    stack.push((int) -1 * (s.charAt(i + 1) - &apos;0&apos;));
-                } else if (ch == &apos;*&apos;) {
-                    int num = stack.peek();
-                    stack.pop();
-                    stack.push((int) num * (s.charAt(i + 1) - &apos;0&apos;));
-                } else if (ch == &apos;/&apos;) {
-                    int num = stack.peek();
-                    stack.pop();
-                    stack.push((int) num / (s.charAt(i + 1) - &apos;0&apos;));
-                }
-            }
-            while(!stack.empty()){
-                result=result+stack.peek();
-                stack.pop();
-            }
-            t.setText(result+&quot;&quot;);
-        }
-    });
-    b7.setFont(ff);
-    p.add(b7);
-    JButton b8 = new JButton(&quot;/&quot;);
-    b8.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String s=t.getText();
-            t.setText(s+&quot;/&quot;);
-        }
-    });
-    b8.setFont(ff);
-    p.add(b8);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-}
-
-public static void main(String[] args) {
-    GridL frm=new GridL(&quot;计算器&quot;);
-    frm.setSize(300,350);
-    frm.setVisible(true);
-
-}
-}</code></pre><p>界面也很简单：</p>
+<p>界面也很简单：</p>
 <p><img src="https://img-blog.csdnimg.cn/20191218193448397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
 <p>大二刚转专业时有一门课叫做程序设计上机实践，是利用C#来写，第一个小作业就是实现一个简单计算器。当时刚转专业，除了大一学习的C++，之前也没怎么接触过计算机。所以开始看见这个项目是一脸懵逼的，全程都是抄的别人的，看也看不懂。</p>
 <p>一年过去了，现在大三，还是很菜鸡，但比起大二刚转专业算是入门了吧。整个大二都在学习中度过，因为大二上学期成绩下滑厉害，所以即便是下学期拼命追赶也无法保研，真的很多情绪只能自己体会。现在也放弃保研了，要准备考研，但不后悔大二做的一切。</p>
@@ -391,7 +231,7 @@ public static void main(String[] args) {
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            19
+                            22
                         </p>
                     </a>
                 </div>
@@ -518,14 +358,6 @@ public static void main(String[] args) {
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/STL/">
-            <span class="level-start">
-                <span class="level-item">STL</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/c/">
             <span class="level-start">
                 <span class="level-item">c++</span>
@@ -549,6 +381,14 @@ public static void main(String[] args) {
             <span class="level-end">
                 <span class="level-item tag">8</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -560,7 +400,7 @@ public static void main(String[] args) {
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/STL/" style="font-size: 15px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
+        <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a>
     </div>
 </div>
     
@@ -572,6 +412,63 @@ public static void main(String[] args) {
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -605,64 +502,7 @@ public static void main(String[] args) {
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -685,7 +525,7 @@ public static void main(String[] args) {
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -759,13 +599,6 @@ public static void main(String[] args) {
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -797,6 +630,13 @@ public static void main(String[] args) {
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -824,6 +664,63 @@ public static void main(String[] args) {
         
         <article class="media">
             
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/14/制简单操作系统（9）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-多任务处理(1)">
@@ -854,64 +751,7 @@ public static void main(String[] args) {
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -934,7 +774,7 @@ public static void main(String[] args) {
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1008,13 +848,6 @@ public static void main(String[] args) {
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -1046,6 +879,13 @@ public static void main(String[] args) {
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 

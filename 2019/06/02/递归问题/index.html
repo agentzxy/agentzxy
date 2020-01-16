@@ -19,7 +19,7 @@
 <meta property="og:description" content="最近数据结构刚刚学了递归问题，感觉理解的不太到位，刚好leetcode刷题刷到了两个递归问题，对递归算是更进一步理解了吧。 leetcode—22.括号生成 给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。 例如，给出 n = 3，生成结果为： [  “((()))”,  “(()())”,  “(())()”,  “()(())”,  “()()()”]">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-06-02T12:34:38.000Z">
+<meta property="og:updated_time" content="2020-01-16T09:30:50.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归问题">
 <meta name="twitter:description" content="最近数据结构刚刚学了递归问题，感觉理解的不太到位，刚好leetcode刷题刷到了两个递归问题，对递归算是更进一步理解了吧。 leetcode—22.括号生成 给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。 例如，给出 n = 3，生成结果为： [  “((()))”,  “(()())”,  “(())()”,  “()(())”,  “()()()”]">
@@ -143,7 +143,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 477 个字)
+                    3 分钟 读完 (大约 479 个字)
                 </span>
                 
                 
@@ -162,23 +162,9 @@
 <p>例如，给出 n = 3，生成结果为：</p>
 <p>[<br>  “((()))”,<br>  “(()())”,<br>  “(())()”,<br>  “()(())”,<br>  “()()()”<br>]</p>
 <p>当加入一个左括号时，剩余的可看作新的组合，但右括号的个数必须大于左括号的个数时，才表明可以加入右括号，C++代码如下：</p>
-<pre><code>vector&lt;string&gt; res;
-void back(string s,int i,int j){
-        int n;
-        if(i==0&amp;&amp;j==0)
-        {
-            res.push_back(s);
-            return;
-        }
-        if(i&gt;0)
-            back(s+&apos;(&apos;,i-1,j);
-        if(j&gt;i)
-            back(s+&apos;)&apos;,i,j-1);
-    }
-vector&lt;string&gt; generateParenthesis(int n) {
-    back(&quot;&quot;,n,n);
-    return res;
-}</code></pre><p>leetcode—39.组合总数</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; res;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">back</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> n;</span><br><span class="line">        <span class="hljs-keyword">if</span>(i==<span class="hljs-number">0</span>&amp;&amp;j==<span class="hljs-number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(s);</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">0</span>)</span><br><span class="line">            back(s+<span class="hljs-string">'('</span>,i<span class="hljs-number">-1</span>,j);</span><br><span class="line">        <span class="hljs-keyword">if</span>(j&gt;i)</span><br><span class="line">            back(s+<span class="hljs-string">')'</span>,i,j<span class="hljs-number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; generateParenthesis(<span class="hljs-keyword">int</span> n) &#123;</span><br><span class="line">    back(<span class="hljs-string">""</span>,n,n);</span><br><span class="line">    <span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>leetcode—39.组合总数</p>
 <p>给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
 <p>candidates 中的数字可以无限制重复被选取。</p>
 <p>说明：</p>
@@ -188,34 +174,7 @@ vector&lt;string&gt; generateParenthesis(int n) {
 <p>示例 2:</p>
 <p>输入: candidates = [2,3,5], target = 8,<br>所求解集为:<br>[<br>  [2,2,2,2],<br>  [2,3,3],<br>  [3,5]<br>]</p>
 <p>利用递归求解，将数组中的第一个数提取出来，则可以看作是求candidates中所有可以使数字和为（target-第一个数字）的组合，以此类推，但必须注意不能有重复的组合，所以应该在后面的数被提取时，不能与前面的数相匹配。C++代码如下：</p>
-<pre><code>vector&lt;vector&lt;int&gt;&gt; res;
-vector&lt;int&gt; tmp;
-vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) {
-    com(0,candidates,target);
-    return res;
-}
-void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
-{
-    int t;
-    t=target;
-    for(int i=cur;i&lt;candidates.size();i++)
-    {
-        if(target==0)
-        {
-            res.push_back(tmp);
-            return;
-        }
-        if(target&gt;0)
-        {
-            tmp.push_back(candidates[i]);
-            com(i,candidates,target-candidates[i]);
-            tmp.pop_back();
-        }
-        else continue;
-        target=t;
-
-    }
-}</code></pre>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; res;</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; tmp;</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; combinationSum(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; candidates, <span class="hljs-keyword">int</span> target) &#123;</span><br><span class="line">    com(<span class="hljs-number">0</span>,candidates,target);</span><br><span class="line">    <span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">com</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cur,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; candidates,<span class="hljs-keyword">int</span> target)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> t;</span><br><span class="line">    t=target;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=cur;i&lt;candidates.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(target==<span class="hljs-number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(tmp);</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span>(target&gt;<span class="hljs-number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tmp.push_back(candidates[i]);</span><br><span class="line">            com(i,candidates,target-candidates[i]);</span><br><span class="line">            tmp.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">else</span> <span class="hljs-keyword">continue</span>;</span><br><span class="line">        target=t;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -330,7 +289,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            19
+                            22
                         </p>
                     </a>
                 </div>
@@ -457,14 +416,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/STL/">
-            <span class="level-start">
-                <span class="level-item">STL</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/c/">
             <span class="level-start">
                 <span class="level-item">c++</span>
@@ -488,6 +439,14 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             <span class="level-end">
                 <span class="level-item tag">8</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -499,7 +458,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/STL/" style="font-size: 15px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
+        <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a>
     </div>
 </div>
     
@@ -511,6 +470,63 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -544,64 +560,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -624,7 +583,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -698,13 +657,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -736,6 +688,13 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -763,6 +722,63 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
         
         <article class="media">
             
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/14/制简单操作系统（9）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-多任务处理(1)">
@@ -793,64 +809,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -873,7 +832,7 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -947,13 +906,6 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -985,6 +937,13 @@ void com(int cur,vector&lt;int&gt;&amp; candidates,int target)
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 

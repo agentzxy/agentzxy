@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>OS-多任务处理(1)</title>
+<title>枚举排列</title>
 
 
-    <meta name="description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+    <meta name="description" content="枚举排列就是全排列，利用递归实现。比如实现将一个数组里的数全排列： #include&amp;lt;iostream&amp;gt; using namespace std; int p[4] = { 1,2,2,4 }; int a[4]; void pailie(int l, int r, int a[4]) { **//数组a[]是装入排列好的数 //l是当前数组a[]要装入数的下标 //r是数组p[]的元">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OS-多任务处理(1)">
-<meta property="og:url" content="http://agentzxy.github.io/2020/01/14/制简单操作系统（9）/index.html">
+<meta property="og:title" content="枚举排列">
+<meta property="og:url" content="http://agentzxy.github.io/2020/01/16/枚举排列/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+<meta property="og:description" content="枚举排列就是全排列，利用递归实现。比如实现将一个数组里的数全排列： #include&amp;lt;iostream&amp;gt; using namespace std; int p[4] = { 1,2,2,4 }; int a[4]; void pailie(int l, int r, int a[4]) { **//数组a[]是装入排列好的数 //l是当前数组a[]要装入数的下标 //r是数组p[]的元">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-14T12:36:21.380Z">
+<meta property="og:updated_time" content="2020-01-16T09:02:14.565Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OS-多任务处理(1)">
-<meta name="twitter:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+<meta name="twitter:title" content="枚举排列">
+<meta name="twitter:description" content="枚举排列就是全排列，利用递归实现。比如实现将一个数组里的数全排列： #include&amp;lt;iostream&amp;gt; using namespace std; int p[4] = { 1,2,2,4 }; int a[4]; void pailie(int l, int r, int a[4]) { **//数组a[]是装入排列好的数 //l是当前数组a[]要装入数的下标 //r是数组p[]的元">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -80,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                <img src="/images/logo.svg" alt="枚举排列" height="28">
             
             </a>
         </div>
@@ -136,13 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time>
+                <time class="level-item has-text-grey" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 355 个字)
+                    2 分钟 读完 (大约 286 个字)
                 </span>
                 
                 
@@ -151,16 +156,65 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                OS-多任务处理(1)
+                枚举排列
             
         </h1>
         <div class="content">
-            <p>由于考试，已经将近一个月没碰操作系统了，今天继续。</p>
-<p>今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。</p>
-<p>先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。</p>
-<p>接着设置0.02s的定时器，规定每0.02秒切换任务。切换任务很简单，直接JMP到任务的位置就可以了。</p>
-<p>为了使系统更稳定，在检查超时计时器的程序当中加入一段程序：如果是0.02秒的超时了，则转入一个任务切换函数。该任务切换函数是如果目前任务是A则jmp到任务B（jmp利用汇编完成）。如果是直接在主函数里面进行跳转到另一个任务，然后再在另一个任务跳转到原始任务，那么要是另一个任务出现问题，则系统会无法运行其他程序。</p>
-
+            <p>枚举排列就是全排列，利用递归实现。<br>比如实现将一个数组里的数全排列：</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+int p[4] = { 1,2,2,4 };
+int a[4];
+void pailie(int l, int r, int a[4]) {
+**//数组a[]是装入排列好的数
+//l是当前数组a[]要装入数的下标
+//r是数组p[]的元素个数**
+if (l==r) {
+    **//如果l==r则表明已经完成一次排列，输出即可**
+    for (int m = 0; m &lt; r; m++) {
+        cout &lt;&lt; a[m] &lt;&lt; &quot; &quot;;
+    }
+    cout &lt;&lt; endl;
+}
+else {
+    for (int i = 0; i &lt; r; i++) {
+        **//i表示要装入数组a[]中元素的下标**
+        if (i == 0 || p[i] != p[i - 1]) {
+            **//防止p[]中出现两种相同元素的数组，重复排列**
+            int c1 = 0, c2 = 0;
+            for (int m = 0; m &lt; r; m++) {
+                **//c1表示数组p中，与正在进行排列的数相同的数有多少**
+                if (p[m] == p[i])
+                    c1++;
+            }
+            for (int n = 0; n &lt; l; n++) {
+                **//c1表示数组a中，与正在进行排列的数相同的数有多少**
+                if (a[n] == p[i])
+                    c2++;
+            }
+            if (c2 &lt; c1) {
+                **//如果a重复的数&lt;p中重复的，则还可以继续排列**
+                a[l] = p[i];**//将该数放入a中**
+                pailie(l + 1, r, a);**//将剩余的数字再次进行全排列**
+            }
+            **//如果a重复的数&gt;p中重复的,则返回到上一层，将此时进行全排列的数的第一个换掉**(i+1)
+        }
+    }
+}
+}
+int main() {
+    pailie(0, 4, a);
+    return 0;
+}</code></pre>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/算法/">算法</a>
+                </div>
+            </div>
         </div>
         
         
@@ -210,16 +264,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/16/枚举排列/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/16/子集生成/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">枚举排列</span>
+                <span class="level-item">子集生成</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/13/rees-on-the-level-UVa-122/">
-                <span class="level-item">Trees on the level-UVa 122</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/14/制简单操作系统（9）/">
+                <span class="level-item">OS-多任务处理(1)</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -948,7 +1002,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                    <img src="/images/logo.svg" alt="枚举排列" height="28">
                 
                 </a>
                 <p class="is-size-7">

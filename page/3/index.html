@@ -7,21 +7,17 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>OS-多任务处理(1)</title>
+<title></title>
 
 
-    <meta name="description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
-<meta property="og:type" content="article">
-<meta property="og:title" content="OS-多任务处理(1)">
-<meta property="og:url" content="http://agentzxy.github.io/2020/01/14/制简单操作系统（9）/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title">
+<meta property="og:url" content="http://agentzxy.github.io/page/3/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-14T12:36:21.380Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OS-多任务处理(1)">
-<meta name="twitter:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+<meta name="twitter:title">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -80,7 +76,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                <img src="/images/logo.svg" alt="" height="28">
             
             </a>
         </div>
@@ -130,19 +126,24 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
 <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time>
+                <time class="level-item has-text-grey" datetime="2019-08-28T08:51:00.000Z">2019-08-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/c/">c++</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 355 个字)
+                    5 分钟 读完 (大约 791 个字)
                 </span>
                 
                 
@@ -151,15 +152,129 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                OS-多任务处理(1)
+                <a class="has-link-black-ter" href="/2019/08/28/银行排队问题/">银行排队问题</a>
             
         </h1>
         <div class="content">
-            <p>由于考试，已经将近一个月没碰操作系统了，今天继续。</p>
-<p>今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。</p>
-<p>先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。</p>
-<p>接着设置0.02s的定时器，规定每0.02秒切换任务。切换任务很简单，直接JMP到任务的位置就可以了。</p>
-<p>为了使系统更稳定，在检查超时计时器的程序当中加入一段程序：如果是0.02秒的超时了，则转入一个任务切换函数。该任务切换函数是如果目前任务是A则jmp到任务B（jmp利用汇编完成）。如果是直接在主函数里面进行跳转到另一个任务，然后再在另一个任务跳转到原始任务，那么要是另一个任务出现问题，则系统会无法运行其他程序。</p>
+            <p>要解决的问题——银行一天之内的：</p>
+<p>  1.总客户数</p>
+<p>   2.客户总逗留时间</p>
+<p>   3.客户平均逗留时间</p>
+<p>   银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。</p>
+<p>   bank头文件：</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;list&gt;</span></span></span><br><span class="line">   </span><br><span class="line">   <span class="hljs-comment">//事件链表</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Event</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line"><span class="hljs-keyword">int</span> _occur_time;<span class="hljs-comment">//事件发生时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _type;<span class="hljs-comment">//事件类型，0表示到达事件，1~4表示4个窗口离开事件</span></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//银行链表的队伍结点</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QueueNode</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line"><span class="hljs-keyword">int</span> _arrival_time;<span class="hljs-comment">//客户到达时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _duration_time;<span class="hljs-comment">//客户在银行待的时间</span></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//银行链表</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bank</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line">   <span class="hljs-keyword">public</span>:</span><br><span class="line"><span class="hljs-comment">//防止隐式转化</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Bank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> window = <span class="hljs-number">4</span>, <span class="hljs-keyword">int</span> close_time = <span class="hljs-number">8</span> * <span class="hljs-number">3600</span>)</span></span>;</span><br><span class="line">~Bank();</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Simulation</span><span class="hljs-params">()</span></span>;</span><br><span class="line">   <span class="hljs-keyword">private</span>:</span><br><span class="line"><span class="hljs-keyword">int</span> _queue_number; <span class="hljs-comment">//队列个数</span></span><br><span class="line"><span class="hljs-keyword">int</span> _close_time; <span class="hljs-comment">//关门时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _total_time;<span class="hljs-comment">//所有客人待的总时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _customer_number;<span class="hljs-comment">//客户数目</span></span><br><span class="line"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">list</span>&lt;Event&gt; _event_list;<span class="hljs-comment">//事件链表</span></span><br><span class="line"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">queue</span>&lt;QueueNode&gt; *_work_queue;<span class="hljs-comment">//工作队伍队列</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OpenForDay</span><span class="hljs-params">()</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CustomerArrival</span><span class="hljs-params">(Event *event)</span></span>;<span class="hljs-comment">//客户到达事件</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CustomerDeparture</span><span class="hljs-params">(Event *event)</span></span>;<span class="hljs-comment">//客户离开事件</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">FindShortestQueue</span><span class="hljs-params">()</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SortEventList</span><span class="hljs-params">()</span></span>;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>   bank.cpp:</p>
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"pch.h"</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"bank.h"</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;clocale&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span>
+
+Bank::Bank(<span class="keyword">int</span> window, <span class="keyword">int</span> close_time) :_queue_number(window), _close_time(close_time), _total_time(<span class="number">0</span>), _customer_number(<span class="number">0</span>)
+{
+_work_queue = <span class="keyword">new</span> <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;QueueNode&gt;[window];<span class="comment">//产生一个新的工作队列</span>
+srand(<span class="built_in">std</span>::chrono::system_clock::<span class="keyword">to_time_t</span>(<span class="built_in">std</span>::chrono::system_clock::now()));<span class="comment">//产生伪随机序列</span>
+}
+Bank::~Bank()
+{
+<span class="keyword">delete</span>[] _work_queue;
+}
+<span class="keyword">void</span> Bank::OpenForDay()
+{
+<span class="comment">//第一个客户到达,将第一个客户到达事件压入栈</span>
+_event_list.push_back({ <span class="number">0</span>,<span class="number">0</span> });
+}
+<span class="keyword">void</span> Bank::CustomerArrival(Event *event)
+{
+++_customer_number;<span class="comment">//客户数加一</span>
+<span class="keyword">int</span> duration_time, inter_time;<span class="comment">//inter_time:下一个客户隔多长时间来</span>
+duration_time = rand() % <span class="number">1800</span> + <span class="number">1</span>;<span class="comment">//一个客户最多30分钟</span>
+inter_time = rand() % <span class="number">600</span> + <span class="number">1</span>;<span class="comment">//最多10分钟来一个客户</span>
+
+<span class="comment">//下一个客户到达时间</span>
+<span class="keyword">int</span> t = event-&gt;_occur_time + inter_time;
+
+<span class="comment">//假设银行未关门</span>
+<span class="keyword">if</span> (t &lt; _close_time)
+{
+    _event_list.push_back({ t,<span class="number">0</span> });<span class="comment">//将下一个客户到达事件压栈</span>
+    SortEventList();<span class="comment">//整理、排序事件</span>
+}
+<span class="keyword">int</span> i;
+i = FindShortestQueue();<span class="comment">//i为最短队列</span>
+<span class="comment">//将新客户压入最短队列</span>
+_work_queue[i].push({ event-&gt;_occur_time,duration_time });
+<span class="comment">//生成i队列最后一个人的离开事件</span>
+<span class="keyword">if</span> (_work_queue[i].size() == <span class="number">1</span>)
+{
+    _event_list.push_back({ event-&gt;_occur_time + duration_time,i + <span class="number">1</span> });
+    SortEventList();
+}
+}
+
+<span class="keyword">void</span> Bank::CustomerDeparture(Event *event)
+{
+<span class="keyword">int</span> i = event-&gt;_type - <span class="number">1</span>;<span class="comment">//i表示1~4哪个队伍离开</span>
+QueueNode customer;
+<span class="comment">//客户离开，从队伍中弹出</span>
+customer = _work_queue[i].front();
+_work_queue[i].pop();
+<span class="comment">//客户总耗时=之前的耗时+此刻的耗时</span>
+_total_time += event-&gt;_occur_time - customer._arrival_time;
+<span class="keyword">if</span> (!_work_queue[i].empty()) {
+    customer = _work_queue[i].front();
+    _event_list.push_back(
+        { customer._duration_time + event-&gt;_occur_time, i + <span class="number">1</span> });
+    SortEventList();
+}
+}
+
+<span class="keyword">int</span> Bank::FindShortestQueue()
+{
+<span class="keyword">int</span> result = <span class="number">0</span>;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; _queue_number; ++i) {
+    <span class="keyword">if</span> (_work_queue[result].size() &gt; _work_queue[i].size())
+        result = i;
+}
+<span class="keyword">return</span> result;
+}
+<span class="keyword">void</span> Bank::SortEventList()
+{
+<span class="comment">// Lambda表达式</span>
+_event_list.sort([](<span class="keyword">const</span> Event &amp;e1, <span class="keyword">const</span> Event &amp;e2) -&gt; <span class="keyword">bool</span> {<span class="keyword">return</span> e1._occur_time &lt; e2._occur_time; });
+}
+
+<span class="comment">//模拟仿真排队</span>
+<span class="keyword">void</span> Bank::Simulation()
+{
+OpenForDay();
+Event event;
+<span class="keyword">while</span> (!_event_list.empty()) {
+    event = _event_list.front();
+    _event_list.pop_front();
+    <span class="keyword">if</span> (event._type == <span class="number">0</span>) <span class="comment">// 到达事件</span>
+        CustomerArrival(&amp;event);
+    <span class="keyword">else</span>
+        CustomerDeparture(&amp;event);
+}
+<span class="comment">// 计算并输出平均逗留时间</span>
+<span class="built_in">std</span>::wcout &lt;&lt; <span class="string">L"客户数："</span> &lt;&lt; _customer_number &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>
+    &lt;&lt; <span class="string">L"总逗留时间（小时）："</span> &lt;&lt; (<span class="keyword">double</span>)_total_time / <span class="number">3600.0</span>
+    &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>
+    &lt;&lt; <span class="string">L"平均逗留时间（分钟）："</span>
+    &lt;&lt; (<span class="keyword">double</span>)_total_time / (<span class="keyword">double</span>)(_customer_number * <span class="number">60</span>)
+    &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;
+}
+<span class="function"><span class="keyword">int</span> <span class="title">wmain</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">wchar_t</span> *argv[], <span class="keyword">wchar_t</span> *env[])</span></span>
+<span class="function"></span>{
+_wsetlocale(LC_ALL, <span class="string">L""</span>);
+
+Bank bank;
+bank.Simulation();
+<span class="keyword">return</span> <span class="number">0</span>;
+}</code></pre>
 
         </div>
         
@@ -170,64 +285,91 @@
 
 
 
+
+
+
+
+
+    
 <div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-02T12:02:00.000Z">2019-06-02</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 479 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
-</div>
+                <a class="has-link-black-ter" href="/2019/06/02/递归问题/">递归问题</a>
+            
+        </h1>
+        <div class="content">
+            <p>最近数据结构刚刚学了递归问题，感觉理解的不太到位，刚好leetcode刷题刷到了两个递归问题，对递归算是更进一步理解了吧。</p>
+<p>leetcode—22.括号生成</p>
+<p>给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。</p>
+<p>例如，给出 n = 3，生成结果为：</p>
+<p>[<br>  “((()))”,<br>  “(()())”,<br>  “(())()”,<br>  “()(())”,<br>  “()()()”<br>]</p>
+<p>当加入一个左括号时，剩余的可看作新的组合，但右括号的个数必须大于左括号的个数时，才表明可以加入右括号，C++代码如下：</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; res;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">back</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> n;</span><br><span class="line">        <span class="hljs-keyword">if</span>(i==<span class="hljs-number">0</span>&amp;&amp;j==<span class="hljs-number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(s);</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">0</span>)</span><br><span class="line">            back(s+<span class="hljs-string">'('</span>,i<span class="hljs-number">-1</span>,j);</span><br><span class="line">        <span class="hljs-keyword">if</span>(j&gt;i)</span><br><span class="line">            back(s+<span class="hljs-string">')'</span>,i,j<span class="hljs-number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; generateParenthesis(<span class="hljs-keyword">int</span> n) &#123;</span><br><span class="line">    back(<span class="hljs-string">""</span>,n,n);</span><br><span class="line">    <span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<div class="notification is-danger">
-    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
-</div>
-
-                
+<p>leetcode—39.组合总数</p>
+<p>给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
+<p>candidates 中的数字可以无限制重复被选取。</p>
+<p>说明：</p>
+<p>所有数字（包括 target）都是正整数。<br>解集不能包含重复的组合。 </p>
+<p>示例 1:</p>
+<p>输入: candidates = [2,3,6,7], target = 7,<br>所求解集为:<br>[<br>  [7],<br>  [2,2,3]<br>]</p>
+<p>示例 2:</p>
+<p>输入: candidates = [2,3,5], target = 8,<br>所求解集为:<br>[<br>  [2,2,2,2],<br>  [2,3,3],<br>  [3,5]<br>]</p>
+<p>利用递归求解，将数组中的第一个数提取出来，则可以看作是求candidates中所有可以使数字和为（target-第一个数字）的组合，以此类推，但必须注意不能有重复的组合，所以应该在后面的数被提取时，不能与前面的数相匹配。C++代码如下：</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; res;</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; tmp;</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; combinationSum(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; candidates, <span class="hljs-keyword">int</span> target) &#123;</span><br><span class="line">    com(<span class="hljs-number">0</span>,candidates,target);</span><br><span class="line">    <span class="hljs-keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">com</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cur,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; candidates,<span class="hljs-keyword">int</span> target)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> t;</span><br><span class="line">    t=target;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=cur;i&lt;candidates.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(target==<span class="hljs-number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(tmp);</span><br><span class="line">            <span class="hljs-keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">if</span>(target&gt;<span class="hljs-number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            tmp.push_back(candidates[i]);</span><br><span class="line">            com(i,candidates,target-candidates[i]);</span><br><span class="line">            tmp.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-keyword">else</span> <span class="hljs-keyword">continue</span>;</span><br><span class="line">        target=t;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
+        
+        
+        
     </div>
 </div>
 
 
 
+
+
+
+
+
+
+    
 <div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/16/枚举排列/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">枚举排列</span>
-            </a>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/page/2/">上一页</a>
         </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/13/rees-on-the-level-UVa-122/">
-                <span class="level-item">Trees on the level-UVa 122</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/page/4/">下一页</a>
         </div>
-        
-    </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/2/">2</a></li>
+            
+            <li><a class="pagination-link is-current" href="/page/3/">3</a></li>
+            
+        </ul>
+    </nav>
 </div>
-
-
 </div>
                 
 
@@ -948,7 +1090,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                    <img src="/images/logo.svg" alt="" height="28">
                 
                 </a>
                 <p class="is-size-7">

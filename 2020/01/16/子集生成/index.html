@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>OS-多任务处理(1)</title>
+<title>子集生成</title>
 
 
-    <meta name="description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+    <meta name="description" content="子集生成算法：给定一个集合，枚举所有可 能的子集（无重复元素）子集生成有三种算法：增量构造法、位向量法、二进制法增量构造法: 12345678910111213141516171819202122232425262728293031323334#include &amp;lt;iostream&amp;gt;using namespace std;int p[4] = &amp;#123; 1,2,3,4 &amp;#125;;">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OS-多任务处理(1)">
-<meta property="og:url" content="http://agentzxy.github.io/2020/01/14/制简单操作系统（9）/index.html">
+<meta property="og:title" content="子集生成">
+<meta property="og:url" content="http://agentzxy.github.io/2020/01/16/子集生成/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+<meta property="og:description" content="子集生成算法：给定一个集合，枚举所有可 能的子集（无重复元素）子集生成有三种算法：增量构造法、位向量法、二进制法增量构造法: 12345678910111213141516171819202122232425262728293031323334#include &amp;lt;iostream&amp;gt;using namespace std;int p[4] = &amp;#123; 1,2,3,4 &amp;#125;;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-14T12:36:21.380Z">
+<meta property="og:updated_time" content="2020-01-16T09:14:28.128Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OS-多任务处理(1)">
-<meta name="twitter:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+<meta name="twitter:title" content="子集生成">
+<meta name="twitter:description" content="子集生成算法：给定一个集合，枚举所有可 能的子集（无重复元素）子集生成有三种算法：增量构造法、位向量法、二进制法增量构造法: 12345678910111213141516171819202122232425262728293031323334#include &amp;lt;iostream&amp;gt;using namespace std;int p[4] = &amp;#123; 1,2,3,4 &amp;#125;;">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -80,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                <img src="/images/logo.svg" alt="子集生成" height="28">
             
             </a>
         </div>
@@ -136,13 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time>
+                <time class="level-item has-text-grey" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 355 个字)
+                    3 分钟 读完 (大约 490 个字)
                 </span>
                 
                 
@@ -151,16 +156,29 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                OS-多任务处理(1)
+                子集生成
             
         </h1>
         <div class="content">
-            <p>由于考试，已经将近一个月没碰操作系统了，今天继续。</p>
-<p>今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。</p>
-<p>先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。</p>
-<p>接着设置0.02s的定时器，规定每0.02秒切换任务。切换任务很简单，直接JMP到任务的位置就可以了。</p>
-<p>为了使系统更稳定，在检查超时计时器的程序当中加入一段程序：如果是0.02秒的超时了，则转入一个任务切换函数。该任务切换函数是如果目前任务是A则jmp到任务B（jmp利用汇编完成）。如果是直接在主函数里面进行跳转到另一个任务，然后再在另一个任务跳转到原始任务，那么要是另一个任务出现问题，则系统会无法运行其他程序。</p>
+            <p>子集生成算法：给定一个集合，枚举所有可 能的子集（无重复元素）<br>子集生成有三种算法：增量构造法、位向量法、二进制法<br>增量构造法:</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> p[<span class="hljs-number">4</span>] = &#123; <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span> &#125;;</span><br><span class="line"><span class="hljs-keyword">int</span> a[<span class="hljs-number">4</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ziji</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> a[<span class="hljs-number">4</span>])</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> i;</span><br><span class="line">	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; l; i++) &#123;</span><br><span class="line">	<span class="hljs-comment">//直接输出</span></span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	<span class="hljs-keyword">int</span> s;</span><br><span class="line">	<span class="hljs-keyword">if</span> (l == <span class="hljs-number">0</span>)</span><br><span class="line">		s = <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-keyword">else</span></span><br><span class="line">		<span class="hljs-comment">//如果l不为0，a的第一个数应该从l开始</span></span><br><span class="line">		s = a[l<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">for</span> (i = s; i &lt; r; i++) &#123;</span><br><span class="line">		<span class="hljs-comment">//l为0的情形：</span></span><br><span class="line">		<span class="hljs-comment">//假设i=0，然后a的第一个数为0，接着构造123的子集</span></span><br><span class="line">		<span class="hljs-comment">//假设i=1，然后a的第一个数为1，接着构造23的子集......</span></span><br><span class="line">		<span class="hljs-comment">//l为1的情形：</span></span><br><span class="line">		<span class="hljs-comment">//i=1、2、3，a的第二、三、四个数分别为1、2、3</span></span><br><span class="line">		<span class="hljs-comment">//然后l继续增加，直到a有4个数</span></span><br><span class="line">		<span class="hljs-comment">//l增加一个，就输出一组</span></span><br><span class="line">		<span class="hljs-comment">//l增加完后，开始新的一轮，a的第一个数为1......</span></span><br><span class="line">		a[l] = i;</span><br><span class="line">		ziji(l + <span class="hljs-number">1</span>, r, a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	ziji(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>, a);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>位向量法：<br><img src="https://img-blog.csdnimg.cn/20200116171226788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> b[<span class="hljs-number">4</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">wei</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> b[<span class="hljs-number">4</span>])</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (l == r) &#123;</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; r; i++) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span> (b[i])</span><br><span class="line">				<span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">		<span class="hljs-keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	b[l] = <span class="hljs-number">1</span>;<span class="hljs-comment">//该元素在枚举的集合中</span></span><br><span class="line">	wei(l + <span class="hljs-number">1</span>, r, b);<span class="hljs-comment">//枚举剩下的</span></span><br><span class="line">	b[l] = <span class="hljs-number">0</span>;<span class="hljs-comment">//该元素不在枚举的集合中</span></span><br><span class="line">	wei(l + <span class="hljs-number">1</span>, r, b);<span class="hljs-comment">//枚举剩下的</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	wei(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>, b);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>二进制法<br><img src="https://img-blog.csdnimg.cn/20200116171258954.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">two</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n,<span class="hljs-keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="hljs-comment">//输出子集</span></span><br><span class="line">		<span class="hljs-keyword">if</span> (s &amp; (<span class="hljs-number">1</span> &lt;&lt; i))</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> n;</span><br><span class="line">	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-number">1</span> &lt;&lt; n); i++)</span><br><span class="line">			<span class="hljs-comment">//假如输入的n是3，此时将0，1，2的子集全部列举出来</span></span><br><span class="line">			two(n, i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/算法/">算法</a>
+                </div>
+            </div>
         </div>
         
         
@@ -210,16 +228,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/16/枚举排列/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/16/回溯法/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">枚举排列</span>
+                <span class="level-item">回溯法</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/13/rees-on-the-level-UVa-122/">
-                <span class="level-item">Trees on the level-UVa 122</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/16/枚举排列/">
+                <span class="level-item">枚举排列</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -948,7 +966,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                    <img src="/images/logo.svg" alt="子集生成" height="28">
                 
                 </a>
                 <p class="is-size-7">

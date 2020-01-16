@@ -7,21 +7,17 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>OS-多任务处理(1)</title>
+<title>归档</title>
 
 
-    <meta name="description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
-<meta property="og:type" content="article">
-<meta property="og:title" content="OS-多任务处理(1)">
-<meta property="og:url" content="http://agentzxy.github.io/2020/01/14/制简单操作系统（9）/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title">
+<meta property="og:url" content="http://agentzxy.github.io/archives/page/3/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-14T12:36:21.380Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OS-多任务处理(1)">
-<meta name="twitter:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+<meta name="twitter:title">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -80,7 +76,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                <img src="/images/logo.svg" alt="" height="28">
             
             </a>
         </div>
@@ -130,104 +126,74 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-<div class="card">
-    
-    <div class="card-content article ">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 355 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                OS-多任务处理(1)
-            
-        </h1>
-        <div class="content">
-            <p>由于考试，已经将近一个月没碰操作系统了，今天继续。</p>
-<p>今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。</p>
-<p>先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。</p>
-<p>接着设置0.02s的定时器，规定每0.02秒切换任务。切换任务很简单，直接JMP到任务的位置就可以了。</p>
-<p>为了使系统更稳定，在检查超时计时器的程序当中加入一段程序：如果是0.02秒的超时了，则转入一个任务切换函数。该任务切换函数是如果目前任务是A则jmp到任务B（jmp利用汇编完成）。如果是直接在主函数里面进行跳转到另一个任务，然后再在另一个任务跳转到原始任务，那么要是另一个任务出现问题，则系统会无法运行其他程序。</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-<div class="card">
+<div class="card widget">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
+        <h3 class="tag is-link">
+        2019
+        </h3>
+        <div class="timeline">
+        
+            <article class="media">
                 
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
-</div>
-
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-08-28T08:51:00.000Z">2019-08-28</time>
+                        <a href="/2019/08/28/银行排队问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">银行排队问题</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                                <div class="level-item is-size-7 is-uppercase">
+                                <a class="has-link-grey -link" href="/categories/c/">c++</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        
+            <article class="media">
                 
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<div class="notification is-danger">
-    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
-</div>
-
-                
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-06-02T12:02:00.000Z">2019-06-02</time>
+                        <a href="/2019/06/02/递归问题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">递归问题</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        
         </div>
     </div>
 </div>
 
+    
 
-
+    
 <div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/16/枚举排列/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">枚举排列</span>
-            </a>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/archives/page/2/">上一页</a>
         </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/13/rees-on-the-level-UVa-122/">
-                <span class="level-item">Trees on the level-UVa 122</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/archives/page/4/">下一页</a>
         </div>
-        
-    </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/archives/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/archives/page/2/">2</a></li>
+            
+            <li><a class="pagination-link is-current" href="/archives/page/3/">3</a></li>
+            
+        </ul>
+    </nav>
 </div>
-
-
 </div>
                 
 
@@ -948,7 +914,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                    <img src="/images/logo.svg" alt="" height="28">
                 
                 </a>
                 <p class="is-size-7">

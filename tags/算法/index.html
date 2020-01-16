@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title></title>
+<title>标签: 算法</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title">
-<meta property="og:url" content="http://agentzxy.github.io/index.html">
+<meta property="og:url" content="http://agentzxy.github.io/tags/算法/index.html">
 <meta property="og:site_name">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
@@ -84,7 +84,7 @@
             
             <div class="navbar-start">
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/">Home</a>
                 
                 <a class="navbar-item"
@@ -125,7 +125,17 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">算法</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
     
 <div class="card">
     
@@ -332,52 +342,6 @@ int main() {
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 355 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/01/14/制简单操作系统（9）/">OS-多任务处理(1)</a>
-            
-        </h1>
-        <div class="content">
-            <p>由于考试，已经将近一个月没碰操作系统了，今天继续。</p>
-<p>今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。</p>
-<p>先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。</p>
-<p>接着设置0.02s的定时器，规定每0.02秒切换任务。切换任务很简单，直接JMP到任务的位置就可以了。</p>
-<p>为了使系统更稳定，在检查超时计时器的程序当中加入一段程序：如果是0.02秒的超时了，则转入一个任务切换函数。该任务切换函数是如果目前任务是A则jmp到任务B（jmp利用汇编完成）。如果是直接在主函数里面进行跳转到另一个任务，然后再在另一个任务跳转到原始任务，那么要是另一个任务出现问题，则系统会无法运行其他程序。</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time>
                 
                 <div class="level-item">
@@ -532,172 +496,6 @@ int main() {
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 545 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/21/自制简单操作系统（8）/">OS-定时器制作(2)</a>
-            
-        </h1>
-        <div class="content">
-            <p>这次学习的仍然是定时器，以及提高性能。<br>首先是测试性能，在判断中断的for循环里进行count++计数，当到了10秒之后就将count值显示出来，但在5秒处要归零（作者是在3秒处归零），这是因为电脑初始化所花费的时间有很大变化。<br>然后通过优化FIFO缓冲区来进行性能提升。因为鼠标、键盘、各个定时器的中断，都使用了不同的缓冲区，这样在判断的时候就会很麻烦，所以采用同一个缓冲区，但往缓冲区送入的不同数字代表不同的中断。<br>最后是加快定时器的中断处理，使用了线性链表和哨兵。<br>我在这里总结一下定时器所采用的结构和方法（提升性能后有所变化）：<br>定时器的结构体参数有：下一个超时的定时器、超时时间、使用标记、中断处理的缓冲区、该中断的数字号。<br>定时器控制体的结构体参数有：计时器、下一个的超时时间、第一个定时器、存放500个定时器的数组。<br>首先是初始化定时器：给每个定时器分配（就是存放500个定时器数组里的标志设为1），设置哨兵，往中断缓冲存入该定时器对应的数字号。<br>若有中断到达则往缓冲区存入数字，并且将下一个会到达的超时定时器指定。<br>由于定时器是线性链表结构排列，所以当有一个新的定时器加入时，要将新定时器插入链表，按照顺序排列。<br>以下是成果图：<br><img src="https://img-blog.csdnimg.cn/20191221173048529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt="counter里记的数是5秒内的，性能提升后确实比最开始的值要高上近一倍"></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-18T11:54:05.000Z">2019-12-18</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 354 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/18/自制简单操作系统（7）/">OS-定时器制作(1)</a>
-            
-        </h1>
-        <div class="content">
-            <p>这次学习了定时器的设置和加快中断处理。<br>与鼠标键盘一样，定时器是通过中断处理实现的。有一个类似于8253的计数器，不停的向cpu发送脉冲，每接受一次脉冲就产生一次中断。<br>定时器也是用结构体实现。每个定时器设有一个超时变量，当初始化计数器后就开始计数，如果数目达到了某个定时器的超时变量，就代表该定时器已经到达设定的时间，就可以往定时器设定的缓冲区发送字节（与键盘鼠标类似）。一旦发现该缓冲区有字节后就开始执行特定的命令。这就是定时器的基本工作原理。<br>加快中断处理是针对定时器的中断。主要是将每个定时器按照超时的大小进行排序存储（与图层设定类似），这样每次判断该定时器是否工作或到达设定时间时，就可以少执行几次for循环。<br>以下是这次实验的成果图：<br><img src="https://img-blog.csdnimg.cn/2019121819503762.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt="有光标的闪烁和5秒、10秒的计时"></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-16T11:47:00.000Z">2019-12-16</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 551 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/12/16/制简单操作系统（6）/">OS-图层应用</a>
-            
-        </h1>
-        <div class="content">
-            <p>这次主要是将鼠标移动优化和做出一个计时器的窗口。</p>
-<p>之前由于每移动一次鼠标就需要将整个画面重新绘制，导致鼠标不太灵敏，画面有些一顿一顿。为了优化鼠标移动，我们将绘制整个画面缩小为只绘制移动的画面。写三个函数，分别是刷新整个画面的某一部分、刷新一个图层的某一部分、有移动后刷新，依次调用上一个函数即可。</p>
-<p>计时器就是显示数字，不断地for循环。难点是每次刷新时总是先要绘制背景，才能显示数字，所以每次显示数字前会有背景色覆盖。所以这里引入了map，主要是记录每个像素点属于哪一个图层，重新绘制时只需要绘制指定的图层即可。具体做法是在绘制每一层图层时，如果map记录的是该图层，就可以绘制。</p>
-<p>下面总结一下图层的应用：</p>
-<p>分别由两个结构体SHEET和SHTCTL，SHEET是记录每个图层的信息，参数有该图层的每个像素点的地址、图层长宽、图层位置、图层透明度、图层高度（高度越高，显示越靠前）、是否可见、该图层所属的图层体。<br>SHTCTL我将它成为图层体，图层体里有很多图层，参数有图层体大小、图层体里的图层最高高度、数组记录每个图层位置、每个图层。</p>
-<p>首先将图层图层体初始化，在内存中分配地址，再将图层体分配给一个个图层并且初始化。如果有移动，则重新绘制移动部分的该图层。图层不要了就要释放所占的内存。</p>
-<p>成果图如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/20191218193254293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    
-<div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/0/">上一页</a>
-        </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/page/2/">下一页</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link is-current" href="/">1</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/2/">2</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
-            
-        </ul>
-    </nav>
-</div>
 </div>
                 
 

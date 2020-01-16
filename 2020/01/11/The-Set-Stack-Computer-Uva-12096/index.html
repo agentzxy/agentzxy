@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="有一个专门为了集合运算而设计的“集合栈”计算机。该机器有一个初始为空的栈，并且 支持以下操作。  PUSH：空集“{}”入栈。  DUP：把当前栈顶元素复制一份后再入栈。  UNION：出栈两个集合，然后把二者的并集入栈。  INTERSECT：出栈两个集合，然后把二者的交集入栈。 ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。 每次操作后，输出栈顶集合的大小（即元素个">
-<meta name="keywords" content="STL">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Set Stack Computer-Uva 12096">
 <meta property="og:url" content="http://agentzxy.github.io/2020/01/11/The-Set-Stack-Computer-Uva-12096/index.html">
@@ -19,7 +19,7 @@
 <meta property="og:description" content="有一个专门为了集合运算而设计的“集合栈”计算机。该机器有一个初始为空的栈，并且 支持以下操作。  PUSH：空集“{}”入栈。  DUP：把当前栈顶元素复制一份后再入栈。  UNION：出栈两个集合，然后把二者的并集入栈。  INTERSECT：出栈两个集合，然后把二者的交集入栈。 ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。 每次操作后，输出栈顶集合的大小（即元素个">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-13T03:02:43.160Z">
+<meta property="og:updated_time" content="2020-01-16T09:30:02.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Set Stack Computer-Uva 12096">
 <meta name="twitter:description" content="有一个专门为了集合运算而设计的“集合栈”计算机。该机器有一个初始为空的栈，并且 支持以下操作。  PUSH：空集“{}”入栈。  DUP：把当前栈顶元素复制一份后再入栈。  UNION：出栈两个集合，然后把二者的并集入栈。  INTERSECT：出栈两个集合，然后把二者的交集入栈。 ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。 每次操作后，输出栈顶集合的大小（即元素个">
@@ -140,14 +140,14 @@
                 <time class="level-item has-text-grey" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/STL/">STL</a>
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 384 个字)
+                    3 分钟 读完 (大约 385 个字)
                 </span>
                 
                 
@@ -168,86 +168,14 @@
 <p>ADD：出栈两个集合，然后把先出栈的集合加入到后出栈的集合中，把结果入栈。</p>
 <p>每次操作后，输出栈顶集合的大小（即元素个数）。 </p>
 <p>输入不超过2000个操作，并且保证操作均能顺利进行（不需要对空栈执行出栈操作）。</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;map&gt;
-#include&lt;set&gt;
-#include&lt;vector&gt;
-#include&lt;stack&gt;
-using namespace std;
-
-map&lt;set&lt;int&gt;, int&gt; idcache;
-vector&lt;set&lt;int&gt;&gt; setcache;
-
-int getid(set&lt;int&gt; s) {
-    if (idcache.count(s))
-        return idcache[s];
-    setcache.push_back(s);
-    idcache[s] = setcache.size() - 1;
-    return idcache[s];
-}
-
-int main() {
-    int count;
-    cin &gt;&gt; count;
-    while (count--) {
-        stack&lt;int&gt; s;
-        idcache.clear();
-        setcache.clear();
-        int n;
-        cin &gt;&gt; n;
-        while (n--) {
-            string str;
-            cin &gt;&gt; str;
-            if (str == &quot;PUSH&quot;) {
-                set&lt;int&gt; temp;
-                //setcache.push_back(temp);
-                s.push(getid(temp));
-            }
-            else if (str == &quot;DUP&quot;) {
-                s.push(s.top());
-            }
-             else {
-                set&lt;int&gt; first = setcache[s.top()];
-                s.pop();
-                set&lt;int&gt; second = setcache[s.top()];
-                s.pop();
-                set&lt;int&gt; ans;
-                if (str == &quot;ADD&quot;) {
-                    ans = second;
-                    ans.insert(getid(first));
-                }
-                if (str == &quot;INTERSECT&quot;) {
-                    set&lt;int&gt;::iterator it_f = first.begin();
-                    for (; it_f != first.end(); it_f++) {
-                        set&lt;int&gt;::iterator it_s = second.begin();
-                        for (; it_s != second.end(); it_s++) {
-                            if (*it_f == *it_s) {
-                                ans.insert(*it_f);
-                            }
-                        }
-                    }
-                }
-                if (str == &quot;UNION&quot;) {
-                    ans = second;
-                    set&lt;int&gt;::iterator it_f = first.begin();
-                    for (; it_f != first.end(); it_f++) {
-                        ans.insert(*it_f);
-                    }
-                }
-                s.push(getid(ans));
-            }
-            cout &lt;&lt; setcache[s.top()].size() &lt;&lt; endl;
-        }
-        return 0;
-    }
-}</code></pre>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt;, <span class="hljs-keyword">int</span>&gt; idcache;</span><br><span class="line"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; setcache;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getid</span><span class="hljs-params">(<span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt; s)</span> </span>&#123;</span><br><span class="line"> <span class="hljs-keyword">if</span> (idcache.count(s))</span><br><span class="line">  <span class="hljs-keyword">return</span> idcache[s];</span><br><span class="line"> setcache.push_back(s);</span><br><span class="line"> idcache[s] = setcache.size() - <span class="hljs-number">1</span>;</span><br><span class="line"> <span class="hljs-keyword">return</span> idcache[s];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line"> <span class="hljs-keyword">int</span> count;</span><br><span class="line"> <span class="hljs-built_in">cin</span> &gt;&gt; count;</span><br><span class="line"> <span class="hljs-keyword">while</span> (count--) &#123;</span><br><span class="line">  <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; s;</span><br><span class="line">  idcache.clear();</span><br><span class="line">  setcache.clear();</span><br><span class="line">  <span class="hljs-keyword">int</span> n;</span><br><span class="line">  <span class="hljs-built_in">cin</span> &gt;&gt; n;</span><br><span class="line">  <span class="hljs-keyword">while</span> (n--) &#123;</span><br><span class="line">   <span class="hljs-built_in">string</span> str;</span><br><span class="line">   <span class="hljs-built_in">cin</span> &gt;&gt; str;</span><br><span class="line">   <span class="hljs-keyword">if</span> (str == <span class="hljs-string">"PUSH"</span>) &#123;</span><br><span class="line">    <span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt; temp;</span><br><span class="line">    <span class="hljs-comment">//setcache.push_back(temp);</span></span><br><span class="line">    s.push(getid(temp));</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (str == <span class="hljs-string">"DUP"</span>) &#123;</span><br><span class="line">    s.push(s.top());</span><br><span class="line">   &#125;</span><br><span class="line">  	 <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">    <span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt; first = setcache[s.top()];</span><br><span class="line">    s.pop();</span><br><span class="line">    <span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt; second = setcache[s.top()];</span><br><span class="line">    s.pop();</span><br><span class="line">    <span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt; ans;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str == <span class="hljs-string">"ADD"</span>) &#123;</span><br><span class="line">	    ans = second;</span><br><span class="line">	    ans.insert(getid(first));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str == <span class="hljs-string">"INTERSECT"</span>) &#123;</span><br><span class="line">	    <span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator it_f = first.begin();</span><br><span class="line">	    <span class="hljs-keyword">for</span> (; it_f != first.end(); it_f++) &#123;</span><br><span class="line">		    <span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator it_s = second.begin();</span><br><span class="line">		    <span class="hljs-keyword">for</span> (; it_s != second.end(); it_s++) &#123;</span><br><span class="line">			    <span class="hljs-keyword">if</span> (*it_f == *it_s) &#123;</span><br><span class="line">				    ans.insert(*it_f);</span><br><span class="line">			    &#125;</span><br><span class="line">		    &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">if</span> (str == <span class="hljs-string">"UNION"</span>) &#123;</span><br><span class="line">	    ans = second;</span><br><span class="line">	    <span class="hljs-built_in">set</span>&lt;<span class="hljs-keyword">int</span>&gt;::iterator it_f = first.begin();</span><br><span class="line">	    <span class="hljs-keyword">for</span> (; it_f != first.end(); it_f++) &#123;</span><br><span class="line">		    ans.insert(*it_f);</span><br><span class="line">	    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    s.push(getid(ans));</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="hljs-built_in">cout</span> &lt;&lt; setcache[s.top()].size() &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/STL/">STL</a>
+                    <a class="has-link-grey -link" href="/tags/算法/">算法</a>
                 </div>
             </div>
         </div>
@@ -362,7 +290,7 @@ int main() {
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            19
+                            22
                         </p>
                     </a>
                 </div>
@@ -489,14 +417,6 @@ int main() {
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/STL/">
-            <span class="level-start">
-                <span class="level-item">STL</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/c/">
             <span class="level-start">
                 <span class="level-item">c++</span>
@@ -520,6 +440,14 @@ int main() {
             <span class="level-end">
                 <span class="level-item tag">8</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -531,7 +459,7 @@ int main() {
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/STL/" style="font-size: 15px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
+        <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a>
     </div>
 </div>
     
@@ -543,6 +471,63 @@ int main() {
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -576,64 +561,7 @@ int main() {
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -656,7 +584,7 @@ int main() {
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -730,13 +658,6 @@ int main() {
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -768,6 +689,13 @@ int main() {
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -795,6 +723,63 @@ int main() {
         
         <article class="media">
             
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/14/制简单操作系统（9）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-多任务处理(1)">
@@ -825,64 +810,7 @@ int main() {
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -905,7 +833,7 @@ int main() {
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -979,13 +907,6 @@ int main() {
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -1017,6 +938,13 @@ int main() {
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 

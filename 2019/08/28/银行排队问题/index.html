@@ -10,19 +10,19 @@
 <title>银行排队问题</title>
 
 
-    <meta name="description" content="要解决的问题——银行一天之内的：   1.总客户数    2.客户总逗留时间    3.客户平均逗留时间    银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。    bank头文件： #include &amp;lt;queue&amp;gt; #include &amp;lt;list&amp;gt;  //事件链表 struct Event">
+    <meta name="description" content="要解决的问题——银行一天之内的：   1.总客户数    2.客户总逗留时间    3.客户平均逗留时间    银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。    bank头文件： 12345678910111213141516171819202122232425262728293031323334353637">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="银行排队问题">
 <meta property="og:url" content="http://agentzxy.github.io/2019/08/28/银行排队问题/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="要解决的问题——银行一天之内的：   1.总客户数    2.客户总逗留时间    3.客户平均逗留时间    银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。    bank头文件： #include &amp;lt;queue&amp;gt; #include &amp;lt;list&amp;gt;  //事件链表 struct Event">
+<meta property="og:description" content="要解决的问题——银行一天之内的：   1.总客户数    2.客户总逗留时间    3.客户平均逗留时间    银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。    bank头文件： 12345678910111213141516171819202122232425262728293031323334353637">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2019-12-06T11:15:37.871Z">
+<meta property="og:updated_time" content="2020-01-16T09:34:02.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="银行排队问题">
-<meta name="twitter:description" content="要解决的问题——银行一天之内的：   1.总客户数    2.客户总逗留时间    3.客户平均逗留时间    银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。    bank头文件： #include &amp;lt;queue&amp;gt; #include &amp;lt;list&amp;gt;  //事件链表 struct Event">
+<meta name="twitter:description" content="要解决的问题——银行一天之内的：   1.总客户数    2.客户总逗留时间    3.客户平均逗留时间    银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。    bank头文件： 12345678910111213141516171819202122232425262728293031323334353637">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 789 个字)
+                    5 分钟 读完 (大约 791 个字)
                 </span>
                 
                 
@@ -166,154 +166,120 @@
 <p>   3.客户平均逗留时间</p>
 <p>   银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。</p>
 <p>   bank头文件：</p>
-<pre><code>#include &lt;queue&gt;
-#include &lt;list&gt;
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;list&gt;</span></span></span><br><span class="line">   </span><br><span class="line">   <span class="hljs-comment">//事件链表</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Event</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line"><span class="hljs-keyword">int</span> _occur_time;<span class="hljs-comment">//事件发生时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _type;<span class="hljs-comment">//事件类型，0表示到达事件，1~4表示4个窗口离开事件</span></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//银行链表的队伍结点</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QueueNode</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line"><span class="hljs-keyword">int</span> _arrival_time;<span class="hljs-comment">//客户到达时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _duration_time;<span class="hljs-comment">//客户在银行待的时间</span></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//银行链表</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bank</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line">   <span class="hljs-keyword">public</span>:</span><br><span class="line"><span class="hljs-comment">//防止隐式转化</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Bank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> window = <span class="hljs-number">4</span>, <span class="hljs-keyword">int</span> close_time = <span class="hljs-number">8</span> * <span class="hljs-number">3600</span>)</span></span>;</span><br><span class="line">~Bank();</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Simulation</span><span class="hljs-params">()</span></span>;</span><br><span class="line">   <span class="hljs-keyword">private</span>:</span><br><span class="line"><span class="hljs-keyword">int</span> _queue_number; <span class="hljs-comment">//队列个数</span></span><br><span class="line"><span class="hljs-keyword">int</span> _close_time; <span class="hljs-comment">//关门时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _total_time;<span class="hljs-comment">//所有客人待的总时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _customer_number;<span class="hljs-comment">//客户数目</span></span><br><span class="line"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">list</span>&lt;Event&gt; _event_list;<span class="hljs-comment">//事件链表</span></span><br><span class="line"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">queue</span>&lt;QueueNode&gt; *_work_queue;<span class="hljs-comment">//工作队伍队列</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OpenForDay</span><span class="hljs-params">()</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CustomerArrival</span><span class="hljs-params">(Event *event)</span></span>;<span class="hljs-comment">//客户到达事件</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CustomerDeparture</span><span class="hljs-params">(Event *event)</span></span>;<span class="hljs-comment">//客户离开事件</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">FindShortestQueue</span><span class="hljs-params">()</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SortEventList</span><span class="hljs-params">()</span></span>;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
 
-//事件链表
-struct Event
-{
-int _occur_time;//事件发生时间
-int _type;//事件类型，0表示到达事件，1~4表示4个窗口离开事件
-};
+<p>   bank.cpp:</p>
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"pch.h"</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"bank.h"</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;clocale&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span>
 
-//银行链表的队伍结点
-struct QueueNode
+Bank::Bank(<span class="keyword">int</span> window, <span class="keyword">int</span> close_time) :_queue_number(window), _close_time(close_time), _total_time(<span class="number">0</span>), _customer_number(<span class="number">0</span>)
 {
-int _arrival_time;//客户到达时间
-int _duration_time;//客户在银行待的时间
-};
-
-//银行链表
-class Bank
-{
-public:
-//防止隐式转化
-explicit Bank(int window = 4, int close_time = 8 * 3600);
-~Bank();
-void Simulation();
-private:
-int _queue_number; //队列个数
-int _close_time; //关门时间
-int _total_time;//所有客人待的总时间
-int _customer_number;//客户数目
-std::list&lt;Event&gt; _event_list;//事件链表
-std::queue&lt;QueueNode&gt; *_work_queue;//工作队伍队列
-void OpenForDay();
-void CustomerArrival(Event *event);//客户到达事件
-void CustomerDeparture(Event *event);//客户离开事件
-int FindShortestQueue();
-void SortEventList();
-};</code></pre><p>   bank.cpp:</p>
-<pre><code>#include &quot;pch.h&quot;
-#include &lt;iostream&gt;
-#include &quot;bank.h&quot;
-#include &lt;clocale&gt;
-#include &lt;chrono&gt;
-#include &lt;cstdlib&gt;
-
-Bank::Bank(int window, int close_time) :_queue_number(window), _close_time(close_time), _total_time(0), _customer_number(0)
-{
-_work_queue = new std::queue&lt;QueueNode&gt;[window];//产生一个新的工作队列
-srand(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));//产生伪随机序列
+_work_queue = <span class="keyword">new</span> <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;QueueNode&gt;[window];<span class="comment">//产生一个新的工作队列</span>
+srand(<span class="built_in">std</span>::chrono::system_clock::<span class="keyword">to_time_t</span>(<span class="built_in">std</span>::chrono::system_clock::now()));<span class="comment">//产生伪随机序列</span>
 }
 Bank::~Bank()
 {
-delete[] _work_queue;
+<span class="keyword">delete</span>[] _work_queue;
 }
-void Bank::OpenForDay()
+<span class="keyword">void</span> Bank::OpenForDay()
 {
-//第一个客户到达,将第一个客户到达事件压入栈
-_event_list.push_back({ 0,0 });
+<span class="comment">//第一个客户到达,将第一个客户到达事件压入栈</span>
+_event_list.push_back({ <span class="number">0</span>,<span class="number">0</span> });
 }
-void Bank::CustomerArrival(Event *event)
+<span class="keyword">void</span> Bank::CustomerArrival(Event *event)
 {
-++_customer_number;//客户数加一
-int duration_time, inter_time;//inter_time:下一个客户隔多长时间来
-duration_time = rand() % 1800 + 1;//一个客户最多30分钟
-inter_time = rand() % 600 + 1;//最多10分钟来一个客户
+++_customer_number;<span class="comment">//客户数加一</span>
+<span class="keyword">int</span> duration_time, inter_time;<span class="comment">//inter_time:下一个客户隔多长时间来</span>
+duration_time = rand() % <span class="number">1800</span> + <span class="number">1</span>;<span class="comment">//一个客户最多30分钟</span>
+inter_time = rand() % <span class="number">600</span> + <span class="number">1</span>;<span class="comment">//最多10分钟来一个客户</span>
 
-//下一个客户到达时间
-int t = event-&gt;_occur_time + inter_time;
+<span class="comment">//下一个客户到达时间</span>
+<span class="keyword">int</span> t = event-&gt;_occur_time + inter_time;
 
-//假设银行未关门
-if (t &lt; _close_time)
+<span class="comment">//假设银行未关门</span>
+<span class="keyword">if</span> (t &lt; _close_time)
 {
-    _event_list.push_back({ t,0 });//将下一个客户到达事件压栈
-    SortEventList();//整理、排序事件
+    _event_list.push_back({ t,<span class="number">0</span> });<span class="comment">//将下一个客户到达事件压栈</span>
+    SortEventList();<span class="comment">//整理、排序事件</span>
 }
-int i;
-i = FindShortestQueue();//i为最短队列
-//将新客户压入最短队列
+<span class="keyword">int</span> i;
+i = FindShortestQueue();<span class="comment">//i为最短队列</span>
+<span class="comment">//将新客户压入最短队列</span>
 _work_queue[i].push({ event-&gt;_occur_time,duration_time });
-//生成i队列最后一个人的离开事件
-if (_work_queue[i].size() == 1)
+<span class="comment">//生成i队列最后一个人的离开事件</span>
+<span class="keyword">if</span> (_work_queue[i].size() == <span class="number">1</span>)
 {
-    _event_list.push_back({ event-&gt;_occur_time + duration_time,i + 1 });
+    _event_list.push_back({ event-&gt;_occur_time + duration_time,i + <span class="number">1</span> });
     SortEventList();
 }
 }
 
-void Bank::CustomerDeparture(Event *event)
+<span class="keyword">void</span> Bank::CustomerDeparture(Event *event)
 {
-int i = event-&gt;_type - 1;//i表示1~4哪个队伍离开
+<span class="keyword">int</span> i = event-&gt;_type - <span class="number">1</span>;<span class="comment">//i表示1~4哪个队伍离开</span>
 QueueNode customer;
-//客户离开，从队伍中弹出
+<span class="comment">//客户离开，从队伍中弹出</span>
 customer = _work_queue[i].front();
 _work_queue[i].pop();
-//客户总耗时=之前的耗时+此刻的耗时
+<span class="comment">//客户总耗时=之前的耗时+此刻的耗时</span>
 _total_time += event-&gt;_occur_time - customer._arrival_time;
-if (!_work_queue[i].empty()) {
+<span class="keyword">if</span> (!_work_queue[i].empty()) {
     customer = _work_queue[i].front();
     _event_list.push_back(
-        { customer._duration_time + event-&gt;_occur_time, i + 1 });
+        { customer._duration_time + event-&gt;_occur_time, i + <span class="number">1</span> });
     SortEventList();
 }
 }
 
-int Bank::FindShortestQueue()
+<span class="keyword">int</span> Bank::FindShortestQueue()
 {
-int result = 0;
-for (int i = 0; i &lt; _queue_number; ++i) {
-    if (_work_queue[result].size() &gt; _work_queue[i].size())
+<span class="keyword">int</span> result = <span class="number">0</span>;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; _queue_number; ++i) {
+    <span class="keyword">if</span> (_work_queue[result].size() &gt; _work_queue[i].size())
         result = i;
 }
-return result;
+<span class="keyword">return</span> result;
 }
-void Bank::SortEventList()
+<span class="keyword">void</span> Bank::SortEventList()
 {
-// Lambda表达式
-_event_list.sort([](const Event &amp;e1, const Event &amp;e2) -&gt; bool {return e1._occur_time &lt; e2._occur_time; });
+<span class="comment">// Lambda表达式</span>
+_event_list.sort([](<span class="keyword">const</span> Event &amp;e1, <span class="keyword">const</span> Event &amp;e2) -&gt; <span class="keyword">bool</span> {<span class="keyword">return</span> e1._occur_time &lt; e2._occur_time; });
 }
 
-//模拟仿真排队
-void Bank::Simulation()
+<span class="comment">//模拟仿真排队</span>
+<span class="keyword">void</span> Bank::Simulation()
 {
 OpenForDay();
 Event event;
-while (!_event_list.empty()) {
+<span class="keyword">while</span> (!_event_list.empty()) {
     event = _event_list.front();
     _event_list.pop_front();
-    if (event._type == 0) // 到达事件
+    <span class="keyword">if</span> (event._type == <span class="number">0</span>) <span class="comment">// 到达事件</span>
         CustomerArrival(&amp;event);
-    else
+    <span class="keyword">else</span>
         CustomerDeparture(&amp;event);
 }
-// 计算并输出平均逗留时间
-std::wcout &lt;&lt; L&quot;客户数：&quot; &lt;&lt; _customer_number &lt;&lt; std::endl
-    &lt;&lt; L&quot;总逗留时间（小时）：&quot; &lt;&lt; (double)_total_time / 3600.0
-    &lt;&lt; std::endl
-    &lt;&lt; L&quot;平均逗留时间（分钟）：&quot;
-    &lt;&lt; (double)_total_time / (double)(_customer_number * 60)
-    &lt;&lt; std::endl;
+<span class="comment">// 计算并输出平均逗留时间</span>
+<span class="built_in">std</span>::wcout &lt;&lt; <span class="string">L"客户数："</span> &lt;&lt; _customer_number &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>
+    &lt;&lt; <span class="string">L"总逗留时间（小时）："</span> &lt;&lt; (<span class="keyword">double</span>)_total_time / <span class="number">3600.0</span>
+    &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>
+    &lt;&lt; <span class="string">L"平均逗留时间（分钟）："</span>
+    &lt;&lt; (<span class="keyword">double</span>)_total_time / (<span class="keyword">double</span>)(_customer_number * <span class="number">60</span>)
+    &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;
 }
-int wmain(int argc, wchar_t *argv[], wchar_t *env[])
-{
-_wsetlocale(LC_ALL, L&quot;&quot;);
+<span class="function"><span class="keyword">int</span> <span class="title">wmain</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">wchar_t</span> *argv[], <span class="keyword">wchar_t</span> *env[])</span></span>
+<span class="function"></span>{
+_wsetlocale(LC_ALL, <span class="string">L""</span>);
 
 Bank bank;
 bank.Simulation();
-return 0;
+<span class="keyword">return</span> <span class="number">0</span>;
 }</code></pre>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -435,7 +401,7 @@ return 0;
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            19
+                            22
                         </p>
                     </a>
                 </div>
@@ -562,14 +528,6 @@ return 0;
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/STL/">
-            <span class="level-start">
-                <span class="level-item">STL</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/c/">
             <span class="level-start">
                 <span class="level-item">c++</span>
@@ -593,6 +551,14 @@ return 0;
             <span class="level-end">
                 <span class="level-item tag">8</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -604,7 +570,7 @@ return 0;
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/STL/" style="font-size: 15px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
+        <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a>
     </div>
 </div>
     
@@ -616,6 +582,63 @@ return 0;
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -649,64 +672,7 @@ return 0;
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -729,7 +695,7 @@ return 0;
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -803,13 +769,6 @@ return 0;
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -841,6 +800,13 @@ return 0;
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -868,6 +834,63 @@ return 0;
         
         <article class="media">
             
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/14/制简单操作系统（9）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-多任务处理(1)">
@@ -898,64 +921,7 @@ return 0;
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -978,7 +944,7 @@ return 0;
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1052,13 +1018,6 @@ return 0;
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -1090,6 +1049,13 @@ return 0;
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 

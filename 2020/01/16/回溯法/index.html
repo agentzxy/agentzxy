@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>OS-多任务处理(1)</title>
+<title>回溯法</title>
 
 
-    <meta name="description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+    <meta name="description" content="三个例题来说明回溯法，分别是皇后问题、素数环、困难的串。首先是这种类型的题的思路：一般回溯法的问题可以看成有条件限制的全排列或者子集生成。例如皇后问题，里面的限制条件就是行、列、对角线不能有皇后同时存在，如果存在，就返回上一行，重新定义上一行的皇后所在的列。它的解答树：每一个回溯问题都可以画出解答树，然后再加上限定条件，进行递归。 皇后问题： 123456789101112131415161718">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OS-多任务处理(1)">
-<meta property="og:url" content="http://agentzxy.github.io/2020/01/14/制简单操作系统（9）/index.html">
+<meta property="og:title" content="回溯法">
+<meta property="og:url" content="http://agentzxy.github.io/2020/01/16/回溯法/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+<meta property="og:description" content="三个例题来说明回溯法，分别是皇后问题、素数环、困难的串。首先是这种类型的题的思路：一般回溯法的问题可以看成有条件限制的全排列或者子集生成。例如皇后问题，里面的限制条件就是行、列、对角线不能有皇后同时存在，如果存在，就返回上一行，重新定义上一行的皇后所在的列。它的解答树：每一个回溯问题都可以画出解答树，然后再加上限定条件，进行递归。 皇后问题： 123456789101112131415161718">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://agentzxy.github.io/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-14T12:36:21.380Z">
+<meta property="og:updated_time" content="2020-01-16T09:25:19.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OS-多任务处理(1)">
-<meta name="twitter:description" content="由于考试，已经将近一个月没碰操作系统了，今天继续。 今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。 先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。 接着设置0.02s的定时器，规">
+<meta name="twitter:title" content="回溯法">
+<meta name="twitter:description" content="三个例题来说明回溯法，分别是皇后问题、素数环、困难的串。首先是这种类型的题的思路：一般回溯法的问题可以看成有条件限制的全排列或者子集生成。例如皇后问题，里面的限制条件就是行、列、对角线不能有皇后同时存在，如果存在，就返回上一行，重新定义上一行的皇后所在的列。它的解答树：每一个回溯问题都可以画出解答树，然后再加上限定条件，进行递归。 皇后问题： 123456789101112131415161718">
 <meta name="twitter:image" content="http://agentzxy.github.io/images/og_image.png">
 
 
@@ -80,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                <img src="/images/logo.svg" alt="回溯法" height="28">
             
             </a>
         </div>
@@ -136,13 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-01-14T12:14:49.000Z">2020-01-14</time>
+                <time class="level-item has-text-grey" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 355 个字)
+                    4 分钟 读完 (大约 647 个字)
                 </span>
                 
                 
@@ -151,16 +156,30 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                OS-多任务处理(1)
+                回溯法
             
         </h1>
         <div class="content">
-            <p>由于考试，已经将近一个月没碰操作系统了，今天继续。</p>
-<p>今天主要做的是多任务的切换。同样的也要用到定时器，定时器确实万能。首先是定义一个任务结构体，里面有定义了任务所需的26个成员。其中常用的有eip、esp。eip用来记录CPU下一条需要执行的指令存放位置。esp是该任务的堆栈。</p>
-<p>先定义任务A和任务B这两个任务，并且将任务分别加入GDT中，任务A是3号，任务B是4号。</p>
-<p>接着设置0.02s的定时器，规定每0.02秒切换任务。切换任务很简单，直接JMP到任务的位置就可以了。</p>
-<p>为了使系统更稳定，在检查超时计时器的程序当中加入一段程序：如果是0.02秒的超时了，则转入一个任务切换函数。该任务切换函数是如果目前任务是A则jmp到任务B（jmp利用汇编完成）。如果是直接在主函数里面进行跳转到另一个任务，然后再在另一个任务跳转到原始任务，那么要是另一个任务出现问题，则系统会无法运行其他程序。</p>
+            <p>三个例题来说明回溯法，分别是皇后问题、素数环、困难的串。<br>首先是这种类型的题的思路：<br>一般回溯法的问题可以看成有条件限制的全排列或者子集生成。<br>例如皇后问题，里面的限制条件就是行、列、对角线不能有皇后同时存在，如果存在，就返回上一行，重新定义上一行的皇后所在的列。它的解答树：<br><img src="https://img-blog.csdnimg.cn/20200116172401254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzUyNjkzNw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>每一个回溯问题都可以画出解答树，然后再加上限定条件，进行递归。</p>
+<p>皇后问题：</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-comment">//c[x]表示第x行的皇后的列的编号</span></span><br><span class="line"><span class="hljs-keyword">int</span> c[<span class="hljs-number">4</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pailie</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> c[<span class="hljs-number">4</span>])</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (l == r) &#123;</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; r; i++) &#123;</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; c[i] &lt;&lt; <span class="hljs-string">" "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; r; i++) &#123;</span><br><span class="line">			<span class="hljs-keyword">int</span> ok = <span class="hljs-number">1</span>;</span><br><span class="line">			c[l] = i;</span><br><span class="line">			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; l; j++) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span> (c[l] == c[j] || l - c[l] == j - c[j] || l + c[l] == j + c[j])</span><br><span class="line">				&#123;<span class="hljs-comment">//列相等和对角线相等</span></span><br><span class="line">					ok = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">if</span> (ok) &#123;</span><br><span class="line">				pailie(l + <span class="hljs-number">1</span>, r, c);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	pailie(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>, c);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>素数环（Prime Ring Problem, UVa 524）<br>输入正整数n，把整数1, 2, 3,…, n组成一个环，使得相邻两个整数之和均为素数。输出 时从整数1开始逆时针排列。同一个环应恰好输出一次。n≤16。</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> a[<span class="hljs-number">6</span>];</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isprem</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> i;</span><br><span class="line">	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">2</span>; i &lt;= n / <span class="hljs-number">2</span>; i++) &#123;</span><br><span class="line">		<span class="hljs-keyword">int</span> x = <span class="hljs-number">9</span>;</span><br><span class="line">		<span class="hljs-keyword">if</span> (n % i == <span class="hljs-number">0</span>)</span><br><span class="line">			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pailie</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> a[<span class="hljs-number">6</span>])</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> ((l == r)&amp;&amp;isprem(a[<span class="hljs-number">0</span>]+a[<span class="hljs-number">5</span>])) &#123;</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; r; i++) &#123;</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">" "</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= r; i++) &#123;</span><br><span class="line">			<span class="hljs-keyword">int</span> ok = <span class="hljs-number">1</span>;</span><br><span class="line">			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; l; j++) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span> (a[j] == i)</span><br><span class="line">					ok = <span class="hljs-number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">if</span>(ok&amp;&amp;isprem(a[l<span class="hljs-number">-1</span>]+i))&#123;</span><br><span class="line">				a[l] = i;</span><br><span class="line">				pailie(l + <span class="hljs-number">1</span>, r, a);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	pailie(<span class="hljs-number">0</span>, <span class="hljs-number">6</span>, a);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>困难的串（Krypton Factor, UVa 129）<br>如果一个字符串包含两个相邻的重复子串，则称它是“容易的串”，其他串称为“困难的 串”。例如，BB、ABCDACABCAB、ABCDABCD都是容易的串，而D、DC、ABDAB、 CBABCBA都是困难的串。</p>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">char</span> A[<span class="hljs-number">3</span>] = &#123; <span class="hljs-string">'A'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'C'</span> &#125;;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">paixu</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">char</span> a[<span class="hljs-number">10</span>], <span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; l; i++)</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; a[i];</span><br><span class="line">	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="hljs-keyword">int</span> ok = <span class="hljs-number">1</span>;</span><br><span class="line">		a[l] = A[i];</span><br><span class="line">		<span class="hljs-keyword">if</span> (a[l] == a[l - <span class="hljs-number">1</span>])</span><br><span class="line">			ok = <span class="hljs-number">0</span>;</span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j * <span class="hljs-number">2</span> &lt;= l + <span class="hljs-number">1</span>; j++) &#123;</span><br><span class="line">			<span class="hljs-keyword">int</span> equal = <span class="hljs-number">1</span>;</span><br><span class="line">			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; j; k++) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span> (a[l - k] != a[l - k - j]) &#123;</span><br><span class="line">					equal = <span class="hljs-number">0</span>;</span><br><span class="line">					<span class="hljs-keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">if</span> (equal) &#123;</span><br><span class="line">				ok = <span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">if</span> (ok) &#123;</span><br><span class="line">			paixu(l + <span class="hljs-number">1</span>, a, n);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">int</span> n, l;</span><br><span class="line">	n = <span class="hljs-number">7</span>;</span><br><span class="line">	l = <span class="hljs-number">3</span>;</span><br><span class="line">	<span class="hljs-keyword">char</span> a[<span class="hljs-number">10</span>];</span><br><span class="line">	paixu(<span class="hljs-number">0</span>, a, l);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/算法/">算法</a>
+                </div>
+            </div>
         </div>
         
         
@@ -209,17 +228,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/01/16/枚举排列/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">枚举排列</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/13/rees-on-the-level-UVa-122/">
-                <span class="level-item">Trees on the level-UVa 122</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/16/子集生成/">
+                <span class="level-item">子集生成</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -948,7 +960,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="OS-多任务处理(1)" height="28">
+                    <img src="/images/logo.svg" alt="回溯法" height="28">
                 
                 </a>
                 <p class="is-size-7">

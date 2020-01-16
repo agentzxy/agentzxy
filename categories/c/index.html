@@ -154,7 +154,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1077 个字)
+                    7 分钟 读完 (大约 1078 个字)
                 </span>
                 
                 
@@ -172,344 +172,7 @@
 <p>3.然后定义一些函数。有界面上围墙的形成、光标的移动、食物的随机产生。</p>
 <p>4.最后通过主函数的调用实现。</p>
 <p>cpp：</p>
-<pre><code>#include &quot;pch.h&quot;
-#include &lt;iostream&gt;
-#include &lt;Windows.h&gt;
-#define n 20
-#include &lt;conio.h&gt;
-#include&lt;time.h&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdio&gt;
-#include &quot;stdlib.h&quot;
-using namespace std;
-//控制光标
-void gotoxy(int x, int y)
-{
-COORD pos;
-pos.X = x;
-pos.Y = y;
-SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-}
-void gotoxy(int x, int y, HANDLE consoleBuf) {
-COORD pos;
-pos.X = x;
-pos.Y = y;
-SetConsoleCursorPosition(consoleBuf, pos);
-}
-//坐标类
-template&lt;typename T&gt;
-class sPoint {
-public:
-T x, y;
-sPoint() {};
-sPoint(T xval, T yval) :x(xval), y(yval) {};
-sPoint&lt;T&gt; &amp; operator = (const sPoint&lt;T&gt; &amp; rval) {
-    this-&gt;x = rval.x;
-    this-&gt;y = rval.y;
-    return *this;
-}
-};
-
-//方向
-enum Direction {
-left=&apos;a&apos;,right=&apos;d&apos;
-};
-
-//随机产生一个食物
-double * setFood()
-{
-double *a=new double[2];
-int x, y;
-srand(time(0));//随机种子
-do {
-    x = rand() % 50 + 1;
-    y = rand() % 30 + 1;
-    break;
-} while (1);
-gotoxy(x, y);
-a[0] = x;
-a[1] = y;//将生成的食物坐标存储起来
-std::cout &lt;&lt; &apos;0&apos; ;
-return a;
-}
-//生成围墙
-void getWall()
-{
-    sPoint&lt;double&gt; wall;
-    wall.x = 0;
-    wall.y =0;
-    while (wall.y &lt;= 30)
-    {
-        gotoxy(50,wall.y);
-        std::cout &lt;&lt; &quot;|&quot;;
-        wall.y++;
-    }
-    gotoxy(0, 30);
-    while (wall.x &lt;= 50)
-    {
-        std::cout &lt;&lt; &quot;-&quot;;
-        wall.x++;
-    }
-}
-
-//蛇类
-class Snake {
-private:
-sPoint&lt;double&gt; snakeHead;//蛇头的位置
-sPoint&lt;double&gt; snakeTail;//蛇尾的位置
-sPoint&lt;double&gt; snakeBody[n];//蛇身各点
-//int forwardTime;//前进的时间间隔
-Direction direction;
-char sym;
-int last;
-public:
-Snake() {};
-Snake(sPoint&lt;double&gt;  head, sPoint&lt;double&gt; tail,int Last,sPoint&lt;double&gt; body[n]) {
-    this-&gt;snakeHead = head;
-    this-&gt;snakeTail = tail;
-    this-&gt;last = Last;
-    this-&gt;snakeBody[20] = body[20];
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-    snakeBody[0].x = 15; snakeBody[0].y = 15; snakeBody[1].x = 16; snakeBody[1].y = 15;
-    snakeBody[2].x = 17; snakeBody[2].y = 15; snakeBody[3].x = 18; snakeBody[3].y = 15;
-    last = 4;
-}
-//蛇向左转
-void setSnakeLeft()
-{
-    //蛇的后一点往前一点移动
-    for (int i = last-1; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeHead.x = snakeHead.x - 1;
-    snakeHead.y = snakeHead.y;
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇向右转
-void setSnakeRight()
-{
-    //蛇的后一点往前一点移动
-    for (int i = last-1; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeHead.y = snakeHead.y;
-    snakeHead.x = snakeHead.x+1;
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇向上转
-void setSnakeUp()
-{
-    for (int i = last-1; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeHead.y = snakeHead.y - 1;
-    snakeHead.x = snakeHead.x;
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇向下转
-void setSnakeDown()
-{
-    for (int i = last-1; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeHead.y = snakeHead.y + 1;
-    snakeHead.x = snakeHead.x;
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇直走
-void setSnakeForward()
-{
-    if (snakeBody[0].y &lt; snakeBody[1].y)
-        snakeHead.y = snakeHead.y - 1;
-    if (snakeBody[0].y &gt; snakeBody[1].y)
-        snakeHead.y = snakeHead.y + 1;
-    if (snakeBody[0].x &lt; snakeBody[1].x)
-        snakeHead.x = snakeHead.x - 1;
-    if (snakeBody[0].x &gt; snakeBody[1].x)
-        snakeHead.x = snakeHead.x + 1;
-    for (int i = last; i &gt;= 1; i--)
-        snakeBody[i] = snakeBody[i - 1];
-    snakeBody[0].x = snakeHead.x;
-    snakeBody[0].y = snakeHead.y;
-}
-//蛇身加一点
-void addSnake()
-{
-    if (snakeBody[last - 1].y &lt; snakeBody[last - 2].y)
-    {
-        snakeBody[last] = snakeBody[last - 1];
-        snakeBody[last].y--;
-    }
-    if (snakeBody[last -1].y &gt; snakeBody[last -2].y)
-    {
-        snakeBody[last] = snakeBody[last - 1];
-        snakeBody[last].y++;
-    }
-    if (snakeBody[last -1].x &lt; snakeBody[last -2].x)
-    {
-        snakeBody[last] = snakeBody[last - 1];
-        snakeBody[last].x--;
-    }
-    if (snakeBody[last -1].x &gt; snakeBody[last -2].x)
-    {
-        snakeBody[last] = snakeBody[last - 1];
-        snakeBody[last].x++;
-    }
-    last++;
-    snakeHead.x = snakeBody[0].x;
-    snakeHead.y = snakeBody[0].y;
-}
-//判断蛇是否撞墙或撞自己
-int ifOut()
-{
-    //蛇是否到达边界
-    if (snakeBody[0].x == 50 || snakeBody[0].y == 30 || snakeBody[0].x == 0 || snakeBody[0].y == 0)
-        return 0;
-    //判断蛇是否撞到自己
-    for (int j = 1; j &lt;last; j++)
-    {
-        if ((snakeHead.x == snakeBody[j].x)&amp;&amp;(snakeHead.y == snakeBody[j].y))
-            return 0;
-    }
-    return 1;
-}
-//初步显示蛇的图案
-void snakeDisplay()
-{
-    gotoxy(snakeBody[0].x, snakeBody[0].y);
-    std::cout &lt;&lt; &quot;*&quot;;//显示蛇头
-    for (int a = 1; a &lt; last; a++)
-    {
-        //std::cout &lt;&lt; this-&gt;snakeBody[a].x &lt;&lt; this-&gt;snakeBody[a].y;
-        gotoxy(snakeBody[a].x, snakeBody[a].y);
-        std::cout &lt;&lt; &quot;#&quot;;
-    }
-}
-//判断蛇是否吃到食物
-int ifEat(double x,double y)
-{
-    if (this-&gt;snakeHead.x == x&amp;&amp;this-&gt;snakeHead.y == y)
-        return true;
-    else return false;
-}
-};
-int main()    {
-    double x, y, *a;
-    sPoint&lt;double&gt; body[20];//用于存储身体各点坐标
-    system(&quot;cls&quot;);
-    getWall();
-    Snake snake = Snake(sPoint&lt;double&gt;(15, 15), sPoint&lt;double&gt;(18, 15), 4, body);//初始化蛇
-    snake.snakeDisplay();
-    a=setFood();
-    x = a[0]; y = a[1];
-    char ch = &apos;/0&apos;;
-    Sleep(5000);
-    //当没有键按下，蛇往前走
-    while (!_kbhit())
-    {
-        snake.setSnakeForward();
-        Sleep(300);
-        system(&quot;cls&quot;);
-        getWall();
-        gotoxy(x,y);
-        cout &lt;&lt; &quot;0&quot;;
-        snake.snakeDisplay();
-        if (snake.ifEat(x, y))
-        {
-            snake.addSnake();
-            system(&quot;cls&quot;);
-            getWall();
-            gotoxy(x, y);
-            cout &lt;&lt; &quot;0&quot;;
-            setFood();
-            snake.snakeDisplay();
-        }
-        if (!snake.ifOut())
-            return 0;
-    }
-    while (1) {
-        if (_kbhit())
-        {
-            ch = _getche();//ch记录按下的键是什么
-            switch (ch)
-            {
-            case &apos;d&apos;:
-                snake.setSnakeRight();
-                Sleep(200);
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                snake.snakeDisplay();
-                break;
-            case &apos;a&apos;:
-                snake.setSnakeLeft();
-                Sleep(200);
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                snake.snakeDisplay();
-                break;
-            case &apos;w&apos;:
-                snake.setSnakeUp();
-                Sleep(200);
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                snake.snakeDisplay();
-                break;
-            case &apos;s&apos;:
-                snake.setSnakeDown();
-                Sleep(200);
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                snake.snakeDisplay();
-                break;
-            case &apos;p&apos;:
-                return 0;
-            default:
-                break;
-            }
-        }
-        while (!_kbhit())
-        {
-            snake.setSnakeForward();
-            Sleep(300);
-            system(&quot;cls&quot;);
-            getWall();
-            gotoxy(x, y);
-            cout &lt;&lt; &quot;0&quot;;
-            snake.snakeDisplay();
-            if (snake.ifEat(x, y))
-            {
-                snake.addSnake();
-                system(&quot;cls&quot;);
-                getWall();
-                gotoxy(x, y);
-                cout &lt;&lt; &quot;0&quot;;
-                setFood();
-                snake.snakeDisplay();
-            }
-        }
-        if (!snake.ifOut())
-            return 0;
-        if (snake.ifEat(x,y))
-        {
-            snake.addSnake();
-            system(&quot;cls&quot;);
-            getWall();    
-            a=setFood();
-            x = a[0]; y = a[1];
-            snake.snakeDisplay();
-        }
-    }
-    return 0;
-}</code></pre>
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"pch.h"</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> n 20</span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;conio.h&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;time.h&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib.h"</span></span></span><br><span class="line">   <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line">   <span class="hljs-comment">//控制光标</span></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">gotoxy</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span></span><br><span class="line"><span class="hljs-function">   </span>&#123;</span><br><span class="line">COORD pos;</span><br><span class="line">pos.X = x;</span><br><span class="line">pos.Y = y;</span><br><span class="line">SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">gotoxy</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, HANDLE consoleBuf)</span> </span>&#123;</span><br><span class="line">COORD pos;</span><br><span class="line">pos.X = x;</span><br><span class="line">pos.Y = y;</span><br><span class="line">SetConsoleCursorPosition(consoleBuf, pos);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="hljs-comment">//坐标类</span></span><br><span class="line">   <span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">sPoint</span> &#123;</span></span><br><span class="line">   <span class="hljs-keyword">public</span>:</span><br><span class="line">T x, y;</span><br><span class="line">sPoint() &#123;&#125;;</span><br><span class="line">sPoint(T xval, T yval) :x(xval), y(yval) &#123;&#125;;</span><br><span class="line">sPoint&lt;T&gt; &amp; <span class="hljs-keyword">operator</span> = (<span class="hljs-keyword">const</span> sPoint&lt;T&gt; &amp; rval) &#123;</span><br><span class="line">	<span class="hljs-keyword">this</span>-&gt;x = rval.x;</span><br><span class="line">	<span class="hljs-keyword">this</span>-&gt;y = rval.y;</span><br><span class="line">	<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//方向</span></span><br><span class="line">   <span class="hljs-keyword">enum</span> Direction &#123;</span><br><span class="line">left=<span class="hljs-string">'a'</span>,right=<span class="hljs-string">'d'</span></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//随机产生一个食物</span></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">double</span> * <span class="hljs-title">setFood</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function">   </span>&#123;</span><br><span class="line"><span class="hljs-keyword">double</span> *a=<span class="hljs-keyword">new</span> <span class="hljs-keyword">double</span>[<span class="hljs-number">2</span>];</span><br><span class="line"><span class="hljs-keyword">int</span> x, y;</span><br><span class="line">srand(time(<span class="hljs-number">0</span>));<span class="hljs-comment">//随机种子</span></span><br><span class="line"><span class="hljs-keyword">do</span> &#123;</span><br><span class="line">	x = rand() % <span class="hljs-number">50</span> + <span class="hljs-number">1</span>;</span><br><span class="line">	y = rand() % <span class="hljs-number">30</span> + <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">break</span>;</span><br><span class="line">&#125; <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>);</span><br><span class="line">gotoxy(x, y);</span><br><span class="line">a[<span class="hljs-number">0</span>] = x;</span><br><span class="line">a[<span class="hljs-number">1</span>] = y;<span class="hljs-comment">//将生成的食物坐标存储起来</span></span><br><span class="line"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">'0'</span> ;</span><br><span class="line"><span class="hljs-keyword">return</span> a;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="hljs-comment">//生成围墙</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getWall</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	sPoint&lt;<span class="hljs-keyword">double</span>&gt; wall;</span><br><span class="line">	wall.x = <span class="hljs-number">0</span>;</span><br><span class="line">	wall.y =<span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-keyword">while</span> (wall.y &lt;= <span class="hljs-number">30</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		gotoxy(<span class="hljs-number">50</span>,wall.y);</span><br><span class="line">		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"|"</span>;</span><br><span class="line">		wall.y++;</span><br><span class="line">	&#125;</span><br><span class="line">	gotoxy(<span class="hljs-number">0</span>, <span class="hljs-number">30</span>);</span><br><span class="line">	<span class="hljs-keyword">while</span> (wall.x &lt;= <span class="hljs-number">50</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"-"</span>;</span><br><span class="line">		wall.x++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//蛇类</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Snake</span> &#123;</span></span><br><span class="line">   <span class="hljs-keyword">private</span>:</span><br><span class="line">sPoint&lt;<span class="hljs-keyword">double</span>&gt; snakeHead;<span class="hljs-comment">//蛇头的位置</span></span><br><span class="line">sPoint&lt;<span class="hljs-keyword">double</span>&gt; snakeTail;<span class="hljs-comment">//蛇尾的位置</span></span><br><span class="line">sPoint&lt;<span class="hljs-keyword">double</span>&gt; snakeBody[n];<span class="hljs-comment">//蛇身各点</span></span><br><span class="line"><span class="hljs-comment">//int forwardTime;//前进的时间间隔</span></span><br><span class="line">Direction direction;</span><br><span class="line"><span class="hljs-keyword">char</span> sym;</span><br><span class="line"><span class="hljs-keyword">int</span> last;</span><br><span class="line">   <span class="hljs-keyword">public</span>:</span><br><span class="line">Snake() &#123;&#125;;</span><br><span class="line">Snake(sPoint&lt;<span class="hljs-keyword">double</span>&gt;  head, sPoint&lt;<span class="hljs-keyword">double</span>&gt; tail,<span class="hljs-keyword">int</span> Last,sPoint&lt;<span class="hljs-keyword">double</span>&gt; body[n]) &#123;</span><br><span class="line">	<span class="hljs-keyword">this</span>-&gt;snakeHead = head;</span><br><span class="line">	<span class="hljs-keyword">this</span>-&gt;snakeTail = tail;</span><br><span class="line">	<span class="hljs-keyword">this</span>-&gt;last = Last;</span><br><span class="line">	<span class="hljs-keyword">this</span>-&gt;snakeBody[<span class="hljs-number">20</span>] = body[<span class="hljs-number">20</span>];</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].x = snakeHead.x;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].y = snakeHead.y;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].x = <span class="hljs-number">15</span>; snakeBody[<span class="hljs-number">0</span>].y = <span class="hljs-number">15</span>; snakeBody[<span class="hljs-number">1</span>].x = <span class="hljs-number">16</span>; snakeBody[<span class="hljs-number">1</span>].y = <span class="hljs-number">15</span>;</span><br><span class="line">	snakeBody[<span class="hljs-number">2</span>].x = <span class="hljs-number">17</span>; snakeBody[<span class="hljs-number">2</span>].y = <span class="hljs-number">15</span>; snakeBody[<span class="hljs-number">3</span>].x = <span class="hljs-number">18</span>; snakeBody[<span class="hljs-number">3</span>].y = <span class="hljs-number">15</span>;</span><br><span class="line">	last = <span class="hljs-number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//蛇向左转</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSnakeLeft</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-comment">//蛇的后一点往前一点移动</span></span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = last<span class="hljs-number">-1</span>; i &gt;= <span class="hljs-number">1</span>; i--)</span><br><span class="line">		snakeBody[i] = snakeBody[i - <span class="hljs-number">1</span>];</span><br><span class="line">	snakeHead.x = snakeHead.x - <span class="hljs-number">1</span>;</span><br><span class="line">	snakeHead.y = snakeHead.y;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].x = snakeHead.x;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].y = snakeHead.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//蛇向右转</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSnakeRight</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-comment">//蛇的后一点往前一点移动</span></span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = last<span class="hljs-number">-1</span>; i &gt;= <span class="hljs-number">1</span>; i--)</span><br><span class="line">		snakeBody[i] = snakeBody[i - <span class="hljs-number">1</span>];</span><br><span class="line">	snakeHead.y = snakeHead.y;</span><br><span class="line">	snakeHead.x = snakeHead.x+<span class="hljs-number">1</span>;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].x = snakeHead.x;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].y = snakeHead.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//蛇向上转</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSnakeUp</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = last<span class="hljs-number">-1</span>; i &gt;= <span class="hljs-number">1</span>; i--)</span><br><span class="line">		snakeBody[i] = snakeBody[i - <span class="hljs-number">1</span>];</span><br><span class="line">	snakeHead.y = snakeHead.y - <span class="hljs-number">1</span>;</span><br><span class="line">	snakeHead.x = snakeHead.x;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].x = snakeHead.x;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].y = snakeHead.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//蛇向下转</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSnakeDown</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = last<span class="hljs-number">-1</span>; i &gt;= <span class="hljs-number">1</span>; i--)</span><br><span class="line">		snakeBody[i] = snakeBody[i - <span class="hljs-number">1</span>];</span><br><span class="line">	snakeHead.y = snakeHead.y + <span class="hljs-number">1</span>;</span><br><span class="line">	snakeHead.x = snakeHead.x;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].x = snakeHead.x;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].y = snakeHead.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//蛇直走</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSnakeForward</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[<span class="hljs-number">0</span>].y &lt; snakeBody[<span class="hljs-number">1</span>].y)</span><br><span class="line">		snakeHead.y = snakeHead.y - <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[<span class="hljs-number">0</span>].y &gt; snakeBody[<span class="hljs-number">1</span>].y)</span><br><span class="line">		snakeHead.y = snakeHead.y + <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[<span class="hljs-number">0</span>].x &lt; snakeBody[<span class="hljs-number">1</span>].x)</span><br><span class="line">		snakeHead.x = snakeHead.x - <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[<span class="hljs-number">0</span>].x &gt; snakeBody[<span class="hljs-number">1</span>].x)</span><br><span class="line">		snakeHead.x = snakeHead.x + <span class="hljs-number">1</span>;</span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = last; i &gt;= <span class="hljs-number">1</span>; i--)</span><br><span class="line">		snakeBody[i] = snakeBody[i - <span class="hljs-number">1</span>];</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].x = snakeHead.x;</span><br><span class="line">	snakeBody[<span class="hljs-number">0</span>].y = snakeHead.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//蛇身加一点</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addSnake</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[last - <span class="hljs-number">1</span>].y &lt; snakeBody[last - <span class="hljs-number">2</span>].y)</span><br><span class="line">	&#123;</span><br><span class="line">		snakeBody[last] = snakeBody[last - <span class="hljs-number">1</span>];</span><br><span class="line">		snakeBody[last].y--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[last <span class="hljs-number">-1</span>].y &gt; snakeBody[last <span class="hljs-number">-2</span>].y)</span><br><span class="line">	&#123;</span><br><span class="line">		snakeBody[last] = snakeBody[last - <span class="hljs-number">1</span>];</span><br><span class="line">		snakeBody[last].y++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[last <span class="hljs-number">-1</span>].x &lt; snakeBody[last <span class="hljs-number">-2</span>].x)</span><br><span class="line">	&#123;</span><br><span class="line">		snakeBody[last] = snakeBody[last - <span class="hljs-number">1</span>];</span><br><span class="line">		snakeBody[last].x--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[last <span class="hljs-number">-1</span>].x &gt; snakeBody[last <span class="hljs-number">-2</span>].x)</span><br><span class="line">	&#123;</span><br><span class="line">		snakeBody[last] = snakeBody[last - <span class="hljs-number">1</span>];</span><br><span class="line">		snakeBody[last].x++;</span><br><span class="line">	&#125;</span><br><span class="line">	last++;</span><br><span class="line">	snakeHead.x = snakeBody[<span class="hljs-number">0</span>].x;</span><br><span class="line">	snakeHead.y = snakeBody[<span class="hljs-number">0</span>].y;</span><br><span class="line">&#125;</span><br><span class="line">   <span class="hljs-comment">//判断蛇是否撞墙或撞自己</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ifOut</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-comment">//蛇是否到达边界</span></span><br><span class="line">	<span class="hljs-keyword">if</span> (snakeBody[<span class="hljs-number">0</span>].x == <span class="hljs-number">50</span> || snakeBody[<span class="hljs-number">0</span>].y == <span class="hljs-number">30</span> || snakeBody[<span class="hljs-number">0</span>].x == <span class="hljs-number">0</span> || snakeBody[<span class="hljs-number">0</span>].y == <span class="hljs-number">0</span>)</span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">	<span class="hljs-comment">//判断蛇是否撞到自己</span></span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;last; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span> ((snakeHead.x == snakeBody[j].x)&amp;&amp;(snakeHead.y == snakeBody[j].y))</span><br><span class="line">			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//初步显示蛇的图案</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">snakeDisplay</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	gotoxy(snakeBody[<span class="hljs-number">0</span>].x, snakeBody[<span class="hljs-number">0</span>].y);</span><br><span class="line">	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"*"</span>;<span class="hljs-comment">//显示蛇头</span></span><br><span class="line">	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>; a &lt; last; a++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="hljs-comment">//std::cout &lt;&lt; this-&gt;snakeBody[a].x &lt;&lt; this-&gt;snakeBody[a].y;</span></span><br><span class="line">		gotoxy(snakeBody[a].x, snakeBody[a].y);</span><br><span class="line">		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"#"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//判断蛇是否吃到食物</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ifEat</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x,<span class="hljs-keyword">double</span> y)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;snakeHead.x == x&amp;&amp;<span class="hljs-keyword">this</span>-&gt;snakeHead.y == y)</span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">	<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">   &#125;;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>	</span>&#123;</span><br><span class="line">	<span class="hljs-keyword">double</span> x, y, *a;</span><br><span class="line">	sPoint&lt;<span class="hljs-keyword">double</span>&gt; body[<span class="hljs-number">20</span>];<span class="hljs-comment">//用于存储身体各点坐标</span></span><br><span class="line">	system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">	getWall();</span><br><span class="line">	Snake snake = Snake(sPoint&lt;<span class="hljs-keyword">double</span>&gt;(<span class="hljs-number">15</span>, <span class="hljs-number">15</span>), sPoint&lt;<span class="hljs-keyword">double</span>&gt;(<span class="hljs-number">18</span>, <span class="hljs-number">15</span>), <span class="hljs-number">4</span>, body);<span class="hljs-comment">//初始化蛇</span></span><br><span class="line">	snake.snakeDisplay();</span><br><span class="line">	a=setFood();</span><br><span class="line">	x = a[<span class="hljs-number">0</span>]; y = a[<span class="hljs-number">1</span>];</span><br><span class="line">	char ch = '/0';</span><br><span class="line">	Sleep(<span class="hljs-number">5000</span>);</span><br><span class="line">	<span class="hljs-comment">//当没有键按下，蛇往前走</span></span><br><span class="line">	<span class="hljs-keyword">while</span> (!_kbhit())</span><br><span class="line">	&#123;</span><br><span class="line">		snake.setSnakeForward();</span><br><span class="line">		Sleep(<span class="hljs-number">300</span>);</span><br><span class="line">		system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">		getWall();</span><br><span class="line">		gotoxy(x,y);</span><br><span class="line">		<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span>;</span><br><span class="line">		snake.snakeDisplay();</span><br><span class="line">		<span class="hljs-keyword">if</span> (snake.ifEat(x, y))</span><br><span class="line">		&#123;</span><br><span class="line">			snake.addSnake();</span><br><span class="line">			system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">			getWall();</span><br><span class="line">			gotoxy(x, y);</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span>;</span><br><span class="line">			setFood();</span><br><span class="line">			snake.snakeDisplay();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">if</span> (!snake.ifOut())</span><br><span class="line">			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;</span><br><span class="line">		<span class="hljs-keyword">if</span> (_kbhit())</span><br><span class="line">		&#123;</span><br><span class="line">			ch = _getche();<span class="hljs-comment">//ch记录按下的键是什么</span></span><br><span class="line">			<span class="hljs-keyword">switch</span> (ch)</span><br><span class="line">			&#123;</span><br><span class="line">			<span class="hljs-keyword">case</span> <span class="hljs-string">'d'</span>:</span><br><span class="line">				snake.setSnakeRight();</span><br><span class="line">				Sleep(<span class="hljs-number">200</span>);</span><br><span class="line">				system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">				getWall();</span><br><span class="line">				gotoxy(x, y);</span><br><span class="line">				<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span>;</span><br><span class="line">				snake.snakeDisplay();</span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			<span class="hljs-keyword">case</span> <span class="hljs-string">'a'</span>:</span><br><span class="line">				snake.setSnakeLeft();</span><br><span class="line">				Sleep(<span class="hljs-number">200</span>);</span><br><span class="line">				system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">				getWall();</span><br><span class="line">				gotoxy(x, y);</span><br><span class="line">				<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span>;</span><br><span class="line">				snake.snakeDisplay();</span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			<span class="hljs-keyword">case</span> <span class="hljs-string">'w'</span>:</span><br><span class="line">				snake.setSnakeUp();</span><br><span class="line">				Sleep(<span class="hljs-number">200</span>);</span><br><span class="line">				system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">				getWall();</span><br><span class="line">				gotoxy(x, y);</span><br><span class="line">				<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span>;</span><br><span class="line">				snake.snakeDisplay();</span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			<span class="hljs-keyword">case</span> <span class="hljs-string">'s'</span>:</span><br><span class="line">				snake.setSnakeDown();</span><br><span class="line">				Sleep(<span class="hljs-number">200</span>);</span><br><span class="line">				system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">				getWall();</span><br><span class="line">				gotoxy(x, y);</span><br><span class="line">				<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span>;</span><br><span class="line">				snake.snakeDisplay();</span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			<span class="hljs-keyword">case</span> <span class="hljs-string">'p'</span>:</span><br><span class="line">				<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">			<span class="hljs-keyword">default</span>:</span><br><span class="line">				<span class="hljs-keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">while</span> (!_kbhit())</span><br><span class="line">		&#123;</span><br><span class="line">			snake.setSnakeForward();</span><br><span class="line">			Sleep(<span class="hljs-number">300</span>);</span><br><span class="line">			system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">			getWall();</span><br><span class="line">			gotoxy(x, y);</span><br><span class="line">			<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span>;</span><br><span class="line">			snake.snakeDisplay();</span><br><span class="line">			<span class="hljs-keyword">if</span> (snake.ifEat(x, y))</span><br><span class="line">			&#123;</span><br><span class="line">				snake.addSnake();</span><br><span class="line">				system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">				getWall();</span><br><span class="line">				gotoxy(x, y);</span><br><span class="line">				<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span>;</span><br><span class="line">				setFood();</span><br><span class="line">				snake.snakeDisplay();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">if</span> (!snake.ifOut())</span><br><span class="line">			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">		<span class="hljs-keyword">if</span> (snake.ifEat(x,y))</span><br><span class="line">		&#123;</span><br><span class="line">			snake.addSnake();</span><br><span class="line">			system(<span class="hljs-string">"cls"</span>);</span><br><span class="line">			getWall();	</span><br><span class="line">			a=setFood();</span><br><span class="line">			x = a[<span class="hljs-number">0</span>]; y = a[<span class="hljs-number">1</span>];</span><br><span class="line">			snake.snakeDisplay();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -541,7 +204,7 @@ int main()    {
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 789 个字)
+                    5 分钟 读完 (大约 791 个字)
                 </span>
                 
                 
@@ -560,154 +223,120 @@ int main()    {
 <p>   3.客户平均逗留时间</p>
 <p>   银行排队问题可具体化为一个银行、队伍、客户，将客户到达事件、客户离开事件等一系列事件作为事件链表，客户作为链表节点，银行作为一个类。</p>
 <p>   bank头文件：</p>
-<pre><code>#include &lt;queue&gt;
-#include &lt;list&gt;
+<figure class="highlight cpp hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span></span><br><span class="line">   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;list&gt;</span></span></span><br><span class="line">   </span><br><span class="line">   <span class="hljs-comment">//事件链表</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Event</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line"><span class="hljs-keyword">int</span> _occur_time;<span class="hljs-comment">//事件发生时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _type;<span class="hljs-comment">//事件类型，0表示到达事件，1~4表示4个窗口离开事件</span></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//银行链表的队伍结点</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QueueNode</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line"><span class="hljs-keyword">int</span> _arrival_time;<span class="hljs-comment">//客户到达时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _duration_time;<span class="hljs-comment">//客户在银行待的时间</span></span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">//银行链表</span></span><br><span class="line">   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bank</span></span></span><br><span class="line"><span class="hljs-class">   &#123;</span></span><br><span class="line">   <span class="hljs-keyword">public</span>:</span><br><span class="line"><span class="hljs-comment">//防止隐式转化</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Bank</span><span class="hljs-params">(<span class="hljs-keyword">int</span> window = <span class="hljs-number">4</span>, <span class="hljs-keyword">int</span> close_time = <span class="hljs-number">8</span> * <span class="hljs-number">3600</span>)</span></span>;</span><br><span class="line">~Bank();</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Simulation</span><span class="hljs-params">()</span></span>;</span><br><span class="line">   <span class="hljs-keyword">private</span>:</span><br><span class="line"><span class="hljs-keyword">int</span> _queue_number; <span class="hljs-comment">//队列个数</span></span><br><span class="line"><span class="hljs-keyword">int</span> _close_time; <span class="hljs-comment">//关门时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _total_time;<span class="hljs-comment">//所有客人待的总时间</span></span><br><span class="line"><span class="hljs-keyword">int</span> _customer_number;<span class="hljs-comment">//客户数目</span></span><br><span class="line"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">list</span>&lt;Event&gt; _event_list;<span class="hljs-comment">//事件链表</span></span><br><span class="line"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">queue</span>&lt;QueueNode&gt; *_work_queue;<span class="hljs-comment">//工作队伍队列</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OpenForDay</span><span class="hljs-params">()</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CustomerArrival</span><span class="hljs-params">(Event *event)</span></span>;<span class="hljs-comment">//客户到达事件</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CustomerDeparture</span><span class="hljs-params">(Event *event)</span></span>;<span class="hljs-comment">//客户离开事件</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">FindShortestQueue</span><span class="hljs-params">()</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SortEventList</span><span class="hljs-params">()</span></span>;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
 
-//事件链表
-struct Event
-{
-int _occur_time;//事件发生时间
-int _type;//事件类型，0表示到达事件，1~4表示4个窗口离开事件
-};
+<p>   bank.cpp:</p>
+<pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"pch.h"</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"bank.h"</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;clocale&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span>
 
-//银行链表的队伍结点
-struct QueueNode
+Bank::Bank(<span class="keyword">int</span> window, <span class="keyword">int</span> close_time) :_queue_number(window), _close_time(close_time), _total_time(<span class="number">0</span>), _customer_number(<span class="number">0</span>)
 {
-int _arrival_time;//客户到达时间
-int _duration_time;//客户在银行待的时间
-};
-
-//银行链表
-class Bank
-{
-public:
-//防止隐式转化
-explicit Bank(int window = 4, int close_time = 8 * 3600);
-~Bank();
-void Simulation();
-private:
-int _queue_number; //队列个数
-int _close_time; //关门时间
-int _total_time;//所有客人待的总时间
-int _customer_number;//客户数目
-std::list&lt;Event&gt; _event_list;//事件链表
-std::queue&lt;QueueNode&gt; *_work_queue;//工作队伍队列
-void OpenForDay();
-void CustomerArrival(Event *event);//客户到达事件
-void CustomerDeparture(Event *event);//客户离开事件
-int FindShortestQueue();
-void SortEventList();
-};</code></pre><p>   bank.cpp:</p>
-<pre><code>#include &quot;pch.h&quot;
-#include &lt;iostream&gt;
-#include &quot;bank.h&quot;
-#include &lt;clocale&gt;
-#include &lt;chrono&gt;
-#include &lt;cstdlib&gt;
-
-Bank::Bank(int window, int close_time) :_queue_number(window), _close_time(close_time), _total_time(0), _customer_number(0)
-{
-_work_queue = new std::queue&lt;QueueNode&gt;[window];//产生一个新的工作队列
-srand(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));//产生伪随机序列
+_work_queue = <span class="keyword">new</span> <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;QueueNode&gt;[window];<span class="comment">//产生一个新的工作队列</span>
+srand(<span class="built_in">std</span>::chrono::system_clock::<span class="keyword">to_time_t</span>(<span class="built_in">std</span>::chrono::system_clock::now()));<span class="comment">//产生伪随机序列</span>
 }
 Bank::~Bank()
 {
-delete[] _work_queue;
+<span class="keyword">delete</span>[] _work_queue;
 }
-void Bank::OpenForDay()
+<span class="keyword">void</span> Bank::OpenForDay()
 {
-//第一个客户到达,将第一个客户到达事件压入栈
-_event_list.push_back({ 0,0 });
+<span class="comment">//第一个客户到达,将第一个客户到达事件压入栈</span>
+_event_list.push_back({ <span class="number">0</span>,<span class="number">0</span> });
 }
-void Bank::CustomerArrival(Event *event)
+<span class="keyword">void</span> Bank::CustomerArrival(Event *event)
 {
-++_customer_number;//客户数加一
-int duration_time, inter_time;//inter_time:下一个客户隔多长时间来
-duration_time = rand() % 1800 + 1;//一个客户最多30分钟
-inter_time = rand() % 600 + 1;//最多10分钟来一个客户
+++_customer_number;<span class="comment">//客户数加一</span>
+<span class="keyword">int</span> duration_time, inter_time;<span class="comment">//inter_time:下一个客户隔多长时间来</span>
+duration_time = rand() % <span class="number">1800</span> + <span class="number">1</span>;<span class="comment">//一个客户最多30分钟</span>
+inter_time = rand() % <span class="number">600</span> + <span class="number">1</span>;<span class="comment">//最多10分钟来一个客户</span>
 
-//下一个客户到达时间
-int t = event-&gt;_occur_time + inter_time;
+<span class="comment">//下一个客户到达时间</span>
+<span class="keyword">int</span> t = event-&gt;_occur_time + inter_time;
 
-//假设银行未关门
-if (t &lt; _close_time)
+<span class="comment">//假设银行未关门</span>
+<span class="keyword">if</span> (t &lt; _close_time)
 {
-    _event_list.push_back({ t,0 });//将下一个客户到达事件压栈
-    SortEventList();//整理、排序事件
+    _event_list.push_back({ t,<span class="number">0</span> });<span class="comment">//将下一个客户到达事件压栈</span>
+    SortEventList();<span class="comment">//整理、排序事件</span>
 }
-int i;
-i = FindShortestQueue();//i为最短队列
-//将新客户压入最短队列
+<span class="keyword">int</span> i;
+i = FindShortestQueue();<span class="comment">//i为最短队列</span>
+<span class="comment">//将新客户压入最短队列</span>
 _work_queue[i].push({ event-&gt;_occur_time,duration_time });
-//生成i队列最后一个人的离开事件
-if (_work_queue[i].size() == 1)
+<span class="comment">//生成i队列最后一个人的离开事件</span>
+<span class="keyword">if</span> (_work_queue[i].size() == <span class="number">1</span>)
 {
-    _event_list.push_back({ event-&gt;_occur_time + duration_time,i + 1 });
+    _event_list.push_back({ event-&gt;_occur_time + duration_time,i + <span class="number">1</span> });
     SortEventList();
 }
 }
 
-void Bank::CustomerDeparture(Event *event)
+<span class="keyword">void</span> Bank::CustomerDeparture(Event *event)
 {
-int i = event-&gt;_type - 1;//i表示1~4哪个队伍离开
+<span class="keyword">int</span> i = event-&gt;_type - <span class="number">1</span>;<span class="comment">//i表示1~4哪个队伍离开</span>
 QueueNode customer;
-//客户离开，从队伍中弹出
+<span class="comment">//客户离开，从队伍中弹出</span>
 customer = _work_queue[i].front();
 _work_queue[i].pop();
-//客户总耗时=之前的耗时+此刻的耗时
+<span class="comment">//客户总耗时=之前的耗时+此刻的耗时</span>
 _total_time += event-&gt;_occur_time - customer._arrival_time;
-if (!_work_queue[i].empty()) {
+<span class="keyword">if</span> (!_work_queue[i].empty()) {
     customer = _work_queue[i].front();
     _event_list.push_back(
-        { customer._duration_time + event-&gt;_occur_time, i + 1 });
+        { customer._duration_time + event-&gt;_occur_time, i + <span class="number">1</span> });
     SortEventList();
 }
 }
 
-int Bank::FindShortestQueue()
+<span class="keyword">int</span> Bank::FindShortestQueue()
 {
-int result = 0;
-for (int i = 0; i &lt; _queue_number; ++i) {
-    if (_work_queue[result].size() &gt; _work_queue[i].size())
+<span class="keyword">int</span> result = <span class="number">0</span>;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; _queue_number; ++i) {
+    <span class="keyword">if</span> (_work_queue[result].size() &gt; _work_queue[i].size())
         result = i;
 }
-return result;
+<span class="keyword">return</span> result;
 }
-void Bank::SortEventList()
+<span class="keyword">void</span> Bank::SortEventList()
 {
-// Lambda表达式
-_event_list.sort([](const Event &amp;e1, const Event &amp;e2) -&gt; bool {return e1._occur_time &lt; e2._occur_time; });
+<span class="comment">// Lambda表达式</span>
+_event_list.sort([](<span class="keyword">const</span> Event &amp;e1, <span class="keyword">const</span> Event &amp;e2) -&gt; <span class="keyword">bool</span> {<span class="keyword">return</span> e1._occur_time &lt; e2._occur_time; });
 }
 
-//模拟仿真排队
-void Bank::Simulation()
+<span class="comment">//模拟仿真排队</span>
+<span class="keyword">void</span> Bank::Simulation()
 {
 OpenForDay();
 Event event;
-while (!_event_list.empty()) {
+<span class="keyword">while</span> (!_event_list.empty()) {
     event = _event_list.front();
     _event_list.pop_front();
-    if (event._type == 0) // 到达事件
+    <span class="keyword">if</span> (event._type == <span class="number">0</span>) <span class="comment">// 到达事件</span>
         CustomerArrival(&amp;event);
-    else
+    <span class="keyword">else</span>
         CustomerDeparture(&amp;event);
 }
-// 计算并输出平均逗留时间
-std::wcout &lt;&lt; L&quot;客户数：&quot; &lt;&lt; _customer_number &lt;&lt; std::endl
-    &lt;&lt; L&quot;总逗留时间（小时）：&quot; &lt;&lt; (double)_total_time / 3600.0
-    &lt;&lt; std::endl
-    &lt;&lt; L&quot;平均逗留时间（分钟）：&quot;
-    &lt;&lt; (double)_total_time / (double)(_customer_number * 60)
-    &lt;&lt; std::endl;
+<span class="comment">// 计算并输出平均逗留时间</span>
+<span class="built_in">std</span>::wcout &lt;&lt; <span class="string">L"客户数："</span> &lt;&lt; _customer_number &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>
+    &lt;&lt; <span class="string">L"总逗留时间（小时）："</span> &lt;&lt; (<span class="keyword">double</span>)_total_time / <span class="number">3600.0</span>
+    &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>
+    &lt;&lt; <span class="string">L"平均逗留时间（分钟）："</span>
+    &lt;&lt; (<span class="keyword">double</span>)_total_time / (<span class="keyword">double</span>)(_customer_number * <span class="number">60</span>)
+    &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;
 }
-int wmain(int argc, wchar_t *argv[], wchar_t *env[])
-{
-_wsetlocale(LC_ALL, L&quot;&quot;);
+<span class="function"><span class="keyword">int</span> <span class="title">wmain</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">wchar_t</span> *argv[], <span class="keyword">wchar_t</span> *env[])</span></span>
+<span class="function"></span>{
+_wsetlocale(LC_ALL, <span class="string">L""</span>);
 
 Bank bank;
 bank.Simulation();
-return 0;
+<span class="keyword">return</span> <span class="number">0</span>;
 }</code></pre>
+
         </div>
         
         
@@ -767,7 +396,7 @@ return 0;
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            19
+                            22
                         </p>
                     </a>
                 </div>
@@ -894,14 +523,6 @@ return 0;
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/STL/">
-            <span class="level-start">
-                <span class="level-item">STL</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/c/">
             <span class="level-start">
                 <span class="level-item">c++</span>
@@ -925,6 +546,14 @@ return 0;
             <span class="level-end">
                 <span class="level-item tag">8</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -936,7 +565,7 @@ return 0;
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/STL/" style="font-size: 15px;">STL</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a>
+        <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/操作系统/" style="font-size: 20px;">操作系统</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a>
     </div>
 </div>
     
@@ -948,6 +577,63 @@ return 0;
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -981,64 +667,7 @@ return 0;
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -1061,7 +690,7 @@ return 0;
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1135,13 +764,6 @@ return 0;
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -1173,6 +795,13 @@ return 0;
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1200,6 +829,63 @@ return 0;
         
         <article class="media">
             
+            <a href="/2020/01/16/回溯法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="回溯法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:25:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/回溯法/" class="title has-link-black-ter is-size-6 has-text-weight-normal">回溯法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/子集生成/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="子集生成">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:14:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/子集生成/" class="title has-link-black-ter is-size-6 has-text-weight-normal">子集生成</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/01/16/枚举排列/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="枚举排列">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-16T09:01:00.000Z">2020-01-16</time></div>
+                    <a href="/2020/01/16/枚举排列/" class="title has-link-black-ter is-size-6 has-text-weight-normal">枚举排列</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/14/制简单操作系统（9）/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-多任务处理(1)">
@@ -1230,64 +916,7 @@ return 0;
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T09:08:00.000Z">2020-01-13</time></div>
                     <a href="/2020/01/13/rees-on-the-level-UVa-122/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Trees on the level-UVa 122</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="The Set Stack Computer-Uva 12096">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:58:43.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/The-Set-Stack-Computer-Uva-12096/" class="title has-link-black-ter is-size-6 has-text-weight-normal">The Set Stack Computer-Uva 12096</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/01/11/TL相关题/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ananagrams-Uva 156">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T08:50:25.000Z">2020-01-11</time></div>
-                    <a href="/2020/01/11/TL相关题/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ananagrams-Uva 156</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STL/">STL</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/12/21/自制简单操作系统（8）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="OS-定时器制作(2)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T09:34:11.000Z">2019-12-21</time></div>
-                    <a href="/2019/12/21/自制简单操作系统（8）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">OS-定时器制作(2)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/操作系统/">操作系统</a>
+                        <a class="has-link-grey -link" href="/categories/算法/">算法</a>
                     </p>
                 </div>
             </div>
@@ -1310,7 +939,7 @@ return 0;
                     <span class="level-item">一月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1384,13 +1013,6 @@ return 0;
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/STL/">
-                        <span class="tag">STL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/c/">
                         <span class="tag">c++</span>
                         <span class="tag is-grey">1</span>
@@ -1422,6 +1044,13 @@ return 0;
                     <a class="tags has-addons" href="/tags/操作系统/">
                         <span class="tag">操作系统</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/算法/">
+                        <span class="tag">算法</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
